@@ -90,15 +90,15 @@ class Homepage extends StatelessWidget {
                     "innovative ideas into seamless, visually appealing, and highly functional\n"
                     "mobile applications. With a solid background in mobile app development....",
                     style: Apptext.aboutstyles(),
+                  ),
+                  SizedBox(
+                    width: MediaQuery.sizeOf(context).width * 3,
+                    child: Text(
+                        "Hey there! a passionate Flutter developer with a knack for turning"
+                        "innovative ideas into seamless, visually appealing, and highly functional"
+                        "mobile applications. With a solid background in mobile app development and a deep understanding of the Flutter framework,"
+                        "I'm dedicated to creating user-centric experiences that captivate and delight users"),
                   )
-                  // SizedBox(
-                  //   width: MediaQuery.sizeOf(context).width * 3,
-                  //   child: Text(
-                  //       "Hey there! a passionate Flutter developer with a knack for turning"
-                  //       "innovative ideas into seamless, visually appealing, and highly functional"
-                  //       "mobile applications. With a solid background in mobile app development and a deep understanding of the Flutter framework,"
-                  //       "I'm dedicated to creating user-centric experiences that captivate and delight users"),
-                  // )
                 ],
               )
             ],
