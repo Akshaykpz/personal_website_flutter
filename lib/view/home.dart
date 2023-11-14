@@ -1,7 +1,9 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:my_personal_website/constants/colors.dart';
+import 'package:my_personal_website/constants/image.dart';
 import 'package:my_personal_website/constants/textstyle.dart';
+import 'package:my_personal_website/view/widgets/circile_view.dart';
 
 class Homepage extends StatelessWidget {
   Homepage({super.key});
@@ -91,10 +93,44 @@ class Homepage extends StatelessWidget {
                       ),
                     ],
                   ),
+                  Row(
+                    children: [
+                      CircileView(image: AppImage.oneimage),
+                      CircileView(image: AppImage.hello),
+                      CircileView(image: AppImage.instagram),
+                      CircileView(image: AppImage.twitter),
+                    ],
+                  )
                 ],
               ),
+              // Image.asset(
+              //   AppImage.image,
+              //   height: 100,
+              //   fit: BoxFit.cover,
+              // )
               CircleAvatar(
-                backgroundImage: AssetImage('assets/images/0N9A8160.JPG'),
+                maxRadius: 105,
+                backgroundColor: Colors.white30,
+
+                child: Padding(
+                  padding: EdgeInsets.all(10),
+                  child: ClipOval(
+                      child: SizedBox.fromSize(
+                    size: Size.fromRadius(
+                      104.6,
+                    ),
+                    child: Image.asset(
+                      AppImage.image,
+                      fit: BoxFit.cover,
+                    ),
+                  )),
+                ),
+                // backgroundImage: AssetImage(
+                //   AppImage.image,
+                // ),
+              ),
+              SizedBox(
+                width: 80,
               )
             ],
           ),
