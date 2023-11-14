@@ -94,7 +94,7 @@ class Homepage extends StatelessWidget {
                 ],
               ),
               CircleAvatar(
-                backgroundImage: AssetImage(''),
+                backgroundImage: AssetImage('assets/images/0N9A8160.JPG'),
               )
             ],
           ),
