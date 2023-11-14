@@ -1,10 +1,10 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
-import 'package:my_personal_website/colors.dart';
-import 'package:my_personal_website/textstyle.dart';
+import 'package:my_personal_website/constants/colors.dart';
+import 'package:my_personal_website/constants/textstyle.dart';
 
 class Homepage extends StatelessWidget {
-  const Homepage({super.key});
+  Homepage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,44 +15,39 @@ class Homepage extends StatelessWidget {
         toolbarHeight: 90,
         backgroundColor: AppColors.bgcolors,
         elevation: 0,
-        title: Padding(
+        title: const Padding(
           padding: EdgeInsets.symmetric(horizontal: 12),
           child: Row(children: [
             Text(
               'Portfolio',
-              style: Apptext.headertextstyle(),
             ),
             Spacer(),
             Text(
               'Home',
-              style: Apptext.headertextstyle(),
             ),
             SizedBox(
               width: 20,
             ),
             Text(
               'About',
-              style: Apptext.headertextstyle(),
             ),
             SizedBox(
               width: 20,
             ),
             Text(
               'Service',
-              style: Apptext.headertextstyle(),
             ),
             SizedBox(
               width: 20,
             ),
             Text(
               'Contact',
-              style: Apptext.headertextstyle(),
             )
           ]),
         ),
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.only(top: 30, left: 150, right: 20),
+        padding: const EdgeInsets.only(top: 30, left: 150, right: 20),
         child: Column(children: [
           Row(
             children: [
@@ -60,16 +55,15 @@ class Homepage extends StatelessWidget {
                 children: [
                   Text(
                     "Hello It's Me",
-                    style: Apptext.biodatas(),
+                    style: Apptext.headertextstyle(),
                   ),
                   Text(
                     "AKSHAY KP",
                     style: Apptext.addstyles(),
                   ),
-                  // AnimatedTextKit(animatedTexts: [
-                  //   TyperAnimatedText("And I'm a",
-                  //       textStyle: Apptext.textestyles())
-                  // ]),
+                  SizedBox(
+                    height: 5,
+                  ),
                   Row(
                     children: [
                       AnimatedTextKit(animatedTexts: [
@@ -85,20 +79,19 @@ class Homepage extends StatelessWidget {
                   SizedBox(
                     height: 20,
                   ),
-                  Text(
-                    "Hey there! a passionate Flutter developer with a knack for turning\n"
-                    "innovative ideas into seamless, visually appealing, and highly functional\n"
-                    "mobile applications. With a solid background in mobile app development....",
-                    style: Apptext.aboutstyles(),
-                  ),
-                  SizedBox(
-                    width: MediaQuery.sizeOf(context).width * 3,
-                    child: Text(
-                        "Hey there! a passionate Flutter developer with a knack for turning"
-                        "innovative ideas into seamless, visually appealing, and highly functional"
-                        "mobile applications. With a solid background in mobile app development and a deep understanding of the Flutter framework,"
-                        "I'm dedicated to creating user-centric experiences that captivate and delight users"),
-                  )
+                  // Text(
+                  //   "Hey there! a passionate Flutter developer with a knack for turning\n"
+                  //   "innovative ideas into seamless, visually appealing, and highly functional\n"
+                  //   "mobile applications. With a solid background in mobile app development....",
+                  // ),
+                  // SizedBox(
+                  //   width: MediaQuery.sizeOf(context).width * 3,
+                  //   child: Text(
+                  //       "Hey there! a passionate Flutter developer with a knack for turning"
+                  //       "innovative ideas into seamless, visually appealing, and highly functional"
+                  //       "mobile applications. With a solid background in mobile app development and a deep understanding of the Flutter framework,"
+                  //       "I'm dedicated to creating user-centric experiences that captivate and delight users"),
+                  // )
                 ],
               )
             ],
