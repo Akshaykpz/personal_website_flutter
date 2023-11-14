@@ -50,6 +50,7 @@ class Homepage extends StatelessWidget {
         padding: const EdgeInsets.only(top: 30, left: 150, right: 20),
         child: Column(children: [
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Column(
                 children: [
@@ -61,7 +62,7 @@ class Homepage extends StatelessWidget {
                     "AKSHAY KP",
                     style: Apptext.addstyles(),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 5,
                   ),
                   Row(
@@ -76,26 +77,27 @@ class Homepage extends StatelessWidget {
                       ]),
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
-                  // Text(
-                  //   "Hey there! a passionate Flutter developer with a knack for turning\n"
-                  //   "innovative ideas into seamless, visually appealing, and highly functional\n"
-                  //   "mobile applications. With a solid background in mobile app development....",
-                  // ),
-                  // SizedBox(
-                  //   width: MediaQuery.sizeOf(context).width * 3,
-                  //   child: Text(
-                  //       "Hey there! a passionate Flutter developer with a knack for turning"
-                  //       "innovative ideas into seamless, visually appealing, and highly functional"
-                  //       "mobile applications. With a solid background in mobile app development and a deep understanding of the Flutter framework,"
-                  //       "I'm dedicated to creating user-centric experiences that captivate and delight users"),
-                  // )
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Text(
+                        "Hey there! a passionate Flutter developer with a knack for turning\n"
+                        "innovative ideas into seamless, visually appealing, and highly functional\n"
+                        "mobile applications. With a solid background in mobile app development....",
+                        style: Apptext.aboutstyles(),
+                      ),
+                    ],
+                  ),
                 ],
+              ),
+              CircleAvatar(
+                backgroundImage: AssetImage(''),
               )
             ],
-          )
+          ),
         ]),
       ),
     );
