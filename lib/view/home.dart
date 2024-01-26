@@ -5,9 +5,17 @@ import 'package:my_personal_website/constants/image.dart';
 import 'package:my_personal_website/constants/textstyle.dart';
 import 'package:my_personal_website/view/widgets/circile_view.dart';
 
-class Homepage extends StatelessWidget {
+class Homepage extends StatefulWidget {
   Homepage({super.key});
 
+  @override
+  State<Homepage> createState() => _HomepageState();
+}
+
+class _HomepageState extends State<Homepage> {
+  final Color backgroundColor = Color.fromARGB(255, 13, 16, 28);
+  final Color buttonColor = Colors.blue;
+  bool isHover = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,33 +25,38 @@ class Homepage extends StatelessWidget {
         toolbarHeight: 90,
         backgroundColor: AppColors.bgcolors,
         elevation: 0,
-        title: const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 12),
+        title: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 12),
           child: Row(children: [
             Text(
               'Portfolio',
+              style: Apptext.headertextstyle(),
             ),
-            Spacer(),
+            const Spacer(),
             Text(
               'Home',
+              style: Apptext.headertextstyle(),
             ),
-            SizedBox(
+            const SizedBox(
               width: 20,
             ),
             Text(
               'About',
+              style: Apptext.headertextstyle(),
             ),
-            SizedBox(
+            const SizedBox(
               width: 20,
             ),
             Text(
               'Service',
+              style: Apptext.headertextstyle(),
             ),
-            SizedBox(
+            const SizedBox(
               width: 20,
             ),
             Text(
               'Contact',
+              style: Apptext.headertextstyle(),
             )
           ]),
         ),
@@ -51,6 +64,9 @@ class Homepage extends StatelessWidget {
       body: SingleChildScrollView(
         padding: const EdgeInsets.only(top: 30, left: 150, right: 20),
         child: Column(children: [
+          const SizedBox(
+            height: 100,
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -113,10 +129,10 @@ class Homepage extends StatelessWidget {
                 backgroundColor: Colors.white30,
 
                 child: Padding(
-                  padding: EdgeInsets.all(10),
+                  padding: const EdgeInsets.all(10),
                   child: ClipOval(
                       child: SizedBox.fromSize(
-                    size: Size.fromRadius(
+                    size: const Size.fromRadius(
                       104.6,
                     ),
                     child: Image.asset(
@@ -129,11 +145,41 @@ class Homepage extends StatelessWidget {
                 //   AppImage.image,
                 // ),
               ),
-              SizedBox(
+              const SizedBox(
                 width: 80,
-              )
+              ),
             ],
           ),
+          InkWell(
+            onTap: () {},
+            onHover: (value) {
+              setState(() {
+                isHover = value;
+              });
+            },
+            child: Container(
+              height: 60,
+              width: 200,
+              decoration: isHover
+                  ? BoxDecoration(
+                      borderRadius: BorderRadius.circular(12),
+                      color: buttonColor,
+                      boxShadow: [
+                          BoxShadow(color: buttonColor, blurRadius: 10),
+                          BoxShadow(color: buttonColor, blurRadius: 20),
+                          BoxShadow(color: buttonColor, blurRadius: 40),
+                        ])
+                  : BoxDecoration(
+                      borderRadius: BorderRadius.circular(12),
+                      color: Colors.white,
+                    ),
+              child: const Center(
+                  child: Text(
+                'Download My CV',
+                style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
+              )),
+            ),
+          )
         ]),
       ),
     );
