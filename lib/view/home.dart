@@ -4,9 +4,10 @@ import 'package:my_personal_website/constants/colors.dart';
 import 'package:my_personal_website/constants/image.dart';
 import 'package:my_personal_website/constants/textstyle.dart';
 import 'package:my_personal_website/view/widgets/circile_view.dart';
+import 'dart:html' as html;
 
 class Homepage extends StatefulWidget {
-  Homepage({super.key});
+  const Homepage({Key? key});
 
   @override
   State<Homepage> createState() => _HomepageState();
@@ -111,7 +112,9 @@ class _HomepageState extends State<Homepage> {
                   ),
                   Row(
                     children: [
-                      CircileView(image: AppImage.oneimage),
+                      CircileView(
+                        image: AppImage.oneimage,
+                      ),
                       CircileView(image: AppImage.hello),
                       CircileView(image: AppImage.instagram),
                       CircileView(image: AppImage.twitter),
@@ -150,38 +153,56 @@ class _HomepageState extends State<Homepage> {
               ),
             ],
           ),
-          InkWell(
-            onTap: () {},
-            onHover: (value) {
-              setState(() {
-                isHover = value;
-              });
-            },
-            child: Container(
-              height: 60,
-              width: 200,
-              decoration: isHover
-                  ? BoxDecoration(
-                      borderRadius: BorderRadius.circular(12),
-                      color: buttonColor,
-                      boxShadow: [
-                          BoxShadow(color: buttonColor, blurRadius: 10),
-                          BoxShadow(color: buttonColor, blurRadius: 20),
-                          BoxShadow(color: buttonColor, blurRadius: 40),
-                        ])
-                  : BoxDecoration(
-                      borderRadius: BorderRadius.circular(12),
-                      color: Colors.white,
-                    ),
-              child: const Center(
-                  child: Text(
-                'Download My CV',
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
-              )),
-            ),
+          const SizedBox(
+            height: 100,
+          ),
+          Row(
+            children: [
+              const SizedBox(
+                width: 300,
+              ),
+              InkWell(
+                onTap: () {
+                  downloadFile('assets/images/Akshay KP.resume.pdf');
+                },
+                onHover: (value) {
+                  setState(() {
+                    isHover = value;
+                  });
+                },
+                child: Container(
+                  height: 60,
+                  width: 200,
+                  decoration: isHover
+                      ? BoxDecoration(
+                          borderRadius: BorderRadius.circular(12),
+                          color: buttonColor,
+                          boxShadow: [
+                              BoxShadow(color: buttonColor, blurRadius: 10),
+                              BoxShadow(color: buttonColor, blurRadius: 20),
+                              BoxShadow(color: buttonColor, blurRadius: 40),
+                            ])
+                      : BoxDecoration(
+                          borderRadius: BorderRadius.circular(12),
+                          color: Colors.white,
+                        ),
+                  child: const Center(
+                      child: Text(
+                    'Download My CV',
+                    style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
+                  )),
+                ),
+              ),
+            ],
           )
         ]),
       ),
     );
+  }
+
+  void downloadFile(String url) {
+    html.AnchorElement anchorElement = html.AnchorElement(href: url);
+    anchorElement.download = "Akshay kp resume";
+    anchorElement.click();
   }
 }
