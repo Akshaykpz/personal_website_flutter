@@ -37,7 +37,8 @@ dependencies:
   cupertino_icons: ^1.0.2
   google_fonts: ^5.1.0
   animated_text_kit: ^4.2.2
-  animate_do: ^3.0.2
+  animate_do: ^3.3.3
+  url_launcher: ^6.2.4
 
 dev_dependencies:
   flutter_test:
@@ -63,12 +64,15 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - build/web/assets/assets/images/0N9A8160.JPG
-    - build/web/assets/assets/images/alexander-shatov-9Zjd7PE_FRM-unsplash.jpg
-    - build/web/assets/assets/images/github-mark-white.png
-    - build/web/assets/assets/images/twitter-logo.png
-    - build/web/assets/assets/images/v982-d3-04.jpg
+    
     - assets/images/Akshay KP.resume.pdf
+    - assets/images/0N9A8160.JPG
+    - assets/images/icons8-flutter-48.png
+    - assets/images/2227.jpg
+    - assets/images/github-mark-white.png
+    - assets/images/LI-In-Bug.png
+    - assets/images/sl_z_072523_61700_01.jpg
+  
  
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg

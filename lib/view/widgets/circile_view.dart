@@ -7,14 +7,24 @@ class CircileView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onHover: (value) {
-        voidCallback;
-      },
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 25, horizontal: 10),
-        child: CircleAvatar(
-          backgroundImage: AssetImage(image),
+    return Ink(
+      width: 50,
+      height: 50,
+      decoration: BoxDecoration(
+          border: Border.all(color: Colors.white), shape: BoxShape.circle),
+      child: InkWell(
+        borderRadius: BorderRadius.circular(500),
+        hoverColor: Colors.transparent,
+        onTap: () {
+          voidCallback;
+        },
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 25, horizontal: 10),
+          child: Image.asset(
+            image,
+            height: 20,
+            width: 20,
+          ),
         ),
       ),
     );

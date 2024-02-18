@@ -1,10 +1,16 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:my_personal_website/constants/colors.dart';
 import 'package:my_personal_website/constants/image.dart';
 import 'package:my_personal_website/constants/textstyle.dart';
+import 'package:my_personal_website/view/widgets/about.dart';
 import 'package:my_personal_website/view/widgets/circile_view.dart';
+import 'package:my_personal_website/view/widgets/my_service.dart';
+import 'package:my_personal_website/view/widgets/profile_image.dart';
 import 'dart:html' as html;
+
+import 'package:url_launcher/url_launcher.dart';
 
 class Homepage extends StatefulWidget {
   const Homepage({Key? key});
@@ -63,7 +69,7 @@ class _HomepageState extends State<Homepage> {
         ),
       ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.only(top: 30, left: 150, right: 20),
+        // padding: const EdgeInsets.only(top: 30, left: 150, right: 20),
         child: Column(children: [
           const SizedBox(
             height: 100,
@@ -73,28 +79,34 @@ class _HomepageState extends State<Homepage> {
             children: [
               Column(
                 children: [
-                  Text(
-                    "Hello It's Me",
-                    style: Apptext.headertextstyle(),
+                  FadeInDown(
+                    child: Text(
+                      "Hello It's Me",
+                      style: Apptext.headertextstyle(),
+                    ),
                   ),
-                  Text(
-                    "AKSHAY KP",
-                    style: Apptext.addstyles(),
+                  FadeInDown(
+                    child: Text(
+                      "AKSHAY KP",
+                      style: Apptext.addstyles(Colors.white),
+                    ),
                   ),
                   const SizedBox(
                     height: 5,
                   ),
-                  Row(
-                    children: [
-                      AnimatedTextKit(animatedTexts: [
-                        TyperAnimatedText("And I'm a ",
-                            textStyle: Apptext.headertextstyle())
-                      ]),
-                      AnimatedTextKit(animatedTexts: [
-                        TyperAnimatedText("Flutter Developer",
-                            textStyle: Apptext.textestyles())
-                      ]),
-                    ],
+                  FadeInLeft(
+                    child: Row(
+                      children: [
+                        AnimatedTextKit(animatedTexts: [
+                          TyperAnimatedText("And I'm a ",
+                              textStyle: Apptext.headertextstyle())
+                        ]),
+                        AnimatedTextKit(animatedTexts: [
+                          TyperAnimatedText("Flutter Developer",
+                              textStyle: Apptext.textestyles())
+                        ]),
+                      ],
+                    ),
                   ),
                   const SizedBox(
                     height: 20,
@@ -102,11 +114,13 @@ class _HomepageState extends State<Homepage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Text(
-                        "Hey there! a passionate Flutter developer with a knack for turning\n"
-                        "innovative ideas into seamless, visually appealing, and highly functional\n"
-                        "mobile applications. With a solid background in mobile app development....",
-                        style: Apptext.aboutstyles(),
+                      FadeInDown(
+                        child: Text(
+                          "Hey there! a passionate Flutter developer with a knack for turning\n"
+                          "innovative ideas into seamless, visually appealing, and highly functional\n"
+                          "mobile applications. With a solid background in mobile app development....",
+                          style: Apptext.aboutstyles(),
+                        ),
                       ),
                     ],
                   ),
@@ -115,7 +129,15 @@ class _HomepageState extends State<Homepage> {
                       CircileView(
                         image: AppImage.oneimage,
                       ),
-                      CircileView(image: AppImage.hello),
+                      CircileView(
+                        image: AppImage.hello,
+                        voidCallback: () {
+                          const linkedin =
+                              'https://www.linkedin.com/in/akshay-kp-931056219/';
+                          launchUrl(Uri.parse(linkedin),
+                              mode: LaunchMode.inAppWebView);
+                        },
+                      ),
                       CircileView(image: AppImage.instagram),
                       CircileView(image: AppImage.twitter),
                     ],
@@ -127,27 +149,7 @@ class _HomepageState extends State<Homepage> {
               //   height: 100,
               //   fit: BoxFit.cover,
               // )
-              CircleAvatar(
-                maxRadius: 105,
-                backgroundColor: Colors.white30,
-
-                child: Padding(
-                  padding: const EdgeInsets.all(10),
-                  child: ClipOval(
-                      child: SizedBox.fromSize(
-                    size: const Size.fromRadius(
-                      104.6,
-                    ),
-                    child: Image.asset(
-                      AppImage.image,
-                      fit: BoxFit.cover,
-                    ),
-                  )),
-                ),
-                // backgroundImage: AssetImage(
-                //   AppImage.image,
-                // ),
-              ),
+              ProfileImage(),
               const SizedBox(
                 width: 80,
               ),
@@ -194,7 +196,12 @@ class _HomepageState extends State<Homepage> {
                 ),
               ),
             ],
-          )
+          ),
+          const SizedBox(
+            height: 50,
+          ),
+          const AboutMe(),
+          MyService(),
         ]),
       ),
     );

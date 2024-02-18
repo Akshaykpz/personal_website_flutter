@@ -17,12 +17,12 @@ class Apptext {
         fontSize: 20, fontWeight: FontWeight.w600, color: Colors.blueAccent);
   }
 
-  static TextStyle addstyles() {
+  static TextStyle addstyles([Color? color]) {
     return GoogleFonts.rubikMoonrocks(
         letterSpacing: 2,
         fontSize: 30,
         fontWeight: FontWeight.w500,
-        color: Colors.white);
+        color: color);
   }
 
   static TextStyle aboutstyles() {
