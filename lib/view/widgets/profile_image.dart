@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_personal_website/constants/colors.dart';
 import 'package:my_personal_website/constants/image.dart';
 
 class ProfileImage extends StatefulWidget {
@@ -35,15 +36,15 @@ class _ProfileImageState extends State<ProfileImage>
     return SlideTransition(
       position: _animation,
       child: CircleAvatar(
-        maxRadius: 105,
-        backgroundColor: Colors.white30,
+        maxRadius: 130,
+        backgroundColor: Colors.white10,
 
         child: Padding(
           padding: const EdgeInsets.all(10),
           child: ClipOval(
               child: SizedBox.fromSize(
             size: const Size.fromRadius(
-              104.6,
+              147.6,
             ),
             child: Image.asset(
               AppImage.image,

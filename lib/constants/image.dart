@@ -8,4 +8,5 @@ class AppImage {
   static String hello = 'assets/images/LI-In-Bug.png';
   static String flutter = 'assets/images/icons8-flutter-48.png';
   static String dart = 'assets/images/sl_z_072523_61700_01.jpg';
+  static String shere = 'assets/images/share.png';
 }

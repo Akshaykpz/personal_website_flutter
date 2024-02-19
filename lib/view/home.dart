@@ -6,6 +6,9 @@ import 'package:my_personal_website/constants/image.dart';
 import 'package:my_personal_website/constants/textstyle.dart';
 import 'package:my_personal_website/view/widgets/about.dart';
 import 'package:my_personal_website/view/widgets/circile_view.dart';
+import 'package:my_personal_website/view/widgets/contact_us.dart';
+import 'package:my_personal_website/view/widgets/footer_class.dart';
+import 'package:my_personal_website/view/widgets/my_portfolio.dart';
 import 'package:my_personal_website/view/widgets/my_service.dart';
 import 'package:my_personal_website/view/widgets/profile_image.dart';
 import 'dart:html' as html;
@@ -202,6 +205,9 @@ class _HomepageState extends State<Homepage> {
           ),
           const AboutMe(),
           MyService(),
+          MyPortfolio(),
+          ContactMe(),
+          FotterClass(),
         ]),
       ),
     );
