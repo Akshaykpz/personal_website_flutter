@@ -39,6 +39,9 @@ dependencies:
   animated_text_kit: ^4.2.2
   animate_do: ^3.3.3
   url_launcher: ^6.2.4
+  http: ^1.2.0
+  flutter_email_sender: ^6.0.2
+  mailer: ^6.1.0
 
 dev_dependencies:
   flutter_test:

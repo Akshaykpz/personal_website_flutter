@@ -9,6 +9,12 @@ class ContactMe extends StatefulWidget {
   State<ContactMe> createState() => _ContactMeState();
 }
 
+final TextEditingController nameController = TextEditingController();
+final TextEditingController emailController = TextEditingController();
+final TextEditingController phoneController = TextEditingController();
+final TextEditingController contentController = TextEditingController();
+final TextEditingController messageController = TextEditingController();
+
 class _ContactMeState extends State<ContactMe> {
   bool isData = false;
   final Color buttonColor = Colors.blue;
@@ -42,6 +48,7 @@ class _ContactMeState extends State<ContactMe> {
                   elevation: 8,
                   borderRadius: BorderRadius.circular(12),
                   child: TextFormField(
+                    controller: nameController,
                     decoration: inputFiled(hinttext: 'Full Name'),
                   ),
                 ),
@@ -55,6 +62,7 @@ class _ContactMeState extends State<ContactMe> {
                   elevation: 8,
                   borderRadius: BorderRadius.circular(12),
                   child: TextFormField(
+                    controller: emailController,
                     decoration: inputFiled(hinttext: 'Email'),
                   ),
                 ),
@@ -72,6 +80,7 @@ class _ContactMeState extends State<ContactMe> {
                   elevation: 8,
                   borderRadius: BorderRadius.circular(12),
                   child: TextFormField(
+                    controller: phoneController,
                     decoration: inputFiled(hinttext: 'Phone Number'),
                   ),
                 ),
@@ -85,6 +94,7 @@ class _ContactMeState extends State<ContactMe> {
                   elevation: 8,
                   borderRadius: BorderRadius.circular(12),
                   child: TextFormField(
+                    controller: emailController,
                     decoration: inputFiled(hinttext: 'Email Content'),
                   ),
                 ),
@@ -99,6 +109,7 @@ class _ContactMeState extends State<ContactMe> {
             elevation: 8,
             borderRadius: BorderRadius.circular(12),
             child: TextFormField(
+              controller: messageController,
               maxLines: 10,
               decoration: inputFiled(hinttext: 'Your Message'),
             ),
