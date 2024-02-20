@@ -1,6 +1,10 @@
+import 'dart:convert';
+import 'dart:math';
+
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:my_personal_website/constants/textstyle.dart';
+import 'package:http/http.dart' as http;
 
 class ContactMe extends StatefulWidget {
   const ContactMe({Key? key}) : super(key: key);
@@ -15,7 +19,34 @@ final TextEditingController phoneController = TextEditingController();
 final TextEditingController contentController = TextEditingController();
 final TextEditingController messageController = TextEditingController();
 
+Future sendemail() async {
+  const serviceId = 'service_01uj5cm';
+  const userId = '6QkiRE5XFrLpJdZXu';
+  const templateId = 'template_d7983hp';
+  final url = Uri.parse('https://api.emailjs.com/api/v1.0/email/send');
+  final response = await http.post(url,
+      headers: {'origin': 'http:localhost', 'Content-Type': 'Application/json'},
+      body: json.encode({
+        'service_id': serviceId,
+        'template_id': templateId,
+        'user_id': userId,
+        'template_params': {
+          'name': nameController.text,
+          'subject': messageController.text,
+          'message': contentController.text,
+          'user_email': emailController.text,
+        }
+      }));
+  log(response.statusCode);
+  return response.statusCode;
+}
+
 class _ContactMeState extends State<ContactMe> {
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
   bool isData = false;
   final Color buttonColor = Colors.blue;
   @override
@@ -94,7 +125,7 @@ class _ContactMeState extends State<ContactMe> {
                   elevation: 8,
                   borderRadius: BorderRadius.circular(12),
                   child: TextFormField(
-                    controller: emailController,
+                    controller: contentController,
                     decoration: inputFiled(hinttext: 'Email Content'),
                   ),
                 ),
@@ -129,21 +160,44 @@ class _ContactMeState extends State<ContactMe> {
               width: 200,
               decoration: isData
                   ? BoxDecoration(
-                      borderRadius: BorderRadius.circular(12),
-                      color: buttonColor,
-                      boxShadow: [
-                          BoxShadow(color: buttonColor, blurRadius: 10),
-                          BoxShadow(color: buttonColor, blurRadius: 20),
-                          BoxShadow(color: buttonColor, blurRadius: 40),
-                        ])
+                      borderRadius: BorderRadius.circular(20),
+                      boxShadow: const [
+                        BoxShadow(
+                            offset: Offset(0.0, 0.0),
+                            blurRadius: 25,
+                            color: Colors.white),
+                      ],
+                      gradient: const LinearGradient(
+                        begin: Alignment.centerLeft,
+                        end: Alignment.centerRight,
+                        colors: [
+                          Colors.blue,
+                          Colors.purple,
+                        ],
+                      ))
                   : BoxDecoration(
-                      borderRadius: BorderRadius.circular(12),
-                      color: Colors.white,
-                    ),
-              child: const Center(
+                      borderRadius: BorderRadius.circular(20),
+                      boxShadow: const [
+                        BoxShadow(
+                            offset: Offset(0.0, 0.0),
+                            blurRadius: 5,
+                            color: Colors.transparent),
+                      ],
+                      gradient: const LinearGradient(
+                        begin: Alignment.centerLeft,
+                        end: Alignment.centerRight,
+                        colors: [
+                          Colors.blue,
+                          Colors.purple,
+                        ],
+                      )),
+              child: Center(
                   child: Text(
                 'Send Message',
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
+                style: TextStyle(
+                    fontSize: 15,
+                    fontWeight: FontWeight.w600,
+                    color: isData ? Colors.white : Colors.black),
               )),
             ),
           )

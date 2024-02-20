@@ -18,51 +18,59 @@ class _MyServiceState extends State<MyService> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
 
-    return Container(
-      height: size.height,
-      width: size.width,
-      child: Column(children: [
-        FadeInDown(
-            child: RichText(
-                text: TextSpan(
-                    text: 'My',
-                    style: Apptext.addstyles(Colors.white),
-                    children: [
-              TextSpan(
-                text: '  Services',
-                style: Apptext.addstyles(Colors.blue),
-              )
-            ]))),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            InkWell(
-                onTap: () {},
-                onHover: (value) {
-                  setState(() {
-                    isoffhover = value;
-                  });
-                },
-                child: animatedcontiner(ishover: isoffhover)),
-            InkWell(
-                onTap: () {},
-                onHover: (value) {
-                  setState(() {
-                    isdata = value;
-                  });
-                },
-                child: animatedcontiner(ishover: isdata)),
-            InkWell(
-                onTap: () {},
-                onHover: (value) {
-                  setState(() {
-                    isonHover = value;
-                  });
-                },
-                child: animatedcontiner(ishover: isonHover))
-          ],
-        )
-      ]),
+    return Padding(
+      padding: EdgeInsets.all(20),
+      child: Container(
+        decoration: BoxDecoration(
+            border: Border.all(color: Colors.white30), shape: BoxShape.circle),
+        height: size.height,
+        width: size.width,
+        child: Column(children: [
+          FadeInDown(
+              child: RichText(
+                  text: TextSpan(
+                      text: 'My',
+                      style: Apptext.addstyles(Colors.white),
+                      children: [
+                TextSpan(
+                  text: '  Services',
+                  style: Apptext.addstyles(Colors.blue),
+                )
+              ]))),
+          const SizedBox(
+            height: 50,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              InkWell(
+                  onTap: () {},
+                  onHover: (value) {
+                    setState(() {
+                      isoffhover = value;
+                    });
+                  },
+                  child: animatedcontiner(ishover: isoffhover)),
+              InkWell(
+                  onTap: () {},
+                  onHover: (value) {
+                    setState(() {
+                      isdata = value;
+                    });
+                  },
+                  child: animatedcontiner(ishover: isdata)),
+              InkWell(
+                  onTap: () {},
+                  onHover: (value) {
+                    setState(() {
+                      isonHover = value;
+                    });
+                  },
+                  child: animatedcontiner(ishover: isonHover))
+            ],
+          )
+        ]),
+      ),
     );
   }
 
@@ -72,12 +80,11 @@ class _MyServiceState extends State<MyService> {
       width: ishover ? 400 : 360,
       height: ishover ? 400 : 360,
       decoration: BoxDecoration(
-          border: ishover ? Border.all(color: Colors.green, width: 2) : null,
-          color: Colors.red,
+          border: ishover ? Border.all(color: Colors.white, width: 2) : null,
           borderRadius: BorderRadius.circular(30),
           boxShadow: const [
             BoxShadow(
-                color: Colors.blue,
+                color: Colors.transparent,
                 blurRadius: 3.5,
                 spreadRadius: 3.0,
                 offset: Offset(3.0, 4.5))

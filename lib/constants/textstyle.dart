@@ -7,6 +7,11 @@ class Apptext {
         fontSize: 20, fontWeight: FontWeight.w600, color: Colors.white);
   }
 
+  static TextStyle headertextstyle1() {
+    return GoogleFonts.mukta(
+        fontSize: 40, fontWeight: FontWeight.w900, color: Colors.white);
+  }
+
   static TextStyle biodatas() {
     return GoogleFonts.mukta(
         fontSize: 30, fontWeight: FontWeight.w600, color: Colors.white);
@@ -14,7 +19,7 @@ class Apptext {
 
   static TextStyle textestyles() {
     return GoogleFonts.mukta(
-        fontSize: 20, fontWeight: FontWeight.w600, color: Colors.blueAccent);
+        fontSize: 40, fontWeight: FontWeight.w600, color: Colors.blueAccent);
   }
 
   static TextStyle addstyles([Color? color]) {
@@ -25,11 +30,19 @@ class Apptext {
         color: color);
   }
 
+  static TextStyle addstyles1([Color? color]) {
+    return GoogleFonts.rubikMoonrocks(
+        letterSpacing: 2,
+        fontSize: 60,
+        fontWeight: FontWeight.w500,
+        color: color);
+  }
+
   static TextStyle aboutstyles() {
     return GoogleFonts.abel(
         letterSpacing: 2,
-        fontSize: 15,
-        fontWeight: FontWeight.w100,
+        fontSize: 17,
+        fontWeight: FontWeight.w200,
         color: Colors.white);
   }
 }

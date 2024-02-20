@@ -85,13 +85,13 @@ class _HomepageState extends State<Homepage> {
                   FadeInDown(
                     child: Text(
                       "Hello It's Me",
-                      style: Apptext.headertextstyle(),
+                      style: Apptext.headertextstyle1(),
                     ),
                   ),
                   FadeInDown(
                     child: Text(
                       "AKSHAY KP",
-                      style: Apptext.addstyles(Colors.white),
+                      style: Apptext.addstyles1(Colors.white),
                     ),
                   ),
                   const SizedBox(
@@ -102,10 +102,10 @@ class _HomepageState extends State<Homepage> {
                       children: [
                         AnimatedTextKit(animatedTexts: [
                           TyperAnimatedText("And I'm a ",
-                              textStyle: Apptext.headertextstyle())
+                              textStyle: Apptext.headertextstyle1())
                         ]),
                         AnimatedTextKit(animatedTexts: [
-                          TyperAnimatedText("Flutter Developer",
+                          TyperAnimatedText("Flutter Developer ",
                               textStyle: Apptext.textestyles())
                         ]),
                       ],
@@ -127,24 +127,6 @@ class _HomepageState extends State<Homepage> {
                       ),
                     ],
                   ),
-                  Row(
-                    children: [
-                      CircileView(
-                        image: AppImage.oneimage,
-                      ),
-                      CircileView(
-                        image: AppImage.hello,
-                        voidCallback: () {
-                          const linkedin =
-                              'https://www.linkedin.com/in/akshay-kp-931056219/';
-                          launchUrl(Uri.parse(linkedin),
-                              mode: LaunchMode.inAppWebView);
-                        },
-                      ),
-                      CircileView(image: AppImage.instagram),
-                      CircileView(image: AppImage.twitter),
-                    ],
-                  )
                 ],
               ),
               // Image.asset(
@@ -152,14 +134,14 @@ class _HomepageState extends State<Homepage> {
               //   height: 100,
               //   fit: BoxFit.cover,
               // )
-              ProfileImage(),
+              const ProfileImage(),
               const SizedBox(
                 width: 80,
               ),
             ],
           ),
           const SizedBox(
-            height: 100,
+            height: 50,
           ),
           Row(
             children: [
@@ -176,34 +158,60 @@ class _HomepageState extends State<Homepage> {
                   });
                 },
                 child: Container(
-                  height: 60,
+                  height: 50,
                   width: 200,
                   decoration: isHover
                       ? BoxDecoration(
-                          borderRadius: BorderRadius.circular(12),
-                          color: buttonColor,
-                          boxShadow: [
-                              BoxShadow(color: buttonColor, blurRadius: 10),
-                              BoxShadow(color: buttonColor, blurRadius: 20),
-                              BoxShadow(color: buttonColor, blurRadius: 40),
-                            ])
+                          borderRadius: BorderRadius.circular(25),
+                          boxShadow: const [
+                            BoxShadow(
+                                offset: Offset(0.0, 0.0),
+                                blurRadius: 20,
+                                color: Colors.white),
+                          ],
+                          gradient: const LinearGradient(
+                            begin: Alignment.centerLeft,
+                            end: Alignment.centerRight,
+                            colors: [
+                              Colors.blue,
+                              Colors.purple,
+                            ],
+                          ))
                       : BoxDecoration(
-                          borderRadius: BorderRadius.circular(12),
-                          color: Colors.white,
-                        ),
-                  child: const Center(
+                          borderRadius: BorderRadius.circular(25),
+                          boxShadow: const [
+                            BoxShadow(
+                                offset: Offset(0.0, 0.0),
+                                blurRadius: 3,
+                                color: Colors.transparent),
+                          ],
+                          gradient: const LinearGradient(
+                            begin: Alignment.centerLeft,
+                            end: Alignment.centerRight,
+                            colors: [
+                              Colors.blue,
+                              Colors.purple,
+                            ],
+                          )),
+                  child: Center(
                       child: Text(
-                    'Download My CV',
-                    style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
+                    'Check Resume',
+                    style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600,
+                        color: isHover ? Colors.white : Colors.white),
                   )),
                 ),
               ),
             ],
           ),
           const SizedBox(
-            height: 50,
+            height: 150,
           ),
           const AboutMe(),
+          const SizedBox(
+            height: 50,
+          ),
           MyService(),
           MyPortfolio(),
           ContactMe(),
