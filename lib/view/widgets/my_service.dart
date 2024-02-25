@@ -19,13 +19,14 @@ class _MyServiceState extends State<MyService> {
     final size = MediaQuery.of(context).size;
 
     return Padding(
-      padding: EdgeInsets.all(20),
+      padding: const EdgeInsets.all(20),
       child: Container(
-        decoration: BoxDecoration(
-            border: Border.all(color: Colors.white30), shape: BoxShape.circle),
         height: size.height,
         width: size.width,
         child: Column(children: [
+          SizedBox(
+            height: 100,
+          ),
           FadeInDown(
               child: RichText(
                   text: TextSpan(
@@ -80,7 +81,7 @@ class _MyServiceState extends State<MyService> {
       width: ishover ? 400 : 360,
       height: ishover ? 400 : 360,
       decoration: BoxDecoration(
-          border: ishover ? Border.all(color: Colors.white, width: 2) : null,
+          border: ishover ? Border.all(color: Colors.white24, width: 2) : null,
           borderRadius: BorderRadius.circular(30),
           boxShadow: const [
             BoxShadow(

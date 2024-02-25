@@ -42,7 +42,15 @@ class Apptext {
     return GoogleFonts.abel(
         letterSpacing: 2,
         fontSize: 17,
-        fontWeight: FontWeight.w200,
+        fontWeight: FontWeight.w300,
         color: Colors.white);
+  }
+
+  static TextStyle aboutstyles1() {
+    return GoogleFonts.abel(
+        letterSpacing: 2,
+        fontSize: 15,
+        fontWeight: FontWeight.w600,
+        color: Colors.white70);
   }
 }

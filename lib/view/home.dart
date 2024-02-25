@@ -212,10 +212,10 @@ class _HomepageState extends State<Homepage> {
           const SizedBox(
             height: 50,
           ),
-          MyService(),
-          MyPortfolio(),
-          ContactMe(),
-          FotterClass(),
+          const MyService(),
+          const MyPortfolio(),
+          const ContactMe(),
+          const FotterClass(),
         ]),
       ),
     );
