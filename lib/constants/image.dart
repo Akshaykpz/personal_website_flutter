@@ -9,4 +9,9 @@ class AppImage {
   static String flutter = 'assets/images/icons8-flutter-48.png';
   static String dart = 'assets/images/sl_z_072523_61700_01.jpg';
   static String shere = 'assets/images/share.png';
+  static String andriod = 'assets/images/android.png';
+  static String datastructure =
+      'assets/images/WhatsApp Image 2024-02-26 at 12.05.34_3b0267ab.jpg';
+  static String webapp = 'assets/images/website.png';
+  static String apple = 'assets/images/apple-logo.png';
 }

@@ -51,7 +51,8 @@ class _MyServiceState extends State<MyService> {
                       isoffhover = value;
                     });
                   },
-                  child: animatedcontiner(ishover: isoffhover)),
+                  child: animatedcontiner(
+                      ishover: isoffhover, image: AppImage.andriod)),
               InkWell(
                   onTap: () {},
                   onHover: (value) {
@@ -59,7 +60,8 @@ class _MyServiceState extends State<MyService> {
                       isdata = value;
                     });
                   },
-                  child: animatedcontiner(ishover: isdata)),
+                  child:
+                      animatedcontiner(ishover: isdata, image: AppImage.apple)),
               InkWell(
                   onTap: () {},
                   onHover: (value) {
@@ -67,7 +69,8 @@ class _MyServiceState extends State<MyService> {
                       isonHover = value;
                     });
                   },
-                  child: animatedcontiner(ishover: isonHover))
+                  child: animatedcontiner(
+                      ishover: isonHover, image: AppImage.webapp))
             ],
           )
         ]),
@@ -75,7 +78,8 @@ class _MyServiceState extends State<MyService> {
     );
   }
 
-  AnimatedContainer animatedcontiner({required bool ishover}) {
+  AnimatedContainer animatedcontiner(
+      {required bool ishover, required String image}) {
     return AnimatedContainer(
       transform: ishover ? isHoverActive : isHoverRemove,
       width: ishover ? 400 : 360,
@@ -93,7 +97,7 @@ class _MyServiceState extends State<MyService> {
       duration: const Duration(milliseconds: 600),
       child: Column(
         children: [
-          Image.asset(AppImage.flutter),
+          Image.asset(image),
           Text(
             'App Development',
             style: Apptext.biodatas(),

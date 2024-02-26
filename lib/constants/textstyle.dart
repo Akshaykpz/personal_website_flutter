@@ -33,8 +33,8 @@ class Apptext {
   static TextStyle addstyles1([Color? color]) {
     return GoogleFonts.rubikMoonrocks(
         letterSpacing: 2,
-        fontSize: 60,
-        fontWeight: FontWeight.w500,
+        fontSize: 55,
+        fontWeight: FontWeight.w400,
         color: color);
   }
 

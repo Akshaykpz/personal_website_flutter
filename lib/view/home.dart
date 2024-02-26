@@ -13,8 +13,6 @@ import 'package:my_personal_website/view/widgets/my_service.dart';
 import 'package:my_personal_website/view/widgets/profile_image.dart';
 import 'dart:html' as html;
 
-import 'package:url_launcher/url_launcher.dart';
-
 class Homepage extends StatefulWidget {
   const Homepage({Key? key});
 
