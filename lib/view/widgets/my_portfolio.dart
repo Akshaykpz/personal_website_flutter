@@ -24,7 +24,7 @@ class _MyPortfolioState extends State<MyPortfolio> {
       'Aqua Med Tarcker':
           'Aqua Med-Tracker it is a reminder Application helping for track water and medicines',
       'StoreX':
-          'Store X, Developed a sleek eCommerce app with Cart, Wishlist, Store, and Wallet for optimal,admin panel',
+          'Developed a sleek eCommerce app with Cart, Wishlist, Store, and,admin panel',
       'Chatgpt': 'Developed a Ai bot it is model chat gpt'
     };
 
@@ -48,6 +48,9 @@ class _MyPortfolioState extends State<MyPortfolio> {
                   style: Apptext.addstyles(Colors.blue),
                 )
               ]))),
+          const SizedBox(
+            height: 45,
+          ),
           GridView.builder(
             itemCount: titles.length,
             shrinkWrap: true,
@@ -83,7 +86,7 @@ class _MyPortfolioState extends State<MyPortfolio> {
                       ClipRRect(
                         borderRadius: BorderRadius.circular(30),
                         child: Image(
-                          fit: BoxFit.fill,
+                          height: 290,
                           image: AssetImage(
                             image,
                           ),
@@ -120,10 +123,10 @@ class _MyPortfolioState extends State<MyPortfolio> {
         height: MediaQuery.sizeOf(context).height,
         decoration: BoxDecoration(
             color: Colors.black.withOpacity(0.9),
-            borderRadius: BorderRadius.circular(31)),
+            borderRadius: BorderRadius.circular(30)),
         child: Column(children: [
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 10),
+            padding: const EdgeInsets.symmetric(vertical: 5),
             child: Text(
               text,
               style: const TextStyle(
