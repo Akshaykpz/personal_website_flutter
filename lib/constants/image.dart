@@ -14,4 +14,7 @@ class AppImage {
       'assets/images/WhatsApp Image 2024-02-26 at 12.05.34_3b0267ab.jpg';
   static String webapp = 'assets/images/website.png';
   static String apple = 'assets/images/apple-logo.png';
+  static String project1 = 'assets/images/Blank 2 Grids Collage (1).jpg';
+  static String project2 = 'assets/images/Blank 2 Grids Collage.jpg';
+  static String project3 = 'assets/images/321535-P9F5S3-732.jpg';
 }

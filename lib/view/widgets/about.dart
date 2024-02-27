@@ -1,5 +1,6 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
+import 'package:my_personal_website/constants/image.dart';
 import 'package:my_personal_website/constants/textstyle.dart';
 import 'package:my_personal_website/view/widgets/custom_continer.dart';
 
@@ -9,17 +10,19 @@ class AboutMe extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 30),
+      padding: const EdgeInsets.symmetric(horizontal: 10),
       child: Container(
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(25),
-            border: Border.all(
-              style: BorderStyle.solid,
-              width: 1,
-              color: Colors.white24,
-            )),
+          borderRadius: BorderRadius.circular(20),
+          color: Colors.black12,
+          border: Border.all(
+            style: BorderStyle.solid,
+            width: 1,
+            color: Colors.white24,
+          ),
+        ),
         height: 400,
-        width: MediaQuery.of(context).size.width,
+        width: MediaQuery.of(context).size.width * 0.8,
         child: Column(children: [
           const SizedBox(
             height: 50,
@@ -76,13 +79,17 @@ class AboutMe extends StatelessWidget {
           const SizedBox(
             height: 30,
           ),
-          const Row(
+          Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              CustomContainer(
+              const CustomContainer(
+                  image: 'assets/images/7131906.jpg', text: 'Api'),
+              const  CustomContainer(
                   image:
                       'assets/images/WhatsApp Image 2024-02-25 at 16.50.08_eb99b2ed.jpg',
                   text: 'bloc'),
+              CustomContainer(
+                  image: AppImage.datastructure, text: 'Data structure'),
             ],
           ),
         ]),

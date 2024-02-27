@@ -13,7 +13,7 @@ class CustomContainer extends StatelessWidget {
     return Flexible(
       child: AnimatedContainer(
         height: 35,
-        width: 140,
+        width: 160,
         decoration: BoxDecoration(
             border: Border.all(
               color: Colors.white38,

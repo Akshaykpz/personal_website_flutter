@@ -15,7 +15,18 @@ class _MyPortfolioState extends State<MyPortfolio> {
   var isvalue;
   @override
   Widget build(BuildContext context) {
-    List<String> appset = [AppImage.dart, AppImage.flutter, AppImage.instagram];
+    List<String> appset = [
+      AppImage.project1,
+      AppImage.project2,
+      AppImage.project3
+    ];
+    Map<String, dynamic> titles = {
+      'Aqua Med Tarcker':
+          'Aqua Med-Tracker is a user-friendly Flutter app designed to streamline the medication and water intake management process. This app serves as a reliable reminder tool, helping users stay on track with their prescribed medications and daily water consumption',
+      'StoreX':
+          'Store X, your ultimate destination for hassle-free mobile phone shopping! Store X is a cutting-edge e-commerce app designed to provide users with a seamless and secure mobile phone buying experience. Whether you re a tech enthusiast searching for the latest flagship model or a budget conscious consumer looking for reliable options, Store X has you covered',
+      'Chatgpt': 'uess'
+    };
 
     final size = MediaQuery.of(context).size;
     return Container(
@@ -38,7 +49,7 @@ class _MyPortfolioState extends State<MyPortfolio> {
                 )
               ]))),
           GridView.builder(
-            itemCount: appset.length,
+            itemCount: titles.length,
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -48,6 +59,9 @@ class _MyPortfolioState extends State<MyPortfolio> {
                 crossAxisSpacing: 24),
             itemBuilder: (context, index) {
               var image = appset[index];
+              String title = titles.keys.elementAt(index);
+              String description = titles.values.elementAt(index);
+
               return FadeInUpBig(
                 duration: Duration(milliseconds: 600),
                 child: InkWell(
@@ -75,22 +89,11 @@ class _MyPortfolioState extends State<MyPortfolio> {
                           ),
                         ),
                       ),
-                      Visibility(
-                        visible: index == isvalue,
-                        child: AnimatedContainer(
-                          duration: Duration(milliseconds: 600),
-                          width: MediaQuery.sizeOf(context).width * 0.2,
-                          height: MediaQuery.sizeOf(context).height,
-                          decoration: BoxDecoration(
-                              color: Colors.black.withOpacity(0.2),
-                              borderRadius: BorderRadius.circular(30)),
-                          child: const Column(children: [
-                            Text('data'),
-                            CircleAvatar(
-                              child: Icon(Icons.share),
-                            )
-                          ]),
-                        ),
+                      visbity(
+                        index,
+                        context,
+                        title,
+                        description,
                       ),
                     ],
                   ),
@@ -99,6 +102,45 @@ class _MyPortfolioState extends State<MyPortfolio> {
             },
           )
         ],
+      ),
+    );
+  }
+
+  Visibility visbity(
+    int index,
+    BuildContext context,
+    String text,
+    String head,
+  ) {
+    return Visibility(
+      visible: index == isvalue,
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 600),
+        width: MediaQuery.sizeOf(context).width * 0.2,
+        height: MediaQuery.sizeOf(context).height,
+        decoration: BoxDecoration(
+            color: Colors.black.withOpacity(0.9),
+            borderRadius: BorderRadius.circular(30)),
+        child: Column(children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 10),
+            child: Text(
+              text,
+              style: const TextStyle(
+                  color: Colors.white, fontWeight: FontWeight.w600),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: Text(
+              head,
+              style: const TextStyle(color: Colors.white60),
+            ),
+          ),
+          const CircleAvatar(
+            child: Icon(Icons.share),
+          )
+        ]),
       ),
     );
   }

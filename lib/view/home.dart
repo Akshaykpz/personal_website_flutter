@@ -2,10 +2,10 @@ import 'package:animate_do/animate_do.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:my_personal_website/constants/colors.dart';
-import 'package:my_personal_website/constants/image.dart';
+
 import 'package:my_personal_website/constants/textstyle.dart';
 import 'package:my_personal_website/view/widgets/about.dart';
-import 'package:my_personal_website/view/widgets/circile_view.dart';
+
 import 'package:my_personal_website/view/widgets/contact_us.dart';
 import 'package:my_personal_website/view/widgets/footer_class.dart';
 import 'package:my_personal_website/view/widgets/my_portfolio.dart';

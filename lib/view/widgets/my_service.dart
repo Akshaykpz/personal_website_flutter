@@ -20,11 +20,11 @@ class _MyServiceState extends State<MyService> {
 
     return Padding(
       padding: const EdgeInsets.all(20),
-      child: Container(
+      child: SizedBox(
         height: size.height,
         width: size.width,
         child: Column(children: [
-          SizedBox(
+          const SizedBox(
             height: 100,
           ),
           FadeInDown(
@@ -52,7 +52,9 @@ class _MyServiceState extends State<MyService> {
                     });
                   },
                   child: animatedcontiner(
-                      ishover: isoffhover, image: AppImage.andriod)),
+                      ishover: isoffhover,
+                      image: AppImage.andriod,
+                      text: 'Andriod Application')),
               InkWell(
                   onTap: () {},
                   onHover: (value) {
@@ -60,8 +62,10 @@ class _MyServiceState extends State<MyService> {
                       isdata = value;
                     });
                   },
-                  child:
-                      animatedcontiner(ishover: isdata, image: AppImage.apple)),
+                  child: animatedcontiner(
+                      ishover: isdata,
+                      image: AppImage.apple,
+                      text: 'Ios Application')),
               InkWell(
                   onTap: () {},
                   onHover: (value) {
@@ -70,7 +74,9 @@ class _MyServiceState extends State<MyService> {
                     });
                   },
                   child: animatedcontiner(
-                      ishover: isonHover, image: AppImage.webapp))
+                      ishover: isonHover,
+                      image: AppImage.webapp,
+                      text: 'Web Application'))
             ],
           )
         ]),
@@ -79,11 +85,11 @@ class _MyServiceState extends State<MyService> {
   }
 
   AnimatedContainer animatedcontiner(
-      {required bool ishover, required String image}) {
+      {required bool ishover, required String image, required String text}) {
     return AnimatedContainer(
       transform: ishover ? isHoverActive : isHoverRemove,
-      width: ishover ? 400 : 360,
-      height: ishover ? 400 : 360,
+      width: ishover ? 350 : 300,
+      height: ishover ? 350 : 300,
       decoration: BoxDecoration(
           border: ishover ? Border.all(color: Colors.white24, width: 2) : null,
           borderRadius: BorderRadius.circular(30),
@@ -96,12 +102,16 @@ class _MyServiceState extends State<MyService> {
           ]),
       duration: const Duration(milliseconds: 600),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          Image.asset(image),
-          Text(
-            'App Development',
-            style: Apptext.biodatas(),
+          Image.asset(
+            image,
+            height: 250,
           ),
+          Text(
+            text,
+            style: Apptext.aboutstyles1(),
+          )
         ],
       ),
     );
