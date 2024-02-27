@@ -22,10 +22,10 @@ class _MyPortfolioState extends State<MyPortfolio> {
     ];
     Map<String, dynamic> titles = {
       'Aqua Med Tarcker':
-          'Aqua Med-Tracker is a user-friendly Flutter app designed to streamline the medication and water intake management process. This app serves as a reliable reminder tool, helping users stay on track with their prescribed medications and daily water consumption',
+          'Aqua Med-Tracker it is a reminder Application helping for track water and medicines',
       'StoreX':
-          'Store X, your ultimate destination for hassle-free mobile phone shopping! Store X is a cutting-edge e-commerce app designed to provide users with a seamless and secure mobile phone buying experience. Whether you re a tech enthusiast searching for the latest flagship model or a budget conscious consumer looking for reliable options, Store X has you covered',
-      'Chatgpt': 'uess'
+          'Store X, Developed a sleek eCommerce app with Cart, Wishlist, Store, and Wallet for optimal,admin panel',
+      'Chatgpt': 'Developed a Ai bot it is model chat gpt'
     };
 
     final size = MediaQuery.of(context).size;
@@ -120,7 +120,7 @@ class _MyPortfolioState extends State<MyPortfolio> {
         height: MediaQuery.sizeOf(context).height,
         decoration: BoxDecoration(
             color: Colors.black.withOpacity(0.9),
-            borderRadius: BorderRadius.circular(30)),
+            borderRadius: BorderRadius.circular(31)),
         child: Column(children: [
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 10),
@@ -136,6 +136,9 @@ class _MyPortfolioState extends State<MyPortfolio> {
               head,
               style: const TextStyle(color: Colors.white60),
             ),
+          ),
+          const SizedBox(
+            height: 10,
           ),
           const CircleAvatar(
             child: Icon(Icons.share),
