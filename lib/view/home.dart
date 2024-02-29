@@ -14,6 +14,8 @@ import 'package:my_personal_website/view/widgets/my_service.dart';
 import 'package:my_personal_website/view/widgets/profile_image.dart';
 import 'dart:html' as html;
 
+import 'package:my_personal_website/view/widgets/topbar_content.dart';
+
 class Homepage extends StatefulWidget {
   const Homepage({Key? key});
 
@@ -24,11 +26,15 @@ class Homepage extends StatefulWidget {
 class _HomepageState extends State<Homepage> {
   final Color backgroundColor = Color.fromARGB(255, 13, 16, 28);
   final Color buttonColor = Colors.blue;
+
   bool isHover = false;
   @override
   Widget build(BuildContext context) {
+    var screensize = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: AppColors.bgcolors,
+      // appBar: PreferredSize(
+      //     preferredSize: Size(screensize.width, 70), child: const TopBar()),
       appBar: AppBar(
         titleSpacing: 20,
         toolbarHeight: 90,
@@ -38,14 +44,10 @@ class _HomepageState extends State<Homepage> {
           padding: const EdgeInsets.symmetric(horizontal: 12),
           child: Row(children: [
             Text(
-              'Portfolio',
-              style: Apptext.headertextstyle(),
+              'Home',
+              style: Apptext.biodatas(),
             ),
             const Spacer(),
-            Text(
-              'Home',
-              style: Apptext.headertextstyle(),
-            ),
             const SizedBox(
               width: 20,
             ),
