@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_personal_website/constants/colors.dart';
+
 import 'package:my_personal_website/constants/image.dart';
 
 class ProfileImage extends StatefulWidget {
@@ -15,7 +15,6 @@ class _ProfileImageState extends State<ProfileImage>
   late Animation<Offset> _animation;
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _animationContoller =
         AnimationController(vsync: this, duration: Duration(seconds: 2))

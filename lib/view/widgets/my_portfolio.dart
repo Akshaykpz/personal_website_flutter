@@ -1,6 +1,6 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
-import 'package:my_personal_website/constants/colors.dart';
+
 import 'package:my_personal_website/constants/image.dart';
 import 'package:my_personal_website/constants/textstyle.dart';
 
@@ -20,6 +20,7 @@ class _MyPortfolioState extends State<MyPortfolio> {
       AppImage.project2,
       AppImage.project3
     ];
+
     Map<String, dynamic> titles = {
       'Aqua Med Tarcker':
           'Aqua Med-Tracker it is a reminder Application helping for track water and medicines',
@@ -62,11 +63,12 @@ class _MyPortfolioState extends State<MyPortfolio> {
                 crossAxisSpacing: 24),
             itemBuilder: (context, index) {
               var image = appset[index];
+
               String title = titles.keys.elementAt(index);
               String description = titles.values.elementAt(index);
 
               return FadeInUpBig(
-                duration: Duration(milliseconds: 600),
+                duration: const Duration(milliseconds: 600),
                 child: InkWell(
                   onTap: () {},
                   onHover: (value) {
@@ -92,12 +94,7 @@ class _MyPortfolioState extends State<MyPortfolio> {
                           ),
                         ),
                       ),
-                      visbity(
-                        index,
-                        context,
-                        title,
-                        description,
-                      ),
+                      visbity(index, context, title, description, 'okey'),
                     ],
                   ),
                 ),
@@ -109,12 +106,48 @@ class _MyPortfolioState extends State<MyPortfolio> {
     );
   }
 
-  Visibility visbity(
+  Visibility itemContiner(
+    String data,
     int index,
     BuildContext context,
-    String text,
-    String head,
   ) {
+    return Visibility(
+      visible: index == isvalue,
+      child: Container(
+        width: 60,
+        height: 25,
+        decoration: BoxDecoration(
+            borderRadius: const BorderRadius.all(Radius.circular(42)),
+            boxShadow: const [
+              BoxShadow(
+                color: Colors.white,
+                offset: Offset(0, 1),
+                blurRadius: 10,
+                spreadRadius: -5,
+              ),
+            ],
+            gradient: LinearGradient(
+              begin: Alignment.centerLeft,
+              end: Alignment.centerRight,
+              colors: [
+                Colors.blue.shade400,
+                Colors.purple.shade400,
+              ],
+            )),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 3),
+          child: Text(
+            data,
+            style: const TextStyle(
+                color: Colors.white, fontWeight: FontWeight.w400),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Visibility visbity(
+      int index, BuildContext context, String text, String head, String okey) {
     return Visibility(
       visible: index == isvalue,
       child: AnimatedContainer(
@@ -145,6 +178,17 @@ class _MyPortfolioState extends State<MyPortfolio> {
           ),
           const CircleAvatar(
             child: Icon(Icons.share),
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              itemContiner('Hive', index, context),
+              itemContiner('data', index, context),
+              itemContiner('data', index, context)
+            ],
           )
         ]),
       ),

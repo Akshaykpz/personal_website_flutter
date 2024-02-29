@@ -51,6 +51,14 @@ class Apptext {
         letterSpacing: 2,
         fontSize: 15,
         fontWeight: FontWeight.w600,
+        color: Colors.white);
+  }
+
+  static TextStyle aboutstyles2() {
+    return GoogleFonts.abel(
+        letterSpacing: 2,
+        fontSize: 12,
+        fontWeight: FontWeight.w600,
         color: Colors.white70);
   }
 }

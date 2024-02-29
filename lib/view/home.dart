@@ -7,6 +7,7 @@ import 'package:my_personal_website/constants/textstyle.dart';
 import 'package:my_personal_website/view/widgets/about.dart';
 
 import 'package:my_personal_website/view/widgets/contact_us.dart';
+import 'package:my_personal_website/view/widgets/experience.dart';
 import 'package:my_personal_website/view/widgets/footer_class.dart';
 import 'package:my_personal_website/view/widgets/my_portfolio.dart';
 import 'package:my_personal_website/view/widgets/my_service.dart';
@@ -49,7 +50,14 @@ class _HomepageState extends State<Homepage> {
               width: 20,
             ),
             Text(
-              'About',
+              'Skills',
+              style: Apptext.headertextstyle(),
+            ),
+            const SizedBox(
+              width: 20,
+            ),
+            Text(
+              'Experience',
               style: Apptext.headertextstyle(),
             ),
             const SizedBox(
@@ -62,10 +70,6 @@ class _HomepageState extends State<Homepage> {
             const SizedBox(
               width: 20,
             ),
-            Text(
-              'Contact',
-              style: Apptext.headertextstyle(),
-            )
           ]),
         ),
       ),
@@ -210,6 +214,10 @@ class _HomepageState extends State<Homepage> {
           const SizedBox(
             height: 50,
           ),
+          const SizedBox(
+            height: 150,
+          ),
+          const Expierence(),
           const MyService(),
           const MyPortfolio(),
           const ContactMe(),
