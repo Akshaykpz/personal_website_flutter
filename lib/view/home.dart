@@ -1,7 +1,10 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:lottie/lottie.dart';
 import 'package:my_personal_website/constants/colors.dart';
+import 'package:my_personal_website/constants/text.dart';
 
 import 'package:my_personal_website/constants/textstyle.dart';
 import 'package:my_personal_website/view/widgets/about.dart';
@@ -40,8 +43,9 @@ class _HomepageState extends State<Homepage> {
         toolbarHeight: 90,
         backgroundColor: AppColors.bgcolors,
         elevation: 0,
+        centerTitle: true,
         title: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 12),
+          padding: const EdgeInsets.symmetric(horizontal: 1),
           child: Row(children: [
             Text(
               'Portfolio',
@@ -93,7 +97,7 @@ class _HomepageState extends State<Homepage> {
         // padding: const EdgeInsets.only(top: 30, left: 150, right: 20),
         child: Column(children: [
           const SizedBox(
-            height: 100,
+            height: 10,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -122,10 +126,15 @@ class _HomepageState extends State<Homepage> {
                           TyperAnimatedText("And I'm a ",
                               textStyle: Apptext.headertextstyle1())
                         ]),
-                        AnimatedTextKit(animatedTexts: [
-                          TyperAnimatedText("Flutter Developer ",
-                              textStyle: Apptext.textestyles())
-                        ]),
+                        GradientText(
+                          text: "Flutter Developer",
+                          gradient: const LinearGradient(colors: [
+                            Colors.blue,
+                            Colors.purple,
+                          ]),
+                          style: GoogleFonts.mukta(
+                              fontSize: 40, fontWeight: FontWeight.w600),
+                        )
                       ],
                     ),
                   ),
@@ -147,20 +156,30 @@ class _HomepageState extends State<Homepage> {
                   ),
                 ],
               ),
+              Stack(
+                alignment: Alignment.center,
+                children: [
+                  Lottie.asset('assets/images/Animation - 1709290147936.json',
+                      height: 540),
+
+                  // Image.asset(
+                  //   'assets/images/Animation - 1709289052606.gif',
+                  //   height: 100,
+                  // ),
+
+                  const ProfileImage(),
+                ],
+              ),
               // Image.asset(
               //   AppImage.image,
               //   height: 100,
               //   fit: BoxFit.cover,
               // )
-              const ProfileImage(),
-              const SizedBox(
-                width: 80,
-              ),
             ],
           ),
-          const SizedBox(
-            height: 50,
-          ),
+          // const SizedBox(
+          //   height: 50,
+          // ),
           Row(
             children: [
               const SizedBox(

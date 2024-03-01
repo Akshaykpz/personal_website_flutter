@@ -41,6 +41,7 @@ dependencies:
   url_launcher: ^6.2.4
   
   http: ^1.2.0
+  lottie: ^3.1.0
 
 dev_dependencies:
   flutter_test:
@@ -95,6 +96,8 @@ flutter:
     - assets/images/WhatsApp Image 2024-02-29 at 11.56.24_4da76985.jpg
     - assets/images/WhatsApp Image 2024-02-29 at 18.41.19_76132ea6.jpg
     - assets/images/sl_z_072523_61700_01.jpg
+    - assets/images/Animation - 1709289052606.gif
+    - assets/images/Animation - 1709290147936.json
   
  
   #   - images/a_dot_burr.jpeg

@@ -17,9 +17,9 @@ class _ProfileImageState extends State<ProfileImage>
   void initState() {
     super.initState();
     _animationContoller =
-        AnimationController(vsync: this, duration: Duration(seconds: 2))
+        AnimationController(vsync: this, duration: Duration(seconds: 3))
           ..repeat(reverse: true);
-    _animation = Tween(begin: Offset(0, 0.1), end: Offset(0, 0.2))
+    _animation = Tween(begin: Offset(0, 0), end: Offset(0, 0.2))
         .animate(_animationContoller);
   }
 
@@ -35,7 +35,7 @@ class _ProfileImageState extends State<ProfileImage>
     return SlideTransition(
       position: _animation,
       child: CircleAvatar(
-        maxRadius: 130,
+        maxRadius: 135,
         backgroundColor: Colors.white10,
 
         child: Padding(
@@ -43,7 +43,7 @@ class _ProfileImageState extends State<ProfileImage>
           child: ClipOval(
               child: SizedBox.fromSize(
             size: const Size.fromRadius(
-              147.6,
+              140.6,
             ),
             child: Image.asset(
               AppImage.image,

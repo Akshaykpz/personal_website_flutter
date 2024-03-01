@@ -46,7 +46,7 @@ class _MyPortfolioState extends State<MyPortfolio> {
                       children: [
                 TextSpan(
                   text: '  projects',
-                  style: Apptext.addstyles(Colors.blue),
+                  style: Apptext.addstyles(Colors.white),
                 )
               ]))),
           const SizedBox(
@@ -116,30 +116,15 @@ class _MyPortfolioState extends State<MyPortfolio> {
       child: Container(
         width: 60,
         height: 25,
-        decoration: BoxDecoration(
-            borderRadius: const BorderRadius.all(Radius.circular(42)),
-            boxShadow: const [
-              BoxShadow(
-                color: Colors.white,
-                offset: Offset(0, 1),
-                blurRadius: 10,
-                spreadRadius: -5,
-              ),
-            ],
-            gradient: LinearGradient(
-              begin: Alignment.centerLeft,
-              end: Alignment.centerRight,
-              colors: [
-                Colors.blue.shade400,
-                Colors.purple.shade400,
-              ],
-            )),
+        decoration: const BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.all(Radius.circular(4))),
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 3),
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 13),
           child: Text(
             data,
             style: const TextStyle(
-                color: Colors.white, fontWeight: FontWeight.w400),
+                color: Colors.black, fontWeight: FontWeight.w400),
           ),
         ),
       ),
@@ -159,7 +144,7 @@ class _MyPortfolioState extends State<MyPortfolio> {
             borderRadius: BorderRadius.circular(30)),
         child: Column(children: [
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 5),
+            padding: const EdgeInsets.symmetric(vertical: 15),
             child: Text(
               text,
               style: const TextStyle(
@@ -167,7 +152,7 @@ class _MyPortfolioState extends State<MyPortfolio> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Text(
               head,
               style: const TextStyle(color: Colors.white60),
@@ -182,14 +167,6 @@ class _MyPortfolioState extends State<MyPortfolio> {
           const SizedBox(
             height: 20,
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              itemContiner('Hive', index, context),
-              itemContiner('data', index, context),
-              itemContiner('data', index, context)
-            ],
-          )
         ]),
       ),
     );

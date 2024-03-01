@@ -18,6 +18,16 @@ final TextEditingController emailController = TextEditingController();
 final TextEditingController phoneController = TextEditingController();
 final TextEditingController contentController = TextEditingController();
 final TextEditingController messageController = TextEditingController();
+void showSnackBar(BuildContext context) {
+  const snackBar = SnackBar(
+    content: Text('Message Sent Sucessfully'),
+    backgroundColor: Colors.green,
+    behavior: SnackBarBehavior.floating,
+    width: 500,
+    duration: Duration(seconds: 1),
+  );
+  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+}
 
 Future sendemail() async {
   const serviceId = 'service_01uj5cm';
@@ -68,7 +78,7 @@ class _ContactMeState extends State<ContactMe> {
                       children: [
                 TextSpan(
                   text: '  Me',
-                  style: Apptext.addstyles(Colors.blue),
+                  style: Apptext.addstyles(Colors.white),
                 )
               ]))),
           const SizedBox(
@@ -82,6 +92,7 @@ class _ContactMeState extends State<ContactMe> {
                   elevation: 8,
                   borderRadius: BorderRadius.circular(12),
                   child: TextFormField(
+                    style: TextStyle(color: Colors.white),
                     controller: nameController,
                     decoration: inputFiled(hinttext: 'Full Name'),
                   ),
@@ -96,6 +107,7 @@ class _ContactMeState extends State<ContactMe> {
                   elevation: 8,
                   borderRadius: BorderRadius.circular(12),
                   child: TextFormField(
+                    style: TextStyle(color: Colors.white),
                     controller: emailController,
                     decoration: inputFiled(hinttext: 'Email'),
                   ),
@@ -114,6 +126,7 @@ class _ContactMeState extends State<ContactMe> {
                   elevation: 8,
                   borderRadius: BorderRadius.circular(12),
                   child: TextFormField(
+                    style: TextStyle(color: Colors.white),
                     controller: phoneController,
                     decoration: inputFiled(hinttext: 'Phone Number'),
                   ),
@@ -128,6 +141,7 @@ class _ContactMeState extends State<ContactMe> {
                   elevation: 8,
                   borderRadius: BorderRadius.circular(12),
                   child: TextFormField(
+                    style: TextStyle(color: Colors.white),
                     controller: contentController,
                     decoration: inputFiled(hinttext: 'Email Content'),
                   ),
@@ -143,6 +157,7 @@ class _ContactMeState extends State<ContactMe> {
             elevation: 8,
             borderRadius: BorderRadius.circular(12),
             child: TextFormField(
+              style: TextStyle(color: Colors.white),
               controller: messageController,
               maxLines: 10,
               decoration: inputFiled(hinttext: 'Your Message'),
@@ -152,7 +167,9 @@ class _ContactMeState extends State<ContactMe> {
             height: 30,
           ),
           InkWell(
-            onTap: () {},
+            onTap: () {
+              showSnackBar(context);
+            },
             onHover: (value) {
               setState(() {
                 isData = value;
@@ -209,15 +226,19 @@ class _ContactMeState extends State<ContactMe> {
 
   InputDecoration inputFiled({required String hinttext}) {
     return InputDecoration(
-        hintText: hinttext,
-        enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(12),
-            borderSide: BorderSide.none),
-        focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(12),
-            borderSide: BorderSide.none),
-        contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-        filled: true,
-        focusColor: Colors.blueGrey);
+      hintText: hinttext,
+      fillColor: Colors.transparent,
+      hintStyle: const TextStyle(color: Colors.white70),
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(10),
+        borderSide: BorderSide(color: Colors.white70), // Change here
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(18),
+      ),
+      contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+      filled: true,
+      focusColor: Colors.blueGrey,
+    );
   }
 }

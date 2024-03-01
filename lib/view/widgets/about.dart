@@ -13,6 +13,10 @@ class AboutMe extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 10),
       child: Container(
         decoration: BoxDecoration(
+          gradient: LinearGradient(
+              colors: [Colors.blue, Colors.purple],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight),
           borderRadius: BorderRadius.circular(20),
           color: Colors.black12,
           border: Border.all(
@@ -35,7 +39,7 @@ class AboutMe extends StatelessWidget {
                       children: [
                 TextSpan(
                   text: '  Skills',
-                  style: Apptext.addstyles(Colors.blue),
+                  style: Apptext.addstyles(Colors.white),
                 )
               ]))),
           const SizedBox(
@@ -84,7 +88,7 @@ class AboutMe extends StatelessWidget {
             children: [
               const CustomContainer(
                   image: 'assets/images/7131906.jpg', text: 'Api'),
-              const  CustomContainer(
+              const CustomContainer(
                   image:
                       'assets/images/WhatsApp Image 2024-02-25 at 16.50.08_eb99b2ed.jpg',
                   text: 'bloc'),

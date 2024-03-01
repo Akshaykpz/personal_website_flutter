@@ -35,7 +35,7 @@ class _MyServiceState extends State<MyService> {
                       children: [
                 TextSpan(
                   text: '  Services',
-                  style: Apptext.addstyles(Colors.blue),
+                  style: Apptext.addstyles(Colors.white),
                 )
               ]))),
           const SizedBox(

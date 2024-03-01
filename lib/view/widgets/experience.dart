@@ -71,7 +71,7 @@ class _ExpierenceState extends State<Expierence> {
                     isoffhover,
                     ': Flutter Developer',
                     'Brototype',
-                    ': Jan 2024 - Nov 2024',
+                    ': Jan 2023 - Nov 2023',
                     'I have a solid foundation in Flutter Developemnet, acquired through a successful internship at Brototype. Over the subsequent eight months, I accomplished the delivery of two significant projects, in addition to several mini-projects, showcasing my proficiency and commitment in the field'),
               ),
             ],
@@ -93,10 +93,13 @@ class _ExpierenceState extends State<Expierence> {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
         color: Colors.black12,
+        gradient: LinearGradient(
+            colors: [Colors.blue, Colors.purple],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight),
         border: Border.all(
           style: BorderStyle.solid,
           width: 1,
-          color: Colors.white24,
         ),
       ),
       child: Column(children: [
