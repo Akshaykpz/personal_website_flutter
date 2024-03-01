@@ -44,10 +44,17 @@ class _HomepageState extends State<Homepage> {
           padding: const EdgeInsets.symmetric(horizontal: 12),
           child: Row(children: [
             Text(
-              'Home',
+              'Portfolio',
               style: Apptext.biodatas(),
             ),
             const Spacer(),
+            const SizedBox(
+              width: 20,
+            ),
+            Text(
+              'About',
+              style: Apptext.headertextstyle(),
+            ),
             const SizedBox(
               width: 20,
             ),
@@ -67,6 +74,13 @@ class _HomepageState extends State<Homepage> {
             ),
             Text(
               'Service',
+              style: Apptext.headertextstyle(),
+            ),
+            const SizedBox(
+              width: 20,
+            ),
+            Text(
+              'Projects',
               style: Apptext.headertextstyle(),
             ),
             const SizedBox(

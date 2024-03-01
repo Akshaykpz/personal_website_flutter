@@ -57,7 +57,7 @@ class _ContactMeState extends State<ContactMe> {
         padding: EdgeInsets.symmetric(horizontal: size.width * 0.1),
         alignment: Alignment.center,
         color: Colors.transparent,
-        height: size.height,
+        height: size.height * 0.8,
         width: size.width,
         child: Column(children: [
           FadeInDown(
@@ -71,6 +71,9 @@ class _ContactMeState extends State<ContactMe> {
                   style: Apptext.addstyles(Colors.blue),
                 )
               ]))),
+          const SizedBox(
+            height: 40,
+          ),
           Row(
             children: [
               Expanded(
@@ -146,7 +149,7 @@ class _ContactMeState extends State<ContactMe> {
             ),
           ),
           const SizedBox(
-            height: 20,
+            height: 30,
           ),
           InkWell(
             onTap: () {},
@@ -164,7 +167,7 @@ class _ContactMeState extends State<ContactMe> {
                       boxShadow: const [
                         BoxShadow(
                             offset: Offset(0.0, 0.0),
-                            blurRadius: 25,
+                            blurRadius: 20,
                             color: Colors.white),
                       ],
                       gradient: const LinearGradient(
@@ -197,7 +200,7 @@ class _ContactMeState extends State<ContactMe> {
                 style: TextStyle(
                     fontSize: 15,
                     fontWeight: FontWeight.w600,
-                    color: isData ? Colors.white : Colors.black),
+                    color: isData ? Colors.white : Colors.white),
               )),
             ),
           )
