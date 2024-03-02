@@ -1,6 +1,7 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 import 'package:my_personal_website/constants/colors.dart';
@@ -27,74 +28,64 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
+  final onmenuHover = Matrix4.identity()..scale(1.0);
+  final menuitem = <String>[
+    'About',
+    'Skills',
+    'Experience',
+    'Service',
+    'Projects',
+    'Projects',
+  ];
   final Color backgroundColor = Color.fromARGB(255, 13, 16, 28);
   final Color buttonColor = Colors.blue;
-
+  var menuIndex = 0;
   bool isHover = false;
   @override
   Widget build(BuildContext context) {
-    var screensize = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: AppColors.bgcolors,
-      // appBar: PreferredSize(
-      //     preferredSize: Size(screensize.width, 70), child: const TopBar()),
       appBar: AppBar(
-        titleSpacing: 20,
+        titleSpacing: 100,
         toolbarHeight: 90,
         backgroundColor: AppColors.bgcolors,
         elevation: 0,
-        centerTitle: true,
-        title: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 1),
-          child: Row(children: [
-            Text(
-              'Portfolio',
-              style: Apptext.biodatas(),
-            ),
-            const Spacer(),
-            const SizedBox(
-              width: 20,
-            ),
-            Text(
-              'About',
-              style: Apptext.headertextstyle(),
-            ),
-            const SizedBox(
-              width: 20,
-            ),
-            Text(
-              'Skills',
-              style: Apptext.headertextstyle(),
-            ),
-            const SizedBox(
-              width: 20,
-            ),
-            Text(
-              'Experience',
-              style: Apptext.headertextstyle(),
-            ),
-            const SizedBox(
-              width: 20,
-            ),
-            Text(
-              'Service',
-              style: Apptext.headertextstyle(),
-            ),
-            const SizedBox(
-              width: 20,
-            ),
-            Text(
-              'Projects',
-              style: Apptext.headertextstyle(),
-            ),
-            const SizedBox(
-              width: 20,
-            ),
-          ]),
-        ),
+        title: Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
+          Text(
+            'Portfolio',
+            style: Apptext.biodatas(),
+          ),
+          const Spacer(),
+          SizedBox(
+            height: 40,
+            child: ListView.separated(
+                shrinkWrap: true,
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (context, index) => const SizedBox(
+                      width: 3,
+                    ),
+                separatorBuilder: (context, index) {
+                  return InkWell(
+                    onTap: () {},
+                    borderRadius: BorderRadius.circular(100),
+                    onHover: (value) {
+                      setState(() {
+                        if (value) {
+                          menuIndex = index;
+                        } else {
+                          menuIndex = 0;
+                        }
+                      });
+                    },
+                    child: animatedContainer(
+                        index, menuIndex == index ? true : false),
+                  );
+                },
+                itemCount: menuitem.length),
+          ),
+        ]),
       ),
       body: SingleChildScrollView(
-        // padding: const EdgeInsets.only(top: 30, left: 150, right: 20),
         child: Column(children: [
           const SizedBox(
             height: 10,
@@ -259,6 +250,17 @@ class _HomepageState extends State<Homepage> {
           const FotterClass(),
         ]),
       ),
+    );
+  }
+
+  AnimatedContainer animatedContainer(int index, bool hover) {
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 200),
+      alignment: Alignment.center,
+      width: hover ? 90 : 85,
+      transform: hover ? onmenuHover : null,
+      child: Text(menuitem[index],
+          style: Apptext.headertextstyle(hover ? Colors.blue : Colors.white)),
     );
   }
 

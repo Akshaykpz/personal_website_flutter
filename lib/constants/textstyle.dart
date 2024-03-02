@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Apptext {
-  static TextStyle headertextstyle() {
+  static TextStyle headertextstyle(Color color) {
     return GoogleFonts.mukta(
-        fontSize: 20, fontWeight: FontWeight.w600, color: Colors.white);
+        fontSize: 17, fontWeight: FontWeight.w600, color: color);
   }
 
   static TextStyle headertextstyle1() {
