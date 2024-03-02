@@ -46,6 +46,7 @@ class HelperClass extends StatelessWidget {
             // height: size.height,
             width: size.width,
             alignment: Alignment.center,
+
             // color: bgColor,
             padding: EdgeInsets.symmetric(
               vertical: size.height * 0.18,
