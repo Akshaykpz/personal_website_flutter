@@ -268,7 +268,7 @@ class _HomepageState extends State<Homepage> {
         FadeInDown(
           child: Text(
             "Hey there! a passionate Flutter developer with a knack for turning\n"
-            "innovative ideas into seamless, visually appealing, and highly functional "
+            "innovative ideas into seamless, visually appealing, and highly functional\n "
             "mobile applications. With a solid background in mobile app development....",
             style: Apptext.aboutstyles(),
           ),
