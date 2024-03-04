@@ -61,7 +61,7 @@ class _DashBoardState extends State<DashBoard> {
               //         'Portfolio',
               //         style: Apptext.biodatas(),
               //       ),
-              //       const Spacer(),
+                    const Spacer(),
               //       IconButton(
               //           onPressed: () {},
               //           icon: const Icon(
@@ -137,7 +137,7 @@ class _DashBoardState extends State<DashBoard> {
           },
         ),
       ),
-      body: Homepage(),
+       body: Homepage(),
     );
   }
 
