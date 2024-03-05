@@ -17,9 +17,9 @@ class _ProfileImageState extends State<ProfileImage>
   void initState() {
     super.initState();
     _animationContoller =
-        AnimationController(vsync: this, duration: Duration(seconds: 3))
+        AnimationController(vsync: this, duration: const Duration(seconds: 3))
           ..repeat(reverse: true);
-    _animation = Tween(begin: Offset(0, 0), end: Offset(0, 0.2))
+    _animation = Tween(begin: const Offset(0, 0), end: const Offset(0, 0.2))
         .animate(_animationContoller);
   }
 

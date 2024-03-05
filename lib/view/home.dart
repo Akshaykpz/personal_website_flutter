@@ -1,7 +1,6 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 import 'package:my_personal_website/constants/colors.dart';
@@ -9,17 +8,13 @@ import 'package:my_personal_website/constants/text.dart';
 
 import 'package:my_personal_website/constants/textstyle.dart';
 import 'package:my_personal_website/helper/helper_class.dart';
-import 'package:my_personal_website/view/widgets/about.dart';
 
-import 'package:my_personal_website/view/widgets/contact_us.dart';
-import 'package:my_personal_website/view/widgets/experience.dart';
-import 'package:my_personal_website/view/widgets/footer_class.dart';
-import 'package:my_personal_website/view/widgets/my_portfolio.dart';
-import 'package:my_personal_website/view/widgets/my_service.dart';
 import 'package:my_personal_website/view/widgets/profile_image.dart';
+// ignore: avoid_web_libraries_in_flutter
 import 'dart:html' as html;
 
 class Homepage extends StatefulWidget {
+  // ignore: prefer_const_constructors_in_immutables, use_key_in_widget_constructors
   Homepage({Key? key});
 
   @override
@@ -27,7 +22,7 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
-  final Color backgroundColor = Color.fromARGB(255, 13, 16, 28);
+  final Color backgroundColor = const Color.fromARGB(255, 13, 16, 28);
   final Color buttonColor = Colors.blue;
 
   bool isHover = false;
@@ -213,7 +208,7 @@ class _HomepageState extends State<Homepage> {
       //       height: 150,
       //     ),
       //     const Expierence(),
-      //     const MyService(),
+
       //     const MyPortfolio(),
       //     const ContactMe(),
       //     const FotterClass(),
@@ -222,6 +217,7 @@ class _HomepageState extends State<Homepage> {
     );
   }
 
+  // ignore: non_constant_identifier_names
   Column BuildHomemethod() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,

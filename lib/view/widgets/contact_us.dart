@@ -92,7 +92,7 @@ class _ContactMeState extends State<ContactMe> {
                   elevation: 8,
                   borderRadius: BorderRadius.circular(12),
                   child: TextFormField(
-                    style: TextStyle(color: Colors.white),
+                    style: const TextStyle(color: Colors.white),
                     controller: nameController,
                     decoration: inputFiled(hinttext: 'Full Name'),
                   ),
@@ -107,7 +107,7 @@ class _ContactMeState extends State<ContactMe> {
                   elevation: 8,
                   borderRadius: BorderRadius.circular(12),
                   child: TextFormField(
-                    style: TextStyle(color: Colors.white),
+                    style: const TextStyle(color: Colors.white),
                     controller: emailController,
                     decoration: inputFiled(hinttext: 'Email'),
                   ),
@@ -126,7 +126,7 @@ class _ContactMeState extends State<ContactMe> {
                   elevation: 8,
                   borderRadius: BorderRadius.circular(12),
                   child: TextFormField(
-                    style: TextStyle(color: Colors.white),
+                    style: const TextStyle(color: Colors.white),
                     controller: phoneController,
                     decoration: inputFiled(hinttext: 'Phone Number'),
                   ),
@@ -141,7 +141,7 @@ class _ContactMeState extends State<ContactMe> {
                   elevation: 8,
                   borderRadius: BorderRadius.circular(12),
                   child: TextFormField(
-                    style: TextStyle(color: Colors.white),
+                    style: const TextStyle(color: Colors.white),
                     controller: contentController,
                     decoration: inputFiled(hinttext: 'Email Content'),
                   ),
@@ -157,7 +157,7 @@ class _ContactMeState extends State<ContactMe> {
             elevation: 8,
             borderRadius: BorderRadius.circular(12),
             child: TextFormField(
-              style: TextStyle(color: Colors.white),
+              style: const TextStyle(color: Colors.white),
               controller: messageController,
               maxLines: 10,
               decoration: inputFiled(hinttext: 'Your Message'),
@@ -231,7 +231,7 @@ class _ContactMeState extends State<ContactMe> {
       hintStyle: const TextStyle(color: Colors.white70),
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(10),
-        borderSide: BorderSide(color: Colors.white70), // Change here
+        borderSide: const BorderSide(color: Colors.white70), // Change here
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(18),

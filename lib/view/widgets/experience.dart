@@ -92,8 +92,8 @@ class _ExpierenceState extends State<Expierence> {
       duration: const Duration(seconds: 5),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
-        color: Colors.black12,
-        gradient: LinearGradient(
+        color: const Color.fromRGBO(0, 0, 0, 0.122),
+        gradient: const LinearGradient(
             colors: [Colors.blue, Colors.purple],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight),

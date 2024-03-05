@@ -13,7 +13,7 @@ class AboutMe extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 10),
       child: Container(
         decoration: BoxDecoration(
-          gradient: LinearGradient(
+          gradient: const LinearGradient(
               colors: [Colors.blue, Colors.purple],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight),

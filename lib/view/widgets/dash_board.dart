@@ -20,12 +20,11 @@ class _DashBoardState extends State<DashBoard> {
     'Projects',
     'Projects',
   ];
-  final Color backgroundColor = Color.fromARGB(255, 13, 16, 28);
+  final Color backgroundColor = const Color.fromARGB(255, 13, 16, 28);
   final Color buttonColor = Colors.blue;
   var menuIndex = 0;
   @override
   Widget build(BuildContext context) {
-    final Size size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: AppColors.bgcolors,
       appBar: AppBar(
@@ -40,7 +39,7 @@ class _DashBoardState extends State<DashBoard> {
                 children: [
                   IconButton(
                     onPressed: () {},
-                    icon: Icon(
+                    icon: const Icon(
                       Icons.menu_sharp,
                       color: Colors.white,
                     ),
@@ -61,7 +60,7 @@ class _DashBoardState extends State<DashBoard> {
               //         'Portfolio',
               //         style: Apptext.biodatas(),
               //       ),
-                    const Spacer(),
+              // const Spacer(),
               //       IconButton(
               //           onPressed: () {},
               //           icon: const Icon(
@@ -137,7 +136,7 @@ class _DashBoardState extends State<DashBoard> {
           },
         ),
       ),
-       body: Homepage(),
+      body: Homepage(),
     );
   }
 
