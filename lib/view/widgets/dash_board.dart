@@ -4,6 +4,7 @@ import 'package:my_personal_website/constants/textstyle.dart';
 import 'package:my_personal_website/view/home.dart';
 import 'package:my_personal_website/view/widgets/about.dart';
 import 'package:my_personal_website/view/widgets/experience.dart';
+import 'package:my_personal_website/view/widgets/my_portfolio.dart';
 
 class DashBoard extends StatefulWidget {
   const DashBoard({Key? key}) : super(key: key);
@@ -138,7 +139,7 @@ class _DashBoardState extends State<DashBoard> {
             },
           ),
         ),
-        body: const Expierence());
+        body: const MyPortfolio());
   }
 
   AnimatedContainer animatedContainer(int index, bool hover) {

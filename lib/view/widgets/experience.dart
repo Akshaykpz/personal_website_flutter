@@ -200,9 +200,8 @@ class _ExpierenceState extends State<Expierence> {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
-    final bool isMobile = size.width < 600;
 
-    return Container(
+    return SizedBox(
       // color: Colors.amber,
       height: size.height * 0.9,
       width: size.width,

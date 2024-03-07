@@ -64,7 +64,7 @@ class AboutMe extends StatelessWidget {
         children: [
           CustomContainer(image: 'assets/images/dart.png', text: 'Dart'),
           CustomContainer(image: 'assets/images/flutter.png', text: 'Flutter'),
-          CustomContainer(image: 'assets/images/github.png', text: 'Git hub'),
+          CustomContainer(image: 'assets/images/github.png', text: 'Git Hub'),
           CustomContainer(
               image:
                   'assets/images/WhatsApp Image 2024-02-25 at 16.43.26_966c41bb.jpg',

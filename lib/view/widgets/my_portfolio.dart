@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'package:my_personal_website/constants/image.dart';
 import 'package:my_personal_website/constants/textstyle.dart';
+import 'package:my_personal_website/helper/helper_class.dart';
 
 class MyPortfolio extends StatefulWidget {
   const MyPortfolio({Key? key}) : super(key: key);
@@ -31,80 +32,95 @@ class _MyPortfolioState extends State<MyPortfolio> {
     };
 
     final size = MediaQuery.of(context).size;
-    return Container(
-      padding: EdgeInsets.symmetric(vertical: 30, horizontal: size.width * 0.1),
-      alignment: Alignment.center,
-      color: Colors.transparent,
-      height: size.height,
-      width: size.width,
-      child: Column(
-        children: [
-          FadeInDown(
-              child: RichText(
-                  text: TextSpan(
-                      text: 'Latest',
-                      style: Apptext.addstyles(Colors.white),
-                      children: [
-                TextSpan(
-                  text: '  projects',
-                  style: Apptext.addstyles(Colors.white),
-                )
-              ]))),
-          const SizedBox(
-            height: 45,
+    return Scaffold(
+        backgroundColor: Colors.transparent,
+        body: HelperClass(
+          mobile: SizedBox(),
+          tablet: Column(
+            children: [
+              fadeDowntext(),
+              const SizedBox(
+                height: 45,
+              ),
+              buildprojectview(titles, appset)
+            ],
           ),
-          GridView.builder(
-            itemCount: titles.length,
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 3,
-                mainAxisExtent: 300,
-                mainAxisSpacing: 24,
-                crossAxisSpacing: 24),
-            itemBuilder: (context, index) {
-              var image = appset[index];
+          desktop: Column(
+            children: [
+              fadeDowntext(),
+              const SizedBox(
+                height: 45,
+              ),
+              buildprojectview(titles, appset)
+            ],
+          ),
+        ));
+  }
 
-              String title = titles.keys.elementAt(index);
-              String description = titles.values.elementAt(index);
+  GridView buildprojectview(Map<String, dynamic> titles, List<String> appset) {
+    return GridView.builder(
+      itemCount: titles.length,
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 3,
+          mainAxisExtent: 300,
+          mainAxisSpacing: 24,
+          crossAxisSpacing: 24),
+      itemBuilder: (context, index) {
+        var image = appset[index];
 
-              return FadeInUpBig(
-                duration: const Duration(milliseconds: 600),
-                child: InkWell(
-                  onTap: () {},
-                  onHover: (value) {
-                    setState(() {
-                      setState(() {
-                        if (value) {
-                          isvalue = index;
-                        } else {
-                          isvalue = null;
-                        }
-                      });
-                    });
-                  },
-                  child: Stack(
-                    alignment: Alignment.center,
-                    children: [
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(30),
-                        child: Image(
-                          height: 290,
-                          image: AssetImage(
-                            image,
-                          ),
-                        ),
-                      ),
-                      visbity(index, context, title, description, 'okey'),
-                    ],
+        String title = titles.keys.elementAt(index);
+        String description = titles.values.elementAt(index);
+
+        return FadeInUpBig(
+          duration: const Duration(milliseconds: 600),
+          child: InkWell(
+            onTap: () {},
+            onHover: (value) {
+              setState(() {
+                setState(() {
+                  if (value) {
+                    isvalue = index;
+                  } else {
+                    isvalue = null;
+                  }
+                });
+              });
+            },
+            child: Stack(
+              alignment: Alignment.center,
+              children: [
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(30),
+                  child: Image(
+                    height: 290,
+                    image: AssetImage(
+                      image,
+                    ),
                   ),
                 ),
-              );
-            },
-          )
-        ],
-      ),
+                visbity(index, context, title, description, 'okey'),
+              ],
+            ),
+          ),
+        );
+      },
     );
+  }
+
+  FadeInDown fadeDowntext() {
+    return FadeInDown(
+        child: RichText(
+            text: TextSpan(
+                text: 'Latest',
+                style: Apptext.addstyles(Colors.white),
+                children: [
+          TextSpan(
+            text: '  projects',
+            style: Apptext.addstyles(Colors.white),
+          )
+        ])));
   }
 
   Visibility itemContiner(
