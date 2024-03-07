@@ -22,7 +22,7 @@ class Apptext {
         fontSize: 40, fontWeight: FontWeight.w600, color: Colors.blueAccent);
   }
 
-  static TextStyle addstyles([Color? color]) {
+  static TextStyle addstyles([Color? color, double? fontsize]) {
     return GoogleFonts.rubikMoonrocks(
         letterSpacing: 2,
         fontSize: 30,

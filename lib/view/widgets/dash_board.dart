@@ -3,7 +3,9 @@ import 'package:my_personal_website/constants/colors.dart';
 import 'package:my_personal_website/constants/textstyle.dart';
 import 'package:my_personal_website/view/home.dart';
 import 'package:my_personal_website/view/widgets/about.dart';
+import 'package:my_personal_website/view/widgets/contact_us.dart';
 import 'package:my_personal_website/view/widgets/experience.dart';
+import 'package:my_personal_website/view/widgets/footer_class.dart';
 import 'package:my_personal_website/view/widgets/my_portfolio.dart';
 
 class DashBoard extends StatefulWidget {
@@ -23,6 +25,15 @@ class _DashBoardState extends State<DashBoard> {
     'Projects',
     'Projects',
   ];
+
+  final screenlist = <Widget>[
+    Homepage(),
+    const AboutMe(),
+    const Expierence(),
+    const MyPortfolio(),
+    const ContactMe(),
+    const FotterClass(),
+  ];
   final Color backgroundColor = const Color.fromARGB(255, 13, 16, 28);
   final Color buttonColor = Colors.blue;
   var menuIndex = 0;
@@ -34,7 +45,7 @@ class _DashBoardState extends State<DashBoard> {
           titleSpacing: 100,
           toolbarHeight: 90,
           backgroundColor: AppColors.bgcolors,
-          elevation: 0,
+          elevation: 4,
           title: LayoutBuilder(
             builder: (context, constraints) {
               if (constraints.maxWidth < 768) {
@@ -139,7 +150,12 @@ class _DashBoardState extends State<DashBoard> {
             },
           ),
         ),
-        body: const MyPortfolio());
+        body: ListView.builder(
+          itemCount: screenlist.length,
+          itemBuilder: (context, index) {
+            return screenlist[index];
+          },
+        ));
   }
 
   AnimatedContainer animatedContainer(int index, bool hover) {

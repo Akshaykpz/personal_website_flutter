@@ -30,191 +30,179 @@ class _HomepageState extends State<Homepage> {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
-    return Scaffold(
-      // backgroundColor: AppColors.bgcolors,
-      // appBar: AppBar(
-      //   titleSpacing: 100,
-      //   toolbarHeight: 90,
-      //   backgroundColor: AppColors.bgcolors,
-      //   elevation: 0,
-      //   title: Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
-      //     Text(
-      //       'Portfolio',
-      //       style: Apptext.biodatas(),
-      //     ),
-      //     const Spacer(),
-      //     SizedBox(
-      //       height: 40,
-      //       child: ListView.separated(
-      //           shrinkWrap: true,
-      //           scrollDirection: Axis.horizontal,
-      //           itemBuilder: (context, index) => const SizedBox(
-      //                 width: 3,
-      //               ),
-      //           separatorBuilder: (context, index) {
-      //             return InkWell(
-      //               onTap: () {},
-      //               borderRadius: BorderRadius.circular(100),
-      //               onHover: (value) {
-      //                 setState(() {
-      //                   if (value) {
-      //                     menuIndex = index;
-      //                   } else {
-      //                     menuIndex = 0;
-      //                   }
-      //                 });
-      //               },
-      //               child: animatedContainer(
-      //                   index, menuIndex == index ? true : false),
-      //             );
-      //           },
-      //           itemCount: menuitem.length),
-      //     ),
-      //   ]),
-      // ),
-      body: Container(
-          color: AppColors.bgcolors,
-          height: size.height,
-          width: size.width,
-          padding:
-              EdgeInsets.symmetric(vertical: 30, horizontal: size.width * 0.1),
-          child: HelperClass(
-            mobile: Column(
+    return
+        // appBar: AppBar(
+        //   titleSpacing: 100,
+        //   toolbarHeight: 90,
+        //   backgroundColor: AppColors.bgcolors,
+        //   elevation: 0,
+        //   title: Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
+        //     Text(
+        //       'Portfolio',
+        //       style: Apptext.biodatas(),
+        //     ),
+        //     const Spacer(),
+        //     SizedBox(
+        //       height: 40,
+        //       child: ListView.separated(
+        //           shrinkWrap: true,
+        //           scrollDirection: Axis.horizontal,
+        //           itemBuilder: (context, index) => const SizedBox(
+        //                 width: 3,
+        //               ),
+        //           separatorBuilder: (context, index) {
+        //             return InkWell(
+        //               onTap: () {},
+        //               borderRadius: BorderRadius.circular(100),
+        //               onHover: (value) {
+        //                 setState(() {
+        //                   if (value) {
+        //                     menuIndex = index;
+        //                   } else {
+        //                     menuIndex = 0;
+        //                   }
+        //                 });
+        //               },
+        //               child: animatedContainer(
+        //                   index, menuIndex == index ? true : false),
+        //             );
+        //           },
+        //           itemCount: menuitem.length),
+        //     ),
+        //   ]),
+        // ),
+        HelperClass(
+      bgColor: AppColors.bgcolors,
+      mobile: Column(
+        children: [
+          BuildHomemethod(),
+          Stack(
+            alignment: Alignment.center,
+            children: [
+              Lottie.asset('assets/images/Animation - 1709290147936.json',
+                  height: 540),
+              const ProfileImage(),
+            ],
+          ),
+        ],
+      ),
+      tablet: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.end,
+        children: [
+          Expanded(child: BuildHomemethod()),
+          Expanded(
+            child: Stack(
+              alignment: Alignment.center,
               children: [
-                BuildHomemethod(),
-                Stack(
-                  alignment: Alignment.center,
-                  children: [
-                    Lottie.asset('assets/images/Animation - 1709290147936.json',
-                        height: 540),
-                    const ProfileImage(),
-                  ],
-                ),
+                Lottie.asset('assets/images/Animation - 1709290147936.json',
+                    height: 540),
+                const ProfileImage(),
               ],
             ),
-            tablet: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                Expanded(child: BuildHomemethod()),
-                Expanded(
-                  child: Stack(
-                    alignment: Alignment.center,
-                    children: [
-                      Lottie.asset(
-                          'assets/images/Animation - 1709290147936.json',
-                          height: 540),
-                      const ProfileImage(),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-            desktop: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                BuildHomemethod(),
-                Stack(
-                  children: [
-                    Lottie.asset('assets/images/Animation - 1709290147936.json',
-                        height: 540),
-                    const ProfileImage(),
-                  ],
-                ),
-              ],
-            ),
-          )),
-
-      // SingleChildScrollView(
-      //   child: Column(children: [
-      //     const SizedBox(
-      //       height: 10,
-      //     ),
-
-      //     // const SizedBox(
-      //     //   height: 50,
-      //     // ),
-      //     Row(
-      //       children: [
-      //         const SizedBox(
-      //           width: 300,
-      //         ),
-      //         InkWell(
-      //           onTap: () {
-      //             downloadFile('assets/images/Akshay KP.resume.pdf');
-      //           },
-      //           onHover: (value) {
-      //             setState(() {
-      //               isHover = value;
-      //             });
-      //           },
-      //           child: Container(
-      //             height: 50,
-      //             width: 200,
-      //             decoration: isHover
-      //                 ? BoxDecoration(
-      //                     borderRadius: BorderRadius.circular(25),
-      //                     boxShadow: const [
-      //                       BoxShadow(
-      //                           offset: Offset(0.0, 0.0),
-      //                           blurRadius: 20,
-      //                           color: Colors.white),
-      //                     ],
-      //                     gradient: const LinearGradient(
-      //                       begin: Alignment.centerLeft,
-      //                       end: Alignment.centerRight,
-      //                       colors: [
-      //                         Colors.blue,
-      //                         Colors.purple,
-      //                       ],
-      //                     ))
-      //                 : BoxDecoration(
-      //                     borderRadius: BorderRadius.circular(25),
-      //                     boxShadow: const [
-      //                       BoxShadow(
-      //                           offset: Offset(0.0, 0.0),
-      //                           blurRadius: 3,
-      //                           color: Colors.transparent),
-      //                     ],
-      //                     gradient: const LinearGradient(
-      //                       begin: Alignment.centerLeft,
-      //                       end: Alignment.centerRight,
-      //                       colors: [
-      //                         Colors.blue,
-      //                         Colors.purple,
-      //                       ],
-      //                     )),
-      //             child: Center(
-      //                 child: Text(
-      //               'Check Resume',
-      //               style: TextStyle(
-      //                   fontSize: 18,
-      //                   fontWeight: FontWeight.w600,
-      //                   color: isHover ? Colors.white : Colors.white),
-      //             )),
-      //           ),
-      //         ),
-      //       ],
-      //     ),
-      //     const SizedBox(
-      //       height: 150,
-      //     ),
-      //     const AboutMe(),
-      //     const SizedBox(
-      //       height: 50,
-      //     ),
-      //     const SizedBox(
-      //       height: 150,
-      //     ),
-      //     const Expierence(),
-
-      //     const MyPortfolio(),
-      //     const ContactMe(),
-      //     const FotterClass(),
-      //   ]),
-      // ),
+          ),
+        ],
+      ),
+      desktop: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.end,
+        children: [
+          BuildHomemethod(),
+          Stack(
+            children: [
+              Lottie.asset('assets/images/Animation - 1709290147936.json',
+                  height: 540),
+              const ProfileImage(),
+            ],
+          ),
+        ],
+      ),
     );
+
+    // SingleChildScrollView(
+    //   child: Column(children: [
+    //     const SizedBox(
+    //       height: 10,
+    //     ),
+
+    //     // const SizedBox(
+    //     //   height: 50,
+    //     // ),
+    //     Row(
+    //       children: [
+    //         const SizedBox(
+    //           width: 300,
+    //         ),
+    //         InkWell(
+    //           onTap: () {
+    //             downloadFile('assets/images/Akshay KP.resume.pdf');
+    //           },
+    //           onHover: (value) {
+    //             setState(() {
+    //               isHover = value;
+    //             });
+    //           },
+    //           child: Container(
+    //             height: 50,
+    //             width: 200,
+    //             decoration: isHover
+    //                 ? BoxDecoration(
+    //                     borderRadius: BorderRadius.circular(25),
+    //                     boxShadow: const [
+    //                       BoxShadow(
+    //                           offset: Offset(0.0, 0.0),
+    //                           blurRadius: 20,
+    //                           color: Colors.white),
+    //                     ],
+    //                     gradient: const LinearGradient(
+    //                       begin: Alignment.centerLeft,
+    //                       end: Alignment.centerRight,
+    //                       colors: [
+    //                         Colors.blue,
+    //                         Colors.purple,
+    //                       ],
+    //                     ))
+    //                 : BoxDecoration(
+    //                     borderRadius: BorderRadius.circular(25),
+    //                     boxShadow: const [
+    //                       BoxShadow(
+    //                           offset: Offset(0.0, 0.0),
+    //                           blurRadius: 3,
+    //                           color: Colors.transparent),
+    //                     ],
+    //                     gradient: const LinearGradient(
+    //                       begin: Alignment.centerLeft,
+    //                       end: Alignment.centerRight,
+    //                       colors: [
+    //                         Colors.blue,
+    //                         Colors.purple,
+    //                       ],
+    //                     )),
+    //             child: Center(
+    //                 child: Text(
+    //               'Check Resume',
+    //               style: TextStyle(
+    //                   fontSize: 18,
+    //                   fontWeight: FontWeight.w600,
+    //                   color: isHover ? Colors.white : Colors.white),
+    //             )),
+    //           ),
+    //         ),
+    //       ],
+    //     ),
+    //     const SizedBox(
+    //       height: 150,
+    //     ),
+    //     const AboutMe(),
+    //     const SizedBox(
+    //       height: 50,
+    //     ),
+    //     const SizedBox(
+    //       height: 150,
+    //     ),
+
+    //   ]),
+    // ),
   }
 
   // ignore: non_constant_identifier_names

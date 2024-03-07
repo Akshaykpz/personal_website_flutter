@@ -1,5 +1,6 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
+import 'package:my_personal_website/constants/colors.dart';
 import 'package:my_personal_website/constants/image.dart';
 import 'package:my_personal_website/constants/textstyle.dart';
 import 'package:my_personal_website/helper/helper_class.dart';
@@ -11,32 +12,31 @@ class AboutMe extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
-    return Center(
-      child: Container(
-        // padding: EdgeInsets.symmetric(horizontal: 9),
-        height: size.height * 0.7,
-        width: size.width * 0.7,
+    return Container(
+      // padding: EdgeInsets.symmetric(horizontal: 9),
+      height: size.height * 0.7,
+      width: size.width * 0.7,
 
-        decoration: BoxDecoration(
-          gradient: const LinearGradient(
-              colors: [Colors.blue, Colors.purple],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight),
-          borderRadius: BorderRadius.circular(20),
-          color: Colors.black12,
-          border: Border.all(
-            style: BorderStyle.solid,
-            width: 1,
-            color: Colors.white24,
-          ),
+      decoration: BoxDecoration(
+        gradient: const LinearGradient(
+            colors: [Colors.blue, Colors.purple],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight),
+        borderRadius: BorderRadius.circular(20),
+        color: Colors.black12,
+        border: Border.all(
+          style: BorderStyle.solid,
+          width: 1,
+          color: Colors.white24,
         ),
-        // height: 400,
-        // width: MediaQuery.of(context).size.width * 0.8,
-        child: HelperClass(
-          desktop: Row(children: [skillsColum()]),
-          mobile: Column(children: [skillsColum()]),
-          tablet: Row(children: [skillsColum()]),
-        ),
+      ),
+      // height: 400,
+      // width: MediaQuery.of(context).size.width * 0.8,
+      child: HelperClass(
+        bgColor: AppColors.bgcolors,
+        desktop: Row(children: [skillsColum()]),
+        mobile: Column(children: [skillsColum()]),
+        tablet: Row(children: [skillsColum()]),
       ),
     );
   }
@@ -61,6 +61,7 @@ class AboutMe extends StatelessWidget {
         height: 30,
       ),
       const Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           CustomContainer(image: 'assets/images/dart.png', text: 'Dart'),
           CustomContainer(image: 'assets/images/flutter.png', text: 'Flutter'),

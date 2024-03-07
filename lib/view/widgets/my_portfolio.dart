@@ -1,5 +1,6 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
+import 'package:my_personal_website/constants/colors.dart';
 
 import 'package:my_personal_website/constants/image.dart';
 import 'package:my_personal_website/constants/textstyle.dart';
@@ -32,32 +33,43 @@ class _MyPortfolioState extends State<MyPortfolio> {
     };
 
     final size = MediaQuery.of(context).size;
-    return Scaffold(
-        backgroundColor: Colors.transparent,
-        body: HelperClass(
-          mobile: SizedBox(),
-          tablet: Column(
-            children: [
-              fadeDowntext(),
-              const SizedBox(
-                height: 45,
-              ),
-              buildprojectview(titles, appset)
-            ],
+    return HelperClass(
+      bgColor: AppColors.bgcolors,
+      mobile: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          fadeDowntext(),
+          const SizedBox(
+            height: 45,
           ),
-          desktop: Column(
-            children: [
-              fadeDowntext(),
-              const SizedBox(
-                height: 45,
-              ),
-              buildprojectview(titles, appset)
-            ],
+          buildprojectview(titles, appset, 1)
+        ],
+      ),
+      tablet: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          fadeDowntext(),
+          const SizedBox(
+            height: 45,
           ),
-        ));
+          buildprojectview(titles, appset, 2)
+        ],
+      ),
+      desktop: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          fadeDowntext(),
+          const SizedBox(
+            height: 45,
+          ),
+          buildprojectview(titles, appset, 2)
+        ],
+      ),
+    );
   }
 
-  GridView buildprojectview(Map<String, dynamic> titles, List<String> appset) {
+  GridView buildprojectview(
+      Map<String, dynamic> titles, List<String> appset, int crossaccesscount) {
     return GridView.builder(
       itemCount: titles.length,
       shrinkWrap: true,
@@ -91,15 +103,26 @@ class _MyPortfolioState extends State<MyPortfolio> {
             child: Stack(
               alignment: Alignment.center,
               children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(30),
-                  child: Image(
-                    height: 290,
-                    image: AssetImage(
-                      image,
-                    ),
-                  ),
+                Container(
+                  width: MediaQuery.sizeOf(context).width * 0.2,
+                  height: MediaQuery.sizeOf(context).height,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      image: DecorationImage(
+                          image: AssetImage(
+                            image,
+                          ),
+                          fit: BoxFit.contain)),
                 ),
+                // ClipRRect(
+                //   borderRadius: BorderRadius.circular(30),
+                //   child: Image(
+                //     height: 290,
+                //     image: AssetImage(
+                //       image,
+                //     ),
+                //   ),
+                // ),
                 visbity(index, context, title, description, 'okey'),
               ],
             ),
@@ -114,7 +137,9 @@ class _MyPortfolioState extends State<MyPortfolio> {
         child: RichText(
             text: TextSpan(
                 text: 'Latest',
-                style: Apptext.addstyles(Colors.white),
+                style: Apptext.addstyles(
+                  Colors.white,
+                ),
                 children: [
           TextSpan(
             text: '  projects',
@@ -133,9 +158,8 @@ class _MyPortfolioState extends State<MyPortfolio> {
       child: Container(
         width: 60,
         height: 25,
-        decoration: const BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.all(Radius.circular(4))),
+        decoration: BoxDecoration(
+            color: Colors.white, borderRadius: BorderRadius.circular(20)),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 13),
           child: Text(
@@ -158,32 +182,35 @@ class _MyPortfolioState extends State<MyPortfolio> {
         height: MediaQuery.sizeOf(context).height,
         decoration: BoxDecoration(
             color: Colors.black.withOpacity(0.9),
-            borderRadius: BorderRadius.circular(30)),
-        child: Column(children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 15),
-            child: Text(
-              text,
-              style: const TextStyle(
-                  color: Colors.white, fontWeight: FontWeight.w600),
+            borderRadius: BorderRadius.circular(20)),
+        child:
+            Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+          Text(
+            text,
+            style: TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.w600,
+              fontSize: MediaQuery.of(context).size.width * 0.01,
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: Text(
-              head,
-              style: const TextStyle(color: Colors.white60),
+
+          Text(
+            head,
+            style: TextStyle(
+              color: Colors.white60,
+              fontSize: MediaQuery.of(context).size.width * 0.01,
             ),
           ),
+
           const SizedBox(
             height: 10,
           ),
           const CircleAvatar(
             child: Icon(Icons.share),
           ),
-          const SizedBox(
-            height: 20,
-          ),
+          // const SizedBox(
+          //   height: 20,
+          // ),
         ]),
       ),
     );

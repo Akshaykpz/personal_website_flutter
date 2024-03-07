@@ -3,8 +3,10 @@ import 'dart:math';
 
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
+import 'package:my_personal_website/constants/colors.dart';
 import 'package:my_personal_website/constants/textstyle.dart';
 import 'package:http/http.dart' as http;
+import 'package:my_personal_website/helper/helper_class.dart';
 
 class ContactMe extends StatefulWidget {
   const ContactMe({Key? key}) : super(key: key);
@@ -63,165 +65,184 @@ class _ContactMeState extends State<ContactMe> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
 
-    return Container(
-        padding: EdgeInsets.symmetric(horizontal: size.width * 0.1),
-        alignment: Alignment.center,
-        color: Colors.transparent,
-        height: size.height * 0.8,
-        width: size.width,
-        child: Column(children: [
-          FadeInDown(
-              child: RichText(
-                  text: TextSpan(
-                      text: 'Contact',
-                      style: Apptext.addstyles(Colors.white),
-                      children: [
-                TextSpan(
-                  text: '  Me',
+    return HelperClass(
+        bgColor: AppColors.bgcolors,
+        mobile: Column(children: [customfiled(context)]),
+        tablet: Column(children: [customfiled(context)]),
+        desktop: Column(
+          children: [customfiled(context)],
+        ));
+  }
+
+  Column customfiled(BuildContext context) {
+    return Column(mainAxisSize: MainAxisSize.min, children: [
+      FadeInDown(
+          child: RichText(
+              text: TextSpan(
+                  text: 'Contact',
                   style: Apptext.addstyles(Colors.white),
-                )
-              ]))),
-          const SizedBox(
-            height: 40,
-          ),
-          Row(
-            children: [
-              Expanded(
-                child: Material(
-                  color: Colors.transparent,
-                  elevation: 8,
-                  borderRadius: BorderRadius.circular(12),
-                  child: TextFormField(
-                    style: const TextStyle(color: Colors.white),
-                    controller: nameController,
-                    decoration: inputFiled(hinttext: 'Full Name'),
-                  ),
+                  children: [
+            TextSpan(
+              text: '  Me',
+              style: Apptext.addstyles(Colors.white),
+            )
+          ]))),
+      const SizedBox(
+        height: 40,
+      ),
+      Row(
+        children: [
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Material(
+                color: Colors.transparent,
+                elevation: 8,
+                borderRadius: BorderRadius.circular(12),
+                child: TextFormField(
+                  style: const TextStyle(color: Colors.white),
+                  controller: nameController,
+                  decoration: inputFiled(hinttext: 'Full Name'),
                 ),
               ),
-              const SizedBox(
-                width: 20,
-              ),
-              Expanded(
-                child: Material(
-                  color: Colors.transparent,
-                  elevation: 8,
-                  borderRadius: BorderRadius.circular(12),
-                  child: TextFormField(
-                    style: const TextStyle(color: Colors.white),
-                    controller: emailController,
-                    decoration: inputFiled(hinttext: 'Email'),
-                  ),
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          Row(
-            children: [
-              Expanded(
-                child: Material(
-                  color: Colors.transparent,
-                  elevation: 8,
-                  borderRadius: BorderRadius.circular(12),
-                  child: TextFormField(
-                    style: const TextStyle(color: Colors.white),
-                    controller: phoneController,
-                    decoration: inputFiled(hinttext: 'Phone Number'),
-                  ),
-                ),
-              ),
-              const SizedBox(
-                width: 20,
-              ),
-              Expanded(
-                child: Material(
-                  color: Colors.transparent,
-                  elevation: 8,
-                  borderRadius: BorderRadius.circular(12),
-                  child: TextFormField(
-                    style: const TextStyle(color: Colors.white),
-                    controller: contentController,
-                    decoration: inputFiled(hinttext: 'Email Content'),
-                  ),
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          Material(
-            color: Colors.transparent,
-            elevation: 8,
-            borderRadius: BorderRadius.circular(12),
-            child: TextFormField(
-              style: const TextStyle(color: Colors.white),
-              controller: messageController,
-              maxLines: 10,
-              decoration: inputFiled(hinttext: 'Your Message'),
             ),
           ),
           const SizedBox(
-            height: 30,
+            width: 20,
           ),
-          InkWell(
-            onTap: () {
-              showSnackBar(context);
-            },
-            onHover: (value) {
-              setState(() {
-                isData = value;
-              });
-            },
-            child: Container(
-              height: 50,
-              width: 200,
-              decoration: isData
-                  ? BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      boxShadow: const [
-                        BoxShadow(
-                            offset: Offset(0.0, 0.0),
-                            blurRadius: 20,
-                            color: Colors.white),
-                      ],
-                      gradient: const LinearGradient(
-                        begin: Alignment.centerLeft,
-                        end: Alignment.centerRight,
-                        colors: [
-                          Colors.blue,
-                          Colors.purple,
-                        ],
-                      ))
-                  : BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      boxShadow: const [
-                        BoxShadow(
-                            offset: Offset(0.0, 0.0),
-                            blurRadius: 5,
-                            color: Colors.transparent),
-                      ],
-                      gradient: const LinearGradient(
-                        begin: Alignment.centerLeft,
-                        end: Alignment.centerRight,
-                        colors: [
-                          Colors.blue,
-                          Colors.purple,
-                        ],
-                      )),
-              child: Center(
-                  child: Text(
-                'Send Message',
-                style: TextStyle(
-                    fontSize: 15,
-                    fontWeight: FontWeight.w600,
-                    color: isData ? Colors.white : Colors.white),
-              )),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Material(
+                color: Colors.transparent,
+                elevation: 8,
+                borderRadius: BorderRadius.circular(12),
+                child: TextFormField(
+                  style: const TextStyle(color: Colors.white),
+                  controller: emailController,
+                  decoration: inputFiled(hinttext: 'Email'),
+                ),
+              ),
             ),
-          )
-        ]));
+          ),
+        ],
+      ),
+      const SizedBox(
+        height: 20,
+      ),
+      Row(
+        children: [
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Material(
+                color: Colors.transparent,
+                elevation: 8,
+                borderRadius: BorderRadius.circular(12),
+                child: TextFormField(
+                  style: const TextStyle(color: Colors.white),
+                  controller: phoneController,
+                  decoration: inputFiled(hinttext: 'Phone Number'),
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(
+            width: 20,
+          ),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Material(
+                color: Colors.transparent,
+                elevation: 8,
+                borderRadius: BorderRadius.circular(12),
+                child: TextFormField(
+                  style: const TextStyle(color: Colors.white),
+                  controller: contentController,
+                  decoration: inputFiled(hinttext: 'Email Content'),
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+      const SizedBox(
+        height: 20,
+      ),
+      Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        child: Material(
+          color: Colors.transparent,
+          elevation: 8,
+          borderRadius: BorderRadius.circular(12),
+          child: TextFormField(
+            style: const TextStyle(color: Colors.white),
+            controller: messageController,
+            maxLines: 10,
+            decoration: inputFiled(hinttext: 'Your Message'),
+          ),
+        ),
+      ),
+      const SizedBox(
+        height: 30,
+      ),
+      InkWell(
+        onTap: () {
+          showSnackBar(context);
+        },
+        onHover: (value) {
+          setState(() {
+            isData = value;
+          });
+        },
+        child: Container(
+          height: 50,
+          width: 200,
+          decoration: isData
+              ? BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  boxShadow: const [
+                    BoxShadow(
+                        offset: Offset(0.0, 0.0),
+                        blurRadius: 20,
+                        color: Colors.white),
+                  ],
+                  gradient: const LinearGradient(
+                    begin: Alignment.centerLeft,
+                    end: Alignment.centerRight,
+                    colors: [
+                      Colors.blue,
+                      Colors.purple,
+                    ],
+                  ))
+              : BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  boxShadow: const [
+                    BoxShadow(
+                        offset: Offset(0.0, 0.0),
+                        blurRadius: 5,
+                        color: Colors.transparent),
+                  ],
+                  gradient: const LinearGradient(
+                    begin: Alignment.centerLeft,
+                    end: Alignment.centerRight,
+                    colors: [
+                      Colors.blue,
+                      Colors.purple,
+                    ],
+                  )),
+          child: Center(
+              child: Text(
+            'Send Message',
+            style: TextStyle(
+                fontSize: 15,
+                fontWeight: FontWeight.w600,
+                color: isData ? Colors.white : Colors.white),
+          )),
+        ),
+      )
+    ]);
   }
 
   InputDecoration inputFiled({required String hinttext}) {

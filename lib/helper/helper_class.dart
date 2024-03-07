@@ -5,14 +5,14 @@ class HelperClass extends StatelessWidget {
   final Widget tablet;
   final Widget desktop;
   // final double paddingWidth;
-  // final Color bgColor;
+  final Color bgColor;
   const HelperClass({
     Key? key,
     required this.mobile,
     required this.tablet,
     required this.desktop,
     // required this.paddingWidth,
-    // required this.bgColor,
+    required this.bgColor,
   }) : super(key: key);
 
   @override
@@ -25,7 +25,7 @@ class HelperClass extends StatelessWidget {
             // height: size.height,
             width: size.width,
             alignment: Alignment.center,
-            // color: bgColor,
+            color: bgColor,
             padding: EdgeInsets.symmetric(
                 vertical: size.height * 0.05, horizontal: 18),
             child: mobile,
@@ -35,7 +35,7 @@ class HelperClass extends StatelessWidget {
             // height: size.height,
             width: size.width,
             alignment: Alignment.center,
-            // color: bgColor,
+            color: bgColor,
             padding: EdgeInsets.symmetric(
               vertical: size.height * 0.1,
             ),
@@ -47,7 +47,7 @@ class HelperClass extends StatelessWidget {
             width: size.width,
             alignment: Alignment.center,
 
-            // color: bgColor,
+            color: bgColor,
             padding: EdgeInsets.symmetric(
               vertical: size.height * 0.18,
             ),

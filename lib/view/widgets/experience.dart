@@ -181,6 +181,7 @@
 //   }
 // }
 import 'package:flutter/material.dart';
+import 'package:my_personal_website/constants/colors.dart';
 import 'package:my_personal_website/constants/textstyle.dart';
 import 'package:animate_do/animate_do.dart';
 import 'package:my_personal_website/helper/helper_class.dart';
@@ -201,20 +202,17 @@ class _ExpierenceState extends State<Expierence> {
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
 
-    return SizedBox(
-      // color: Colors.amber,
-      height: size.height * 0.9,
-      width: size.width,
-      child: HelperClass(
-        mobile: Column(
-          children: [expierenceFilter(context)],
-        ),
-        tablet: Row(
-          children: [expierenceFilter(context)],
-        ),
-        desktop: Row(
-          children: [expierenceFilter(context)],
-        ),
+    return HelperClass(
+      bgColor: AppColors.bgcolors,
+      mobile: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [expierenceFilter(context)],
+      ),
+      tablet: Column(
+        children: [expierenceFilter(context)],
+      ),
+      desktop: Column(
+        children: [expierenceFilter(context)],
       ),
     );
   }
