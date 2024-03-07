@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:my_personal_website/constants/textstyle.dart';
 
 class CustomContainer extends StatelessWidget {
   final String image;
   final String text;
-
-  const CustomContainer({Key? key, required this.image, required this.text})
+  final TextStyle? style;
+  const CustomContainer(
+      {Key? key, required this.image, required this.text, this.style})
       : super(key: key);
 
   @override
@@ -18,15 +18,20 @@ class CustomContainer extends StatelessWidget {
             color: Colors.white38,
           ),
           borderRadius: BorderRadius.circular(10)),
-      duration: const Duration(seconds: 2),
+      duration: const Duration(milliseconds: 100),
       child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-        Image.asset(
-          image,
-          height: 20,
+        Expanded(
+          child: Image.asset(
+            image,
+            fit: BoxFit.contain,
+            width: MediaQuery.of(context).size.width * 0.01,
+          ),
         ),
         Text(
           text,
-          style: Apptext.aboutstyles1(),
+          style: TextStyle(
+              fontSize: MediaQuery.of(context).size.width * 0.01,
+              color: Colors.white),
         ),
       ]),
     );

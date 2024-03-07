@@ -12,6 +12,7 @@ class MyPortfolio extends StatefulWidget {
 }
 
 class _MyPortfolioState extends State<MyPortfolio> {
+  // ignore: prefer_typing_uninitialized_variables
   var isvalue;
   @override
   Widget build(BuildContext context) {

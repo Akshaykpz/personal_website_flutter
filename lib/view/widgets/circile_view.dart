@@ -32,6 +32,7 @@ import 'package:flutter/material.dart';
 class CircileView extends StatelessWidget {
   final String image;
   final VoidCallback? voidCallback;
+  // ignore: use_key_in_widget_constructors
   const CircileView({Key? key, required this.image, this.voidCallback});
 
   @override

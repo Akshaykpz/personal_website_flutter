@@ -25,7 +25,6 @@ class _ProfileImageState extends State<ProfileImage>
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
     _animationContoller.dispose();
   }

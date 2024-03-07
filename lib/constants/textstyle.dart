@@ -46,7 +46,7 @@ class Apptext {
         color: Colors.white);
   }
 
-  static TextStyle aboutstyles1() {
+  static TextStyle aboutstyles1([double? fontsizes]) {
     return GoogleFonts.abel(
         letterSpacing: 2,
         fontSize: 15,
