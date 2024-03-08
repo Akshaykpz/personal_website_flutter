@@ -42,12 +42,12 @@ class HelperClass extends StatelessWidget {
           );
         } else {
           return Container(
-            height: size.height,
+            height: size.height * 0.9,
             width: size.width,
             alignment: Alignment.center,
             color: bgColor,
             padding: EdgeInsets.symmetric(
-                vertical: size.height * 0.18, horizontal: paddingWidth),
+                vertical: size.height * 0.13, horizontal: paddingWidth),
             child: desktop,
           );
         }

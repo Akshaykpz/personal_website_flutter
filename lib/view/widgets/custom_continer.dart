@@ -11,7 +11,7 @@ class CustomContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 5),
+      padding: const EdgeInsets.symmetric(horizontal: 15),
       child: AnimatedContainer(
         height: 35,
         width: MediaQuery.of(context).size.width * 0.1 * 1.3,
@@ -22,12 +22,10 @@ class CustomContainer extends StatelessWidget {
             borderRadius: BorderRadius.circular(10)),
         duration: const Duration(milliseconds: 100),
         child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-          Expanded(
-            child: Image.asset(
-              image,
-              fit: BoxFit.contain,
-              width: MediaQuery.of(context).size.width * 0.01,
-            ),
+          Image.asset(
+            image,
+            fit: BoxFit.contain,
+            width: MediaQuery.of(context).size.width * 0.02,
           ),
           Text(
             text,

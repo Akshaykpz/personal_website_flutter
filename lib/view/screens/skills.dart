@@ -12,56 +12,23 @@ class AboutMe extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 50),
-      child: Container(
-        height: size.height * 0.7,
-        width: size.width * 0.6,
-
-        decoration: BoxDecoration(
-          gradient: const LinearGradient(
-              colors: [Colors.blue, Colors.purple],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight),
-          borderRadius: BorderRadius.circular(15),
-          color: Colors.black12,
-          border: Border.all(
-            style: BorderStyle.solid,
-            width: 1,
-            color: Colors.white24,
-          ),
-        ),
-        // height: 400,
-        // width: MediaQuery.of(context).size.width * 0.8,
-        child: HelperClass(
-          paddingWidth: size.width * 0.1,
-          bgColor: AppColors.bgcolors,
-          desktop: Row(children: [skillsColum()]),
-          mobile: Column(children: [skillsColum()]),
-          tablet: Row(children: [skillsColum()]),
-        ),
-      ),
+    return HelperClass(
+      paddingWidth: size.width * 0.1,
+      bgColor: AppColors.bgcolors,
+      desktop: Column(children: [skillsColum()]),
+      mobile: Column(children: [skillsColum()]),
+      tablet: Column(children: [skillsColum()]),
     );
   }
 
   Column skillsColum() {
-    return Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
-      FadeInDown(
-          child: RichText(
-              text: TextSpan(
-                  text: 'My',
-                  style: Apptext.addstyles(Colors.white),
-                  children: [
-            TextSpan(
-              text: '  Skills',
-              style: Apptext.addstyles(Colors.white),
-            )
-          ]))),
+    return Column(mainAxisSize: MainAxisSize.min, children: [
+      fadetext(),
       const SizedBox(
         height: 30,
       ),
       const Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           CustomContainer(image: 'assets/images/dart.png', text: 'Dart'),
           CustomContainer(image: 'assets/images/flutter.png', text: 'Flutter'),
@@ -76,7 +43,7 @@ class AboutMe extends StatelessWidget {
         height: 30,
       ),
       const Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           CustomContainer(image: 'assets/images/figma.png', text: 'Figma'),
           CustomContainer(
@@ -97,7 +64,7 @@ class AboutMe extends StatelessWidget {
         height: 30,
       ),
       Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const CustomContainer(
               image: 'assets/images/7131906.jpg', text: 'Api'),
@@ -110,5 +77,19 @@ class AboutMe extends StatelessWidget {
         ],
       ),
     ]);
+  }
+
+  FadeInDown fadetext() {
+    return FadeInDown(
+        child: RichText(
+            text: TextSpan(
+                text: 'My',
+                style: Apptext.addstyles(Colors.white),
+                children: [
+          TextSpan(
+            text: '  Skills',
+            style: Apptext.addstyles(Colors.white),
+          )
+        ])));
   }
 }

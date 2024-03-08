@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:my_personal_website/constants/colors.dart';
 import 'package:my_personal_website/constants/textstyle.dart';
-import 'package:my_personal_website/view/home.dart';
-import 'package:my_personal_website/view/widgets/about.dart';
-import 'package:my_personal_website/view/widgets/contact_us.dart';
-import 'package:my_personal_website/view/widgets/experience.dart';
-import 'package:my_personal_website/view/widgets/footer_class.dart';
-import 'package:my_personal_website/view/widgets/my_portfolio.dart';
-import 'package:my_personal_website/view/widgets/my_service.dart';
+import 'package:my_personal_website/view/screens/home.dart';
+import 'package:my_personal_website/view/screens/skills.dart';
+import 'package:my_personal_website/view/screens/contact_us.dart';
+import 'package:my_personal_website/view/screens/experience.dart';
+import 'package:my_personal_website/view/screens/footer_class.dart';
+import 'package:my_personal_website/view/screens/my_portfolio.dart';
+import 'package:my_personal_website/view/screens/my_service.dart';
+import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 class DashBoard extends StatefulWidget {
   const DashBoard({Key? key}) : super(key: key);
@@ -17,6 +18,11 @@ class DashBoard extends StatefulWidget {
 }
 
 class _DashBoardState extends State<DashBoard> {
+  final ItemScrollController _itemScrollController = ItemScrollController();
+  final ItemPositionsListener itemPositionsListener =
+      ItemPositionsListener.create();
+  final ScrollOffsetListener scrollOffsetListener =
+      ScrollOffsetListener.create();
   final onmenuHover = Matrix4.identity()..scale(1.0);
   final menuitem = <String>[
     'About',
@@ -31,7 +37,7 @@ class _DashBoardState extends State<DashBoard> {
     Homepage(),
     const AboutMe(),
     const Expierence(),
-    MyService(),
+    const MyService(),
     const MyPortfolio(),
     const ContactMe(),
     const FotterClass(),
@@ -39,22 +45,55 @@ class _DashBoardState extends State<DashBoard> {
   final Color backgroundColor = const Color.fromARGB(255, 13, 16, 28);
   final Color buttonColor = Colors.blue;
   var menuIndex = 0;
+  Future scrollTo({required int index}) async {
+    _itemScrollController
+        .scrollTo(
+            index: index,
+            duration: const Duration(seconds: 2),
+            curve: Curves.fastLinearToSlowEaseIn)
+        .whenComplete(() {
+      setState(() {
+        menuIndex = index;
+      });
+    });
+  }
+
+  final yourScrollController = ScrollController();
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
         backgroundColor: AppColors.bgcolors,
         appBar: AppBar(
           titleSpacing: 100,
           toolbarHeight: 90,
-          backgroundColor: AppColors.bgcolors,
+          backgroundColor: Colors.transparent,
           elevation: 4,
           title: LayoutBuilder(
             builder: (context, constraints) {
               if (constraints.maxWidth < 768) {
                 return Stack(
                   children: [
-                    IconButton(
-                      onPressed: () {},
+                    PopupMenuButton(
+                      color: AppColors.bgcolors1,
+                      position: PopupMenuPosition.under,
+                      constraints:
+                          BoxConstraints.tightFor(width: size.width * 0.9),
+                      itemBuilder: (context) {
+                        return menuitem
+                            .asMap()
+                            .entries
+                            .map((e) => PopupMenuItem(
+                                  child: Text(
+                                    e.value,
+                                    style: const TextStyle(color: Colors.white),
+                                  ),
+                                  onTap: () {
+                                    scrollTo(index: e.key);
+                                  },
+                                ))
+                            .toList();
+                      },
                       icon: const Icon(
                         Icons.menu_sharp,
                         color: Colors.white,
@@ -130,7 +169,9 @@ class _DashBoardState extends State<DashBoard> {
                                 ),
                             separatorBuilder: (context, index) {
                               return InkWell(
-                                onTap: () {},
+                                onTap: () {
+                                  scrollTo(index: index);
+                                },
                                 borderRadius: BorderRadius.circular(100),
                                 onHover: (value) {
                                   setState(() {
@@ -152,11 +193,21 @@ class _DashBoardState extends State<DashBoard> {
             },
           ),
         ),
-        body: ListView.builder(
-          itemCount: screenlist.length,
-          itemBuilder: (context, index) {
-            return screenlist[index];
-          },
+        body: Scrollbar(
+          trackVisibility: true,
+          thumbVisibility: true,
+          thickness: 8,
+          interactive: true,
+          controller: yourScrollController,
+          child: ScrollablePositionedList.builder(
+            itemCount: screenlist.length,
+            itemScrollController: _itemScrollController,
+            itemPositionsListener: itemPositionsListener,
+            scrollOffsetListener: scrollOffsetListener,
+            itemBuilder: (context, index) {
+              return screenlist[index];
+            },
+          ),
         ));
   }
 
