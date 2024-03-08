@@ -7,6 +7,7 @@ import 'package:my_personal_website/view/widgets/contact_us.dart';
 import 'package:my_personal_website/view/widgets/experience.dart';
 import 'package:my_personal_website/view/widgets/footer_class.dart';
 import 'package:my_personal_website/view/widgets/my_portfolio.dart';
+import 'package:my_personal_website/view/widgets/my_service.dart';
 
 class DashBoard extends StatefulWidget {
   const DashBoard({Key? key}) : super(key: key);
@@ -30,6 +31,7 @@ class _DashBoardState extends State<DashBoard> {
     Homepage(),
     const AboutMe(),
     const Expierence(),
+    MyService(),
     const MyPortfolio(),
     const ContactMe(),
     const FotterClass(),

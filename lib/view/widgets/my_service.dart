@@ -1,7 +1,9 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
+import 'package:my_personal_website/constants/colors.dart';
 import 'package:my_personal_website/constants/image.dart';
 import 'package:my_personal_website/constants/textstyle.dart';
+import 'package:my_personal_website/helper/helper_class.dart';
 
 class MyService extends StatefulWidget {
   const MyService({Key? key}) : super(key: key);
@@ -18,70 +20,81 @@ class _MyServiceState extends State<MyService> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
 
-    return Padding(
-      padding: const EdgeInsets.all(20),
-      child: SizedBox(
-        height: size.height,
-        width: size.width,
-        child: Column(children: [
-          const SizedBox(
-            height: 100,
-          ),
-          FadeInDown(
-              child: RichText(
-                  text: TextSpan(
-                      text: 'My',
-                      style: Apptext.addstyles(Colors.white),
-                      children: [
-                TextSpan(
-                  text: '  Services',
-                  style: Apptext.addstyles(Colors.white),
-                )
-              ]))),
-          const SizedBox(
-            height: 50,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              InkWell(
-                  onTap: () {},
-                  onHover: (value) {
-                    setState(() {
-                      isoffhover = value;
-                    });
-                  },
-                  child: animatedcontiner(
-                      ishover: isoffhover,
-                      image: AppImage.andriod,
-                      text: 'Andriod Application')),
-              InkWell(
-                  onTap: () {},
-                  onHover: (value) {
-                    setState(() {
-                      isdata = value;
-                    });
-                  },
-                  child: animatedcontiner(
-                      ishover: isdata,
-                      image: AppImage.apple,
-                      text: 'Ios Application')),
-              InkWell(
-                  onTap: () {},
-                  onHover: (value) {
-                    setState(() {
-                      isonHover = value;
-                    });
-                  },
-                  child: animatedcontiner(
-                      ishover: isonHover,
-                      image: AppImage.webapp,
-                      text: 'Web Application'))
-            ],
-          )
+    return HelperClass(
+        mobile: Column(children: [
+          serviceData(),
         ]),
+        tablet: Column(children: [
+          serviceData(),
+        ]),
+        desktop: Column(children: [
+          serviceData(),
+        ]),
+        paddingWidth: size.width * 0.1,
+        bgColor: AppColors.bgcolors);
+    // height: size.height,
+    // width: size.width,
+    // child: serviceData(),
+  }
+
+  Column serviceData() {
+    return Column(children: [
+      const SizedBox(
+        height: 100,
       ),
-    );
+      FadeInDown(
+          child: RichText(
+              text: TextSpan(
+                  text: 'My',
+                  style: Apptext.addstyles(Colors.white),
+                  children: [
+            TextSpan(
+              text: '  Services',
+              style: Apptext.addstyles(Colors.white),
+            )
+          ]))),
+      const SizedBox(
+        height: 50,
+      ),
+      Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          InkWell(
+              onTap: () {},
+              onHover: (value) {
+                setState(() {
+                  isoffhover = value;
+                });
+              },
+              child: animatedcontiner(
+                  ishover: isoffhover,
+                  image: AppImage.andriod,
+                  text: 'Andriod Application')),
+          InkWell(
+              onTap: () {},
+              onHover: (value) {
+                setState(() {
+                  isdata = value;
+                });
+              },
+              child: animatedcontiner(
+                  ishover: isdata,
+                  image: AppImage.apple,
+                  text: 'Ios Application')),
+          InkWell(
+              onTap: () {},
+              onHover: (value) {
+                setState(() {
+                  isonHover = value;
+                });
+              },
+              child: animatedcontiner(
+                  ishover: isonHover,
+                  image: AppImage.webapp,
+                  text: 'Web Application'))
+        ],
+      )
+    ]);
   }
 
   AnimatedContainer animatedcontiner(

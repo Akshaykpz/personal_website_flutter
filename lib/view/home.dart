@@ -215,6 +215,7 @@ class _HomepageState extends State<Homepage> {
             style: Apptext.aboutstyles(),
           ),
         ),
+        
       ],
     );
   }
