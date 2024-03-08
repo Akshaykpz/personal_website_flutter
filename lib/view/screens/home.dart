@@ -35,7 +35,7 @@ class _HomepageState extends State<Homepage> {
       bgColor: AppColors.bgcolors,
       mobile: Column(
         children: [
-          BuildHomemethod(),
+          BuildHomemethod(size),
           Stack(
             alignment: Alignment.center,
             children: [
@@ -50,7 +50,7 @@ class _HomepageState extends State<Homepage> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
-          Expanded(child: BuildHomemethod()),
+          Expanded(child: BuildHomemethod(size)),
           Stack(
             alignment: Alignment.center,
             children: [
@@ -62,11 +62,12 @@ class _HomepageState extends State<Homepage> {
         ],
       ),
       desktop: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.end,
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Expanded(child: BuildHomemethod()),
+          Expanded(child: BuildHomemethod(size)),
           Stack(
+            alignment: Alignment.topCenter,
             children: [
               Lottie.asset('assets/images/Animation - 1709290147936.json',
                   height: 540),
@@ -110,7 +111,7 @@ class _HomepageState extends State<Homepage> {
   }
 
   // ignore: non_constant_identifier_names
-  Column BuildHomemethod() {
+  Column BuildHomemethod(Size size) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
@@ -134,12 +135,19 @@ class _HomepageState extends State<Homepage> {
             mainAxisAlignment: MainAxisAlignment.center,
             direction: Axis.horizontal,
             children: [
-              AnimatedTextKit(animatedTexts: [
-                TyperAnimatedText(
-                  "And I'm a ",
-                  textStyle: Apptext.headertextstyle1(),
-                )
-              ]),
+              AnimatedTextKit(
+                animatedTexts: [
+                  TyperAnimatedText(
+                    "And I'm a ",
+                    textStyle: Apptext.headertextstyle1(),
+                  ),
+                ],
+                pause: const Duration(milliseconds: 2000),
+                displayFullTextOnTap: true,
+                isRepeatingAnimation: true,
+                repeatForever: true,
+                // stopPauseOnTap: true,
+              ),
               GradientText(
                 text: "Flutter Developer",
                 gradient: const LinearGradient(colors: [

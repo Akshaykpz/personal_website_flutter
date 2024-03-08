@@ -32,7 +32,7 @@ class _ProfileImageState extends State<ProfileImage>
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 100, vertical: 40),
+      padding: const EdgeInsets.symmetric(horizontal: 100, vertical: 70),
       child: SlideTransition(
         position: _animation,
         child: CircleAvatar(

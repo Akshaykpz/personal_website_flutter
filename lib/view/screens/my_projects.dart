@@ -14,6 +14,7 @@ class MyPortfolio extends StatefulWidget {
 }
 
 class _MyPortfolioState extends State<MyPortfolio> {
+  final onH0verEffect = Matrix4.identity()..scale(1.0);
   // ignore: prefer_typing_uninitialized_variables
   var isvalue;
   @override
@@ -38,7 +39,7 @@ class _MyPortfolioState extends State<MyPortfolio> {
       'Wheather App':
           'Developed a wheather UI clone in Flutter integrating wheather app using API searching ,location base weather detiles',
       'Music App':
-          'A Flutter music streaming application that allows users to play audio files from local storage. The app features a beautiful neumorphic UI design and provides a smooth user experience for browsing and playing music'
+          'A Flutter music streaming application that allows users to play audio files from local storage. The app features a beautiful neumorphic UI desion.'
     };
 
     final size = MediaQuery.of(context).size;
@@ -72,7 +73,7 @@ class _MyPortfolioState extends State<MyPortfolio> {
           const SizedBox(
             height: 45,
           ),
-          buildprojectview(titles, appset, 2)
+          buildprojectview(titles, appset, 3)
         ],
       ),
     );
@@ -84,11 +85,12 @@ class _MyPortfolioState extends State<MyPortfolio> {
       itemCount: titles.length,
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 6,
-          mainAxisExtent: 300,
-          mainAxisSpacing: 24,
-          crossAxisSpacing: 24),
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: crossaccesscount,
+        mainAxisExtent: 280,
+        mainAxisSpacing: 40,
+        crossAxisSpacing: 40,
+      ),
       itemBuilder: (context, index) {
         var image = appset[index];
 
@@ -114,8 +116,6 @@ class _MyPortfolioState extends State<MyPortfolio> {
               alignment: Alignment.center,
               children: [
                 Container(
-                  width: MediaQuery.sizeOf(context).width * 0.2,
-                  height: MediaQuery.sizeOf(context).height,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
                       image: DecorationImage(
@@ -124,7 +124,7 @@ class _MyPortfolioState extends State<MyPortfolio> {
                           ),
                           fit: BoxFit.contain)),
                 ),
-                visbity(index, context, title, description, 'okey'),
+                visbity(index, context, title, description, 'hai'),
               ],
             ),
           ),
@@ -162,7 +162,7 @@ class _MyPortfolioState extends State<MyPortfolio> {
         decoration: BoxDecoration(
             color: Colors.white, borderRadius: BorderRadius.circular(20)),
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 13),
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
           child: Text(
             data,
             style: const TextStyle(
@@ -178,14 +178,14 @@ class _MyPortfolioState extends State<MyPortfolio> {
     return Visibility(
       visible: index == isvalue,
       child: AnimatedContainer(
+        transform: index == isvalue ? onH0verEffect : null,
+        curve: Curves.easeIn,
         duration: const Duration(milliseconds: 600),
-        width: MediaQuery.sizeOf(context).width * 0.2,
-        height: MediaQuery.sizeOf(context).height,
+        padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
         decoration: BoxDecoration(
             color: Colors.black.withOpacity(0.9),
             borderRadius: BorderRadius.circular(20)),
-        child:
-            Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+        child: Column(children: [
           Text(
             text,
             style: TextStyle(
@@ -193,14 +193,17 @@ class _MyPortfolioState extends State<MyPortfolio> {
               fontWeight: FontWeight.w600,
               fontSize: MediaQuery.of(context).size.width * 0.01,
             ),
+            textAlign: TextAlign.center,
           ),
 
           Text(
             head,
             style: TextStyle(
               color: Colors.white60,
+              fontWeight: FontWeight.w300,
               fontSize: MediaQuery.of(context).size.width * 0.01,
             ),
+            textAlign: TextAlign.center,
           ),
 
           const SizedBox(
