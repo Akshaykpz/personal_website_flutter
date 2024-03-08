@@ -30,7 +30,7 @@ class _DashBoardState extends State<DashBoard> {
     'Experience',
     'Service',
     'Projects',
-    'Projects',
+    'Contacts',
   ];
 
   final screenlist = <Widget>[
@@ -63,7 +63,7 @@ class _DashBoardState extends State<DashBoard> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-        backgroundColor: AppColors.bgcolors,
+        backgroundColor: Colors.black,
         appBar: AppBar(
           titleSpacing: 100,
           toolbarHeight: 90,
@@ -75,7 +75,7 @@ class _DashBoardState extends State<DashBoard> {
                 return Stack(
                   children: [
                     PopupMenuButton(
-                      color: AppColors.bgcolors1,
+                      color: AppColors.bgcolors,
                       position: PopupMenuPosition.under,
                       constraints:
                           BoxConstraints.tightFor(width: size.width * 0.9),
@@ -108,48 +108,6 @@ class _DashBoardState extends State<DashBoard> {
                     ),
                   ],
                 );
-                // return Row(
-                //     crossAxisAlignment: CrossAxisAlignment.center,
-                //     children: [
-                //       Text(
-                //         'Portfolio',
-                //         style: Apptext.biodatas(),
-                //       ),
-                // const Spacer(),
-                //       IconButton(
-                //           onPressed: () {},
-                //           icon: const Icon(
-                //             Icons.menu_sharp,
-                //             color: Colors.white,
-                //           ))
-                // SizedBox(
-                //   height: 40,
-                //   child: ListView.separated(
-                //       shrinkWrap: true,
-                //       scrollDirection: Axis.horizontal,
-                //       itemBuilder: (context, index) => const SizedBox(
-                //             width: 3,
-                //           ),
-                //       separatorBuilder: (context, index) {
-                //         return InkWell(
-                //           onTap: () {},
-                //           borderRadius: BorderRadius.circular(100),
-                //           onHover: (value) {
-                //             setState(() {
-                //               if (value) {
-                //                 menuIndex = index;
-                //               } else {
-                //                 menuIndex = 0;
-                //               }
-                //             });
-                //           },
-                //           child: animatedContainer(
-                //               index, menuIndex == index ? true : false),
-                //         );
-                //       },
-                //       itemCount: menuitem.length),
-                // ),
-                // ]);
               } else {
                 return Row(
                     crossAxisAlignment: CrossAxisAlignment.center,

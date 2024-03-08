@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 class Apptext {
   static TextStyle headertextstyle(Color color) {
     return GoogleFonts.mukta(
-        fontSize: 17, fontWeight: FontWeight.w600, color: color);
+        fontSize: 17.5, fontWeight: FontWeight.w600, color: color);
   }
 
   static TextStyle headertextstyle1() {

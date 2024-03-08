@@ -91,61 +91,7 @@ class _HomepageState extends State<Homepage> {
     //         const SizedBox(
     //           width: 300,
     //         ),
-    //         InkWell(
-    //           onTap: () {
-    //             downloadFile('assets/images/Akshay KP.resume.pdf');
-    //           },
-    //           onHover: (value) {
-    //             setState(() {
-    //               isHover = value;
-    //             });
-    //           },
-    //           child: Container(
-    //             height: 50,
-    //             width: 200,
-    //             decoration: isHover
-    //                 ? BoxDecoration(
-    //                     borderRadius: BorderRadius.circular(25),
-    //                     boxShadow: const [
-    //                       BoxShadow(
-    //                           offset: Offset(0.0, 0.0),
-    //                           blurRadius: 20,
-    //                           color: Colors.white),
-    //                     ],
-    //                     gradient: const LinearGradient(
-    //                       begin: Alignment.centerLeft,
-    //                       end: Alignment.centerRight,
-    //                       colors: [
-    //                         Colors.blue,
-    //                         Colors.purple,
-    //                       ],
-    //                     ))
-    //                 : BoxDecoration(
-    //                     borderRadius: BorderRadius.circular(25),
-    //                     boxShadow: const [
-    //                       BoxShadow(
-    //                           offset: Offset(0.0, 0.0),
-    //                           blurRadius: 3,
-    //                           color: Colors.transparent),
-    //                     ],
-    //                     gradient: const LinearGradient(
-    //                       begin: Alignment.centerLeft,
-    //                       end: Alignment.centerRight,
-    //                       colors: [
-    //                         Colors.blue,
-    //                         Colors.purple,
-    //                       ],
-    //                     )),
-    //             child: Center(
-    //                 child: Text(
-    //               'Check Resume',
-    //               style: TextStyle(
-    //                   fontSize: 18,
-    //                   fontWeight: FontWeight.w600,
-    //                   color: isHover ? Colors.white : Colors.white),
-    //             )),
-    //           ),
-    //         ),
+
     //       ],
     //     ),
     //     const SizedBox(
@@ -189,8 +135,10 @@ class _HomepageState extends State<Homepage> {
             direction: Axis.horizontal,
             children: [
               AnimatedTextKit(animatedTexts: [
-                TyperAnimatedText("And I'm a ",
-                    textStyle: Apptext.headertextstyle1())
+                TyperAnimatedText(
+                  "And I'm a ",
+                  textStyle: Apptext.headertextstyle1(),
+                )
               ]),
               GradientText(
                 text: "Flutter Developer",
@@ -215,7 +163,64 @@ class _HomepageState extends State<Homepage> {
             style: Apptext.aboutstyles(),
           ),
         ),
-        
+        const SizedBox(
+          height: 60,
+        ),
+        InkWell(
+          onTap: () {
+            downloadFile('assets/images/Akshay KP.resume.pdf');
+          },
+          onHover: (value) {
+            setState(() {
+              isHover = value;
+            });
+          },
+          child: Container(
+            height: 50,
+            width: 200,
+            decoration: isHover
+                ? BoxDecoration(
+                    borderRadius: BorderRadius.circular(25),
+                    boxShadow: const [
+                      BoxShadow(
+                          offset: Offset(0.0, 0.0),
+                          blurRadius: 10,
+                          color: Colors.white),
+                    ],
+                    gradient: const LinearGradient(
+                      begin: Alignment.centerLeft,
+                      end: Alignment.centerRight,
+                      colors: [
+                        Colors.blue,
+                        Colors.purple,
+                      ],
+                    ))
+                : BoxDecoration(
+                    borderRadius: BorderRadius.circular(25),
+                    boxShadow: const [
+                      BoxShadow(
+                          offset: Offset(0.0, 0.0),
+                          blurRadius: 3,
+                          color: Colors.transparent),
+                    ],
+                    gradient: const LinearGradient(
+                      begin: Alignment.centerLeft,
+                      end: Alignment.centerRight,
+                      colors: [
+                        Colors.blue,
+                        Colors.purple,
+                      ],
+                    )),
+            child: Center(
+                child: Text(
+              'Check Resume',
+              style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w600,
+                  color: isHover ? Colors.white : Colors.white),
+            )),
+          ),
+        ),
       ],
     );
   }

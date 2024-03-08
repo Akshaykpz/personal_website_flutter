@@ -214,11 +214,11 @@ class _ContactMeState extends State<ContactMe> {
           width: 200,
           decoration: isData
               ? BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
+                  borderRadius: BorderRadius.circular(25),
                   boxShadow: const [
                     BoxShadow(
                         offset: Offset(0.0, 0.0),
-                        blurRadius: 20,
+                        blurRadius: 10,
                         color: Colors.white),
                   ],
                   gradient: const LinearGradient(
@@ -230,7 +230,7 @@ class _ContactMeState extends State<ContactMe> {
                     ],
                   ))
               : BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
+                  borderRadius: BorderRadius.circular(25),
                   boxShadow: const [
                     BoxShadow(
                         offset: Offset(0.0, 0.0),
