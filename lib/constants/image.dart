@@ -20,4 +20,7 @@ class AppImage {
   static String twitter2 = 'assets/images/sl_z_072523_61700_01.jpg';
 
   static String firebase = 'assets/images/pngwing.com.png';
+  static String wheather = 'assets/images/4092.jpg';
+  static String netflix = 'assets/images/wp5063339-netflix-logo-wallpapers.png';
+  static String music = 'assets/images/gfvn_t33l_220226.jpg';
 }

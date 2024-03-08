@@ -6,7 +6,7 @@ import 'package:my_personal_website/view/screens/skills.dart';
 import 'package:my_personal_website/view/screens/contact_us.dart';
 import 'package:my_personal_website/view/screens/experience.dart';
 import 'package:my_personal_website/view/screens/footer_class.dart';
-import 'package:my_personal_website/view/screens/my_portfolio.dart';
+import 'package:my_personal_website/view/screens/my_projects.dart';
 import 'package:my_personal_website/view/screens/my_service.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 

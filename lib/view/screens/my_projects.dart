@@ -21,7 +21,10 @@ class _MyPortfolioState extends State<MyPortfolio> {
     List<String> appset = [
       AppImage.project1,
       AppImage.project2,
-      AppImage.project3
+      AppImage.project3,
+      AppImage.wheather,
+      AppImage.netflix,
+      AppImage.music
     ];
 
     Map<String, dynamic> titles = {
@@ -29,7 +32,13 @@ class _MyPortfolioState extends State<MyPortfolio> {
           'Aqua Med-Tracker it is a reminder Application helping for track water and medicines',
       'StoreX':
           'Developed a sleek eCommerce app with Cart, Wishlist, Store, and,admin panel',
-      'Chatgpt': 'Developed a Ai bot it is model chat gpt'
+      'Chatgpt': 'Developed a Ai bot it is model chat gpt',
+      'Netflix Clone':
+          'Developed a Netflix UI clone in Flutter, integrating the TMDB API for movie searches, descriptions, and trailers',
+      'Wheather App':
+          'Developed a wheather UI clone in Flutter integrating wheather app using API searching ,location base weather detiles',
+      'Music App':
+          'A Flutter music streaming application that allows users to play audio files from local storage. The app features a beautiful neumorphic UI design and provides a smooth user experience for browsing and playing music'
     };
 
     final size = MediaQuery.of(context).size;
@@ -76,7 +85,7 @@ class _MyPortfolioState extends State<MyPortfolio> {
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 3,
+          crossAxisCount: 6,
           mainAxisExtent: 300,
           mainAxisSpacing: 24,
           crossAxisSpacing: 24),
@@ -115,15 +124,6 @@ class _MyPortfolioState extends State<MyPortfolio> {
                           ),
                           fit: BoxFit.contain)),
                 ),
-                // ClipRRect(
-                //   borderRadius: BorderRadius.circular(30),
-                //   child: Image(
-                //     height: 290,
-                //     image: AssetImage(
-                //       image,
-                //     ),
-                //   ),
-                // ),
                 visbity(index, context, title, description, 'okey'),
               ],
             ),
