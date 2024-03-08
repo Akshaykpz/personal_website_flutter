@@ -30,48 +30,8 @@ class _HomepageState extends State<Homepage> {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
-    return
-        // appBar: AppBar(
-        //   titleSpacing: 100,
-        //   toolbarHeight: 90,
-        //   backgroundColor: AppColors.bgcolors,
-        //   elevation: 0,
-        //   title: Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
-        //     Text(
-        //       'Portfolio',
-        //       style: Apptext.biodatas(),
-        //     ),
-        //     const Spacer(),
-        //     SizedBox(
-        //       height: 40,
-        //       child: ListView.separated(
-        //           shrinkWrap: true,
-        //           scrollDirection: Axis.horizontal,
-        //           itemBuilder: (context, index) => const SizedBox(
-        //                 width: 3,
-        //               ),
-        //           separatorBuilder: (context, index) {
-        //             return InkWell(
-        //               onTap: () {},
-        //               borderRadius: BorderRadius.circular(100),
-        //               onHover: (value) {
-        //                 setState(() {
-        //                   if (value) {
-        //                     menuIndex = index;
-        //                   } else {
-        //                     menuIndex = 0;
-        //                   }
-        //                 });
-        //               },
-        //               child: animatedContainer(
-        //                   index, menuIndex == index ? true : false),
-        //             );
-        //           },
-        //           itemCount: menuitem.length),
-        //     ),
-        //   ]),
-        // ),
-        HelperClass(
+    return HelperClass(
+      paddingWidth: size.width * 0.1,
       bgColor: AppColors.bgcolors,
       mobile: Column(
         children: [
@@ -80,7 +40,7 @@ class _HomepageState extends State<Homepage> {
             alignment: Alignment.center,
             children: [
               Lottie.asset('assets/images/Animation - 1709290147936.json',
-                  height: 540),
+                  height: 560),
               const ProfileImage(),
             ],
           ),
@@ -91,15 +51,13 @@ class _HomepageState extends State<Homepage> {
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           Expanded(child: BuildHomemethod()),
-          Expanded(
-            child: Stack(
-              alignment: Alignment.center,
-              children: [
-                Lottie.asset('assets/images/Animation - 1709290147936.json',
-                    height: 540),
-                const ProfileImage(),
-              ],
-            ),
+          Stack(
+            alignment: Alignment.center,
+            children: [
+              Lottie.asset('assets/images/Animation - 1709290147936.json',
+                  height: 540),
+              const ProfileImage(),
+            ],
           ),
         ],
       ),
@@ -107,7 +65,7 @@ class _HomepageState extends State<Homepage> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
-          BuildHomemethod(),
+          Expanded(child: BuildHomemethod()),
           Stack(
             children: [
               Lottie.asset('assets/images/Animation - 1709290147936.json',
@@ -208,8 +166,7 @@ class _HomepageState extends State<Homepage> {
   // ignore: non_constant_identifier_names
   Column BuildHomemethod() {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         FadeInDown(
           child: Text(
@@ -228,6 +185,7 @@ class _HomepageState extends State<Homepage> {
         ),
         FadeInLeft(
           child: Flex(
+            mainAxisAlignment: MainAxisAlignment.center,
             direction: Axis.horizontal,
             children: [
               AnimatedTextKit(animatedTexts: [

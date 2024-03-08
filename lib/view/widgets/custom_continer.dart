@@ -10,30 +10,33 @@ class CustomContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedContainer(
-      height: 35,
-      width: MediaQuery.of(context).size.width * 0.1 * 1.3,
-      decoration: BoxDecoration(
-          border: Border.all(
-            color: Colors.white38,
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 5),
+      child: AnimatedContainer(
+        height: 35,
+        width: MediaQuery.of(context).size.width * 0.1 * 1.3,
+        decoration: BoxDecoration(
+            border: Border.all(
+              color: Colors.white38,
+            ),
+            borderRadius: BorderRadius.circular(10)),
+        duration: const Duration(milliseconds: 100),
+        child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+          Expanded(
+            child: Image.asset(
+              image,
+              fit: BoxFit.contain,
+              width: MediaQuery.of(context).size.width * 0.01,
+            ),
           ),
-          borderRadius: BorderRadius.circular(10)),
-      duration: const Duration(milliseconds: 100),
-      child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-        Expanded(
-          child: Image.asset(
-            image,
-            fit: BoxFit.contain,
-            width: MediaQuery.of(context).size.width * 0.01,
+          Text(
+            text,
+            style: TextStyle(
+                fontSize: MediaQuery.of(context).size.width * 0.01,
+                color: Colors.white),
           ),
-        ),
-        Text(
-          text,
-          style: TextStyle(
-              fontSize: MediaQuery.of(context).size.width * 0.01,
-              color: Colors.white),
-        ),
-      ]),
+        ]),
+      ),
     );
   }
 }

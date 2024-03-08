@@ -50,6 +50,13 @@ Future sendemail() async {
         }
       }));
   log(response.statusCode);
+
+  nameController.clear();
+  emailController.clear();
+  phoneController.clear();
+  contentController.clear();
+  messageController.clear();
+
   return response.statusCode;
 }
 
@@ -66,6 +73,7 @@ class _ContactMeState extends State<ContactMe> {
     final size = MediaQuery.of(context).size;
 
     return HelperClass(
+        paddingWidth: size.width * 0.1,
         bgColor: AppColors.bgcolors,
         mobile: Column(children: [customfiled(context)]),
         tablet: Column(children: [customfiled(context)]),
@@ -172,15 +180,17 @@ class _ContactMeState extends State<ContactMe> {
       ),
       Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: Material(
-          color: Colors.transparent,
-          elevation: 8,
-          borderRadius: BorderRadius.circular(12),
-          child: TextFormField(
-            style: const TextStyle(color: Colors.white),
-            controller: messageController,
-            maxLines: 10,
-            decoration: inputFiled(hinttext: 'Your Message'),
+        child: Expanded(
+          child: Material(
+            color: Colors.transparent,
+            elevation: 8,
+            borderRadius: BorderRadius.circular(12),
+            child: TextFormField(
+              style: const TextStyle(color: Colors.white),
+              controller: messageController,
+              maxLines: 6,
+              decoration: inputFiled(hinttext: 'Your Message'),
+            ),
           ),
         ),
       ),
@@ -189,6 +199,9 @@ class _ContactMeState extends State<ContactMe> {
       ),
       InkWell(
         onTap: () {
+          sendemail().then((value) {
+            showSnackBar(context);
+          });
           showSnackBar(context);
         },
         onHover: (value) {

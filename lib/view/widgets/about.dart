@@ -12,40 +12,40 @@ class AboutMe extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
-    return Container(
-      // padding: EdgeInsets.symmetric(horizontal: 9),
-      height: size.height * 0.7,
-      width: size.width * 0.7,
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 50),
+      child: Container(
+        height: size.height * 0.7,
+        width: size.width * 0.6,
 
-      decoration: BoxDecoration(
-        gradient: const LinearGradient(
-            colors: [Colors.blue, Colors.purple],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight),
-        borderRadius: BorderRadius.circular(20),
-        color: Colors.black12,
-        border: Border.all(
-          style: BorderStyle.solid,
-          width: 1,
-          color: Colors.white24,
+        decoration: BoxDecoration(
+          gradient: const LinearGradient(
+              colors: [Colors.blue, Colors.purple],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight),
+          borderRadius: BorderRadius.circular(15),
+          color: Colors.black12,
+          border: Border.all(
+            style: BorderStyle.solid,
+            width: 1,
+            color: Colors.white24,
+          ),
         ),
-      ),
-      // height: 400,
-      // width: MediaQuery.of(context).size.width * 0.8,
-      child: HelperClass(
-        bgColor: AppColors.bgcolors,
-        desktop: Row(children: [skillsColum()]),
-        mobile: Column(children: [skillsColum()]),
-        tablet: Row(children: [skillsColum()]),
+        // height: 400,
+        // width: MediaQuery.of(context).size.width * 0.8,
+        child: HelperClass(
+          paddingWidth: size.width * 0.1,
+          bgColor: AppColors.bgcolors,
+          desktop: Row(children: [skillsColum()]),
+          mobile: Column(children: [skillsColum()]),
+          tablet: Row(children: [skillsColum()]),
+        ),
       ),
     );
   }
 
   Column skillsColum() {
-    return Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-      // const SizedBox(cros
-      //   height: 50,
-      // ),
+    return Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
       FadeInDown(
           child: RichText(
               text: TextSpan(

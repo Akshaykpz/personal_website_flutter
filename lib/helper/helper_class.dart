@@ -4,14 +4,14 @@ class HelperClass extends StatelessWidget {
   final Widget mobile;
   final Widget tablet;
   final Widget desktop;
-  // final double paddingWidth;
+  final double paddingWidth;
   final Color bgColor;
   const HelperClass({
     Key? key,
     required this.mobile,
     required this.tablet,
     required this.desktop,
-    // required this.paddingWidth,
+    required this.paddingWidth,
     required this.bgColor,
   }) : super(key: key);
 
@@ -32,25 +32,22 @@ class HelperClass extends StatelessWidget {
           );
         } else if (constraints.maxWidth < 1200) {
           return Container(
-            // height: size.height,
+            height: size.height,
             width: size.width,
             alignment: Alignment.center,
             color: bgColor,
             padding: EdgeInsets.symmetric(
-              vertical: size.height * 0.1,
-            ),
+                vertical: size.height * 0.1, horizontal: paddingWidth),
             child: tablet,
           );
         } else {
           return Container(
-            // height: size.height,
+            height: size.height,
             width: size.width,
             alignment: Alignment.center,
-
             color: bgColor,
             padding: EdgeInsets.symmetric(
-              vertical: size.height * 0.18,
-            ),
+                vertical: size.height * 0.18, horizontal: paddingWidth),
             child: desktop,
           );
         }

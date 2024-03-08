@@ -203,6 +203,7 @@ class _ExpierenceState extends State<Expierence> {
     final Size size = MediaQuery.of(context).size;
 
     return HelperClass(
+      paddingWidth: size.width * 0.1,
       bgColor: AppColors.bgcolors,
       mobile: Column(
         mainAxisSize: MainAxisSize.min,
@@ -219,8 +220,7 @@ class _ExpierenceState extends State<Expierence> {
 
   Widget expierenceFilter(BuildContext context) {
     return SingleChildScrollView(
-      // Wrap with SingleChildScrollView
-      physics: AlwaysScrollableScrollPhysics(), // Set physics property
+      physics: const AlwaysScrollableScrollPhysics(),
       child: Column(
         // mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [

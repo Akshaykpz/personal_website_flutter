@@ -34,6 +34,7 @@ class _MyPortfolioState extends State<MyPortfolio> {
 
     final size = MediaQuery.of(context).size;
     return HelperClass(
+      paddingWidth: size.width * 0.1,
       bgColor: AppColors.bgcolors,
       mobile: Column(
         mainAxisSize: MainAxisSize.min,
