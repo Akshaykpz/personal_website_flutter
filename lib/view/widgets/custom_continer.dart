@@ -13,8 +13,8 @@ class CustomContainer extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 15),
       child: AnimatedContainer(
-        height: 35,
-        width: MediaQuery.of(context).size.width * 0.1 * 1.3,
+        height: 40,
+        width: MediaQuery.of(context).size.width * 0.1 * 1.1,
         decoration: BoxDecoration(
             border: Border.all(
               color: Colors.white38,

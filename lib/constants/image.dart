@@ -18,4 +18,6 @@ class AppImage {
   static String project2 = 'assets/images/Blank 2 Grids Collage.jpg';
   static String project3 = 'assets/images/321535-P9F5S3-732.jpg';
   static String twitter2 = 'assets/images/sl_z_072523_61700_01.jpg';
+
+  static String firebase = 'assets/images/pngwing.com.png';
 }

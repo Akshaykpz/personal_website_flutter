@@ -206,9 +206,13 @@ class _MyPortfolioState extends State<MyPortfolio> {
           const SizedBox(
             height: 10,
           ),
-          const CircleAvatar(
-            child: Icon(Icons.share),
-          ),
+          InkWell(
+            onTap: () {},
+            child: const Icon(
+              Icons.share,
+              color: Colors.white,
+            ),
+          )
           // const SizedBox(
           //   height: 20,
           // ),

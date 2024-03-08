@@ -198,11 +198,10 @@ class _ContactMeState extends State<ContactMe> {
         height: 30,
       ),
       InkWell(
-        onTap: () {
-          sendemail().then((value) {
+        onTap: () async {
+          await sendemail().then((value) {
             showSnackBar(context);
           });
-          showSnackBar(context);
         },
         onHover: (value) {
           setState(() {

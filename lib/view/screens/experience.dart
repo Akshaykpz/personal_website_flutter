@@ -311,7 +311,7 @@ class _ExpierenceState extends State<Expierence> {
                 ' Flutter Developer',
                 'Brototype',
                 ' Jan 2023 - Nov 2023',
-                'I have a solid foundation in Flutter Development, acquired through a successful internship at Brototype. Over the subsequent eight months, I accomplished the delivery of two significant projects, in addition to several mini-projects, showcasing my proficiency and commitment in the field',
+                ' I have a solid foundation in Flutter Development, acquired through a successful internship at Brototype. Over the subsequent eight months, I accomplished the delivery of two significant projects, in addition to several mini-projects, showcasing my proficiency and commitment in the field',
               ),
             ),
           ],
@@ -340,16 +340,16 @@ class _ExpierenceState extends State<Expierence> {
     String text3,
     String text4,
   ) {
-    double containerWidth = 450;
-    double containerHeight = 480;
+    double containerWidth = 500;
+    double containerHeight = 530;
     double imageSize = 70;
     // final double fontSize = MediaQuery.of(context).size.width * 0.01;
 
     return AnimatedContainer(
       transform: isHover ? isHoverActive : isHoverRemove,
       width: isHover ? containerHeight : containerWidth,
-      height: isHover ? 220 : 230,
-      duration: const Duration(milliseconds: 1000),
+      height: isHover ? 250 : 270,
+      duration: const Duration(milliseconds: 10),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
         color: const Color.fromRGBO(0, 0, 0, 0.122),
@@ -399,6 +399,16 @@ class _ExpierenceState extends State<Expierence> {
                     fontSize: 15,
                     color: Colors.white70,
                     fontWeight: FontWeight.w400),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Text(
+                  text4,
+                  style: const TextStyle(
+                      fontSize: 13,
+                      color: Colors.white70,
+                      fontWeight: FontWeight.w400),
+                ),
               ),
             ],
           ),

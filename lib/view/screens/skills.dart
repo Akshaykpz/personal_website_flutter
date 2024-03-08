@@ -25,10 +25,18 @@ class AboutMe extends StatelessWidget {
     return Column(mainAxisSize: MainAxisSize.min, children: [
       fadetext(),
       const SizedBox(
-        height: 30,
+        height: 40,
+      ),
+      Text(
+        'Here are some of my skills on which I have been working on for the past one years',
+        style: Apptext.aboutstyles(),
+        textAlign: TextAlign.center,
+      ),
+      const SizedBox(
+        height: 40,
       ),
       const Row(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           CustomContainer(image: 'assets/images/dart.png', text: 'Dart'),
           CustomContainer(image: 'assets/images/flutter.png', text: 'Flutter'),
@@ -40,10 +48,10 @@ class AboutMe extends StatelessWidget {
         ],
       ),
       const SizedBox(
-        height: 30,
+        height: 40,
       ),
       const Row(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           CustomContainer(image: 'assets/images/figma.png', text: 'Figma'),
           CustomContainer(
@@ -61,11 +69,12 @@ class AboutMe extends StatelessWidget {
         ],
       ),
       const SizedBox(
-        height: 30,
+        height: 40,
       ),
       Row(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
+          CustomContainer(image: AppImage.firebase, text: 'Firebase'),
           const CustomContainer(
               image: 'assets/images/7131906.jpg', text: 'Api'),
           const CustomContainer(

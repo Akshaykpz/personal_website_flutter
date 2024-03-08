@@ -166,56 +166,6 @@ class _MyServiceState extends State<MyService> {
         ]),
         paddingWidth: size.width * 0.04,
         bgColor: AppColors.bgcolors);
-
-    //      Column(children: [
-    //       const SizedBox(
-    //         height: 100,
-    //       ),
-    //       builddataText(),
-    //       const SizedBox(
-    //         height: 50,
-    //       ),
-    //       Row(
-    //         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-    //         children: [
-    //           InkWell(
-    //               onTap: () {},
-    //               onHover: (value) {
-    //                 setState(() {
-    //                   isoffhover = value;
-    //                 });
-    //               },
-    //               child: animatedcontiner(
-    //                   ishover: isoffhover,
-    //                   image: AppImage.andriod,
-    //                   text: 'Andriod Application')),
-    //           InkWell(
-    //               onTap: () {},
-    //               onHover: (value) {
-    //                 setState(() {
-    //                   isdata = value;
-    //                 });
-    //               },
-    //               child: animatedcontiner(
-    //                   ishover: isdata,
-    //                   image: AppImage.apple,
-    //                   text: 'Ios Application')),
-    //           InkWell(
-    //               onTap: () {},
-    //               onHover: (value) {
-    //                 setState(() {
-    //                   isonHover = value;
-    //                 });
-    //               },
-    //               child: animatedcontiner(
-    //                   ishover: isonHover,
-    //                   image: AppImage.webapp,
-    //                   text: 'Web Application'))
-    //         ],
-    //       )
-    //     ]),
-    //   ),
-    // );
   }
 
   FadeInDown builddataText() {
