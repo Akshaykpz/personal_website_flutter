@@ -50,7 +50,7 @@ class _HomepageState extends State<Homepage> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
-          Expanded(child: BuildHomemethod(size)),
+          Expanded(flex: 1, child: BuildHomemethod(size)),
           Stack(
             alignment: Alignment.center,
             children: [
@@ -65,7 +65,7 @@ class _HomepageState extends State<Homepage> {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Expanded(child: BuildHomemethod(size)),
+          Expanded(flex: 1, child: BuildHomemethod(size)),
           Stack(
             alignment: Alignment.topCenter,
             children: [

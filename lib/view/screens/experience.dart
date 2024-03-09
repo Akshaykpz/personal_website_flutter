@@ -209,13 +209,13 @@ class _ExpierenceState extends State<Expierence> {
         mainAxisSize: MainAxisSize.min,
         children: [
           fadetext(),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           Text(
             'Experience My work experience as a Flutter Developer and working on different companies and projects',
             style: Apptext.aboutstyles(),
             textAlign: TextAlign.center,
           ),
-          SizedBox(height: 60),
+          const SizedBox(height: 60),
           InkWell(
             onTap: () {},
             onHover: (value) {
@@ -233,7 +233,7 @@ class _ExpierenceState extends State<Expierence> {
               'Working on Rental Platforms,managing Both Frontend&Backend, and Figam design from the scratch',
             ),
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           InkWell(
             onTap: () {},
             onHover: (value) {
@@ -268,13 +268,13 @@ class _ExpierenceState extends State<Expierence> {
       // mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
         fadetext(),
-        SizedBox(height: 20),
+        const SizedBox(height: 20),
         Text(
           'Experience My work experience as a Flutter Developer and working on different companies and projects',
           style: Apptext.aboutstyles(),
           textAlign: TextAlign.center,
         ),
-        SizedBox(height: 60),
+        const SizedBox(height: 60),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           // Align children in the center horizontally

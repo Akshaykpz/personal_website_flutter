@@ -37,8 +37,6 @@ class GradientText extends StatelessWidget {
   final Gradient gradient;
   @override
   Widget build(BuildContext context) {
-    final Size screenSize = MediaQuery.of(context).size;
-
     return FadeInDown(
       child: ShaderMask(
         blendMode: BlendMode.srcIn,
