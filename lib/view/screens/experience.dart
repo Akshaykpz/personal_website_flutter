@@ -368,12 +368,10 @@ class _ExpierenceState extends State<Expierence> {
         children: [
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-            child: Expanded(
-              child: Image.asset(
-                image,
-                fit: BoxFit.contain,
-                width: imageSize,
-              ),
+            child: Image.asset(
+              image,
+              fit: BoxFit.contain,
+              width: imageSize,
             ),
           ),
           Column(

@@ -77,8 +77,10 @@ class _ContactMeState extends State<ContactMe> {
         bgColor: AppColors.bgcolors,
         mobile: Column(children: [customfiled(context)]),
         tablet: Column(children: [customfiled(context)]),
-        desktop: Column(
-          children: [customfiled(context)],
+        desktop: Expanded(
+          child: Column(
+            children: [customfiled(context)],
+          ),
         ));
   }
 
