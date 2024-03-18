@@ -75,37 +75,12 @@ class _ContactMeState extends State<ContactMe> {
     return HelperClass(
         paddingWidth: size.width * 0.1,
         bgColor: AppColors.bgcolors,
-        mobile: Column(children: [customfiled(context)]),
-        tablet: Column(children: [customfiled(context)]),
-        desktop: Expanded(
-          child: Column(
-            children: [customfiled(context)],
-          ),
-        ));
-  }
-
-  Column customfiled(BuildContext context) {
-    return Column(mainAxisSize: MainAxisSize.min, children: [
-      FadeInDown(
-          child: RichText(
-              text: TextSpan(
-                  text: 'Contact',
-                  style: Apptext.addstyles(Colors.white),
-                  children: [
-            TextSpan(
-              text: '  Me',
-              style: Apptext.addstyles(Colors.white),
-            )
-          ]))),
-      const SizedBox(
-        height: 40,
-      ),
-      Row(
-        children: [
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Material(
+        mobile: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              formtext(),
+              Material(
                 color: Colors.transparent,
                 elevation: 8,
                 borderRadius: BorderRadius.circular(12),
@@ -115,15 +90,10 @@ class _ContactMeState extends State<ContactMe> {
                   decoration: inputFiled(hinttext: 'Full Name'),
                 ),
               ),
-            ),
-          ),
-          const SizedBox(
-            width: 20,
-          ),
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Material(
+              const SizedBox(
+                height: 20,
+              ),
+              Material(
                 color: Colors.transparent,
                 elevation: 8,
                 borderRadius: BorderRadius.circular(12),
@@ -133,19 +103,10 @@ class _ContactMeState extends State<ContactMe> {
                   decoration: inputFiled(hinttext: 'Email'),
                 ),
               ),
-            ),
-          ),
-        ],
-      ),
-      const SizedBox(
-        height: 20,
-      ),
-      Row(
-        children: [
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Material(
+              const SizedBox(
+                height: 20,
+              ),
+              Material(
                 color: Colors.transparent,
                 elevation: 8,
                 borderRadius: BorderRadius.circular(12),
@@ -155,15 +116,10 @@ class _ContactMeState extends State<ContactMe> {
                   decoration: inputFiled(hinttext: 'Phone Number'),
                 ),
               ),
-            ),
-          ),
-          const SizedBox(
-            width: 20,
-          ),
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Material(
+              const SizedBox(
+                height: 20,
+              ),
+              Material(
                 color: Colors.transparent,
                 elevation: 8,
                 borderRadius: BorderRadius.circular(12),
@@ -173,90 +129,263 @@ class _ContactMeState extends State<ContactMe> {
                   decoration: inputFiled(hinttext: 'Email Content'),
                 ),
               ),
-            ),
-          ),
-        ],
-      ),
-      const SizedBox(
-        height: 20,
-      ),
-      Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: Expanded(
-          child: Material(
-            color: Colors.transparent,
-            elevation: 8,
-            borderRadius: BorderRadius.circular(12),
-            child: TextFormField(
-              style: const TextStyle(color: Colors.white),
-              controller: messageController,
-              maxLines: 6,
-              decoration: inputFiled(hinttext: 'Your Message'),
-            ),
-          ),
-        ),
-      ),
-      const SizedBox(
-        height: 30,
-      ),
-      InkWell(
-        onTap: () async {
-          await sendemail().then((value) {
-            showSnackBar(context);
-          });
-        },
-        onHover: (value) {
-          setState(() {
-            isData = value;
-          });
-        },
-        child: Container(
-          height: 50,
-          width: 200,
-          decoration: isData
-              ? BoxDecoration(
-                  borderRadius: BorderRadius.circular(25),
-                  boxShadow: const [
-                    BoxShadow(
-                        offset: Offset(0.0, 0.0),
-                        blurRadius: 10,
-                        color: Colors.white),
-                  ],
-                  gradient: const LinearGradient(
-                    begin: Alignment.centerLeft,
-                    end: Alignment.centerRight,
-                    colors: [
-                      Colors.blue,
-                      Colors.purple,
-                    ],
-                  ))
-              : BoxDecoration(
-                  borderRadius: BorderRadius.circular(25),
-                  boxShadow: const [
-                    BoxShadow(
-                        offset: Offset(0.0, 0.0),
-                        blurRadius: 5,
-                        color: Colors.transparent),
-                  ],
-                  gradient: const LinearGradient(
-                    begin: Alignment.centerLeft,
-                    end: Alignment.centerRight,
-                    colors: [
-                      Colors.blue,
-                      Colors.purple,
-                    ],
+              const SizedBox(
+                height: 20,
+              ),
+              Material(
+                color: Colors.transparent,
+                elevation: 8,
+                borderRadius: BorderRadius.circular(12),
+                child: TextFormField(
+                  style: const TextStyle(color: Colors.white),
+                  controller: messageController,
+                  maxLines: 6,
+                  decoration: inputFiled(hinttext: 'Your Message'),
+                ),
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              InkWell(
+                onTap: () async {
+                  await sendemail().then((value) {
+                    showSnackBar(context);
+                  });
+                },
+                onHover: (value) {
+                  setState(() {
+                    isData = value;
+                  });
+                },
+                child: Container(
+                  height: 50,
+                  width: 200,
+                  decoration: isData
+                      ? BoxDecoration(
+                          borderRadius: BorderRadius.circular(25),
+                          boxShadow: const [
+                            BoxShadow(
+                                offset: Offset(0.0, 0.0),
+                                blurRadius: 10,
+                                color: Colors.white),
+                          ],
+                          gradient: const LinearGradient(
+                            begin: Alignment.centerLeft,
+                            end: Alignment.centerRight,
+                            colors: [
+                              Colors.blue,
+                              Colors.purple,
+                            ],
+                          ))
+                      : BoxDecoration(
+                          borderRadius: BorderRadius.circular(25),
+                          boxShadow: const [
+                            BoxShadow(
+                                offset: Offset(0.0, 0.0),
+                                blurRadius: 5,
+                                color: Colors.transparent),
+                          ],
+                          gradient: const LinearGradient(
+                            begin: Alignment.centerLeft,
+                            end: Alignment.centerRight,
+                            colors: [
+                              Colors.blue,
+                              Colors.purple,
+                            ],
+                          )),
+                  child: Center(
+                      child: Text(
+                    'Send Message',
+                    style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w600,
+                        color: isData ? Colors.white : Colors.white),
                   )),
-          child: Center(
-              child: Text(
-            'Send Message',
-            style: TextStyle(
-                fontSize: 15,
-                fontWeight: FontWeight.w600,
-                color: isData ? Colors.white : Colors.white),
-          )),
-        ),
-      )
-    ]);
+                ),
+              )
+            ]),
+        tablet: customfiled(context),
+        desktop: customfiled(context));
+  }
+
+  Column customfiled(BuildContext context) {
+    return Column(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          formtext(),
+          const SizedBox(
+            height: 40,
+          ),
+          Row(
+            children: [
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: Material(
+                    color: Colors.transparent,
+                    elevation: 8,
+                    borderRadius: BorderRadius.circular(12),
+                    child: TextFormField(
+                      style: const TextStyle(color: Colors.white),
+                      controller: nameController,
+                      decoration: inputFiled(hinttext: 'Full Name'),
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                width: 20,
+              ),
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: Material(
+                    color: Colors.transparent,
+                    elevation: 8,
+                    borderRadius: BorderRadius.circular(12),
+                    child: TextFormField(
+                      style: const TextStyle(color: Colors.white),
+                      controller: emailController,
+                      decoration: inputFiled(hinttext: 'Email'),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          Row(
+            children: [
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: Material(
+                    color: Colors.transparent,
+                    elevation: 8,
+                    borderRadius: BorderRadius.circular(12),
+                    child: TextFormField(
+                      style: const TextStyle(color: Colors.white),
+                      controller: phoneController,
+                      decoration: inputFiled(hinttext: 'Phone Number'),
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                width: 20,
+              ),
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: Material(
+                    color: Colors.transparent,
+                    elevation: 8,
+                    borderRadius: BorderRadius.circular(12),
+                    child: TextFormField(
+                      style: const TextStyle(color: Colors.white),
+                      controller: contentController,
+                      decoration: inputFiled(hinttext: 'Email Content'),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: Material(
+              color: Colors.transparent,
+              elevation: 8,
+              borderRadius: BorderRadius.circular(12),
+              child: TextFormField(
+                style: const TextStyle(color: Colors.white),
+                controller: messageController,
+                maxLines: 6,
+                decoration: inputFiled(hinttext: 'Your Message'),
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: 30,
+          ),
+          InkWell(
+            onTap: () async {
+              await sendemail().then((value) {
+                showSnackBar(context);
+              });
+            },
+            onHover: (value) {
+              setState(() {
+                isData = value;
+              });
+            },
+            child: Container(
+              height: 50,
+              width: 200,
+              decoration: isData
+                  ? BoxDecoration(
+                      borderRadius: BorderRadius.circular(25),
+                      boxShadow: const [
+                        BoxShadow(
+                            offset: Offset(0.0, 0.0),
+                            blurRadius: 10,
+                            color: Colors.white),
+                      ],
+                      gradient: const LinearGradient(
+                        begin: Alignment.centerLeft,
+                        end: Alignment.centerRight,
+                        colors: [
+                          Colors.blue,
+                          Colors.purple,
+                        ],
+                      ))
+                  : BoxDecoration(
+                      borderRadius: BorderRadius.circular(25),
+                      boxShadow: const [
+                        BoxShadow(
+                            offset: Offset(0.0, 0.0),
+                            blurRadius: 5,
+                            color: Colors.transparent),
+                      ],
+                      gradient: const LinearGradient(
+                        begin: Alignment.centerLeft,
+                        end: Alignment.centerRight,
+                        colors: [
+                          Colors.blue,
+                          Colors.purple,
+                        ],
+                      )),
+              child: Center(
+                  child: Text(
+                'Send Message',
+                style: TextStyle(
+                    fontSize: 15,
+                    fontWeight: FontWeight.w600,
+                    color: isData ? Colors.white : Colors.white),
+              )),
+            ),
+          )
+        ]);
+  }
+
+  FadeInDown formtext() {
+    return FadeInDown(
+        child: RichText(
+            text: TextSpan(
+                text: 'Contact',
+                style: Apptext.addstyles(Colors.white),
+                children: [
+          TextSpan(
+            text: '  Me',
+            style: Apptext.addstyles(Colors.white),
+          )
+        ])));
   }
 
   InputDecoration inputFiled({required String hinttext}) {

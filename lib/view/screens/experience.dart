@@ -293,7 +293,7 @@ class _ExpierenceState extends State<Expierence> {
                 ' Flutter Developer',
                 '   Grand Cafe Production',
                 ' Nov 2023 - Jan 2024',
-                'Working on Rental Platforms,managing Both Frontend&Backend, and Figam design from the scratch',
+                'Working on Rental Platforms,managing Both Frontend&Backend, and Figma design from the scratch',
               ),
             ),
             const SizedBox(width: 100),

@@ -48,7 +48,9 @@ class _ProfileImageState extends State<ProfileImage>
               ),
               child: Image.asset(
                 AppImage.image,
-                fit: BoxFit.cover,
+                width: 340,
+                height: 450,
+                fit: BoxFit.fill,
               ),
             )),
           ),
