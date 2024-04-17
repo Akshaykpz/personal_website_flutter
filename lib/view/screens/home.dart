@@ -1,6 +1,7 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 import 'package:my_personal_website/constants/colors.dart';
@@ -70,44 +71,13 @@ class _HomepageState extends State<Homepage> {
             alignment: Alignment.topCenter,
             children: [
               Lottie.asset('assets/images/Animation - 1709290147936.json',
-                  height: 540),
+                  height: 500),
               const ProfileImage(),
             ],
           ),
         ],
       ),
     );
-
-    // SingleChildScrollView(
-    //   child: Column(children: [
-    //     const SizedBox(
-    //       height: 10,
-    //     ),
-
-    //     // const SizedBox(
-    //     //   height: 50,
-    //     // ),
-    //     Row(
-    //       children: [
-    //         const SizedBox(
-    //           width: 300,
-    //         ),
-
-    //       ],
-    //     ),
-    //     const SizedBox(
-    //       height: 150,
-    //     ),
-    //     const AboutMe(),
-    //     const SizedBox(
-    //       height: 50,
-    //     ),
-    //     const SizedBox(
-    //       height: 150,
-    //     ),
-
-    //   ]),
-    // ),
   }
 
   // ignore: non_constant_identifier_names
@@ -139,7 +109,7 @@ class _HomepageState extends State<Homepage> {
                 animatedTexts: [
                   TyperAnimatedText(
                     "And I'm a ",
-                    textStyle: Apptext.headertextstyle1(),
+                    textStyle: Apptext.headertextstyle1(12.sp),
                   ),
                 ],
                 pause: const Duration(milliseconds: 2000),
@@ -153,10 +123,11 @@ class _HomepageState extends State<Homepage> {
                 gradient: const LinearGradient(colors: [
                   Colors.blue,
                   Colors.purple,
+                  Colors.blue,
+                  Colors.purple,
                 ]),
-                style: GoogleFonts.mukta(
-                    fontSize: 40, fontWeight: FontWeight.w600),
-              )
+                style: Apptext.headertextstyle1(),
+              ),
             ],
           ),
         ),

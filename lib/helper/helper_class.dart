@@ -42,7 +42,6 @@ class HelperClass extends StatelessWidget {
           );
         } else {
           return Container(
-            // height: size.height * 0.9 + 0.7,
             width: size.width,
             alignment: Alignment.center,
             color: bgColor,

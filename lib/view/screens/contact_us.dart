@@ -62,6 +62,12 @@ Future sendemail() async {
 
 class _ContactMeState extends State<ContactMe> {
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
+  @override
   void dispose() {
     super.dispose();
   }
@@ -137,6 +143,12 @@ class _ContactMeState extends State<ContactMe> {
                 elevation: 8,
                 borderRadius: BorderRadius.circular(12),
                 child: TextFormField(
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'please enter message';
+                    }
+                    return null;
+                  },
                   style: const TextStyle(color: Colors.white),
                   controller: messageController,
                   maxLines: 6,
@@ -395,6 +407,7 @@ class _ContactMeState extends State<ContactMe> {
       hintStyle: const TextStyle(color: Colors.white70),
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(10),
+
         borderSide: const BorderSide(color: Colors.white70), // Change here
       ),
       focusedBorder: OutlineInputBorder(

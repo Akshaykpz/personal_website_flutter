@@ -31,33 +31,36 @@ class _ProfileImageState extends State<ProfileImage>
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 100, vertical: 70),
-      child: SlideTransition(
-        position: _animation,
-        child: CircleAvatar(
-          maxRadius: 135,
-          backgroundColor: Colors.white10,
+    return SlideTransition(
+      position: _animation,
+      // child: Image.asset(
+      //   AppImage.image,
+      //   width: 340,
+      //   height: 450,
+      //   fit: BoxFit.fill,
+      // )
+      child: CircleAvatar(
+        maxRadius: 135,
+        backgroundColor: Colors.white10,
 
-          child: Padding(
-            padding: const EdgeInsets.all(6),
-            child: ClipOval(
-                child: SizedBox.fromSize(
-              size: const Size.fromRadius(
-                145.6,
-              ),
-              child: Image.asset(
-                AppImage.image,
-                width: 340,
-                height: 450,
-                fit: BoxFit.fill,
-              ),
-            )),
-          ),
-          // backgroundImage: AssetImage(
-          //   AppImage.image,
-          // ),
+        child: Padding(
+          padding: const EdgeInsets.all(6),
+          child: ClipOval(
+              child: SizedBox.fromSize(
+            size: const Size.fromRadius(
+              140.6,
+            ),
+            child: Image.asset(
+              AppImage.image,
+              width: 340,
+              height: 450,
+              fit: BoxFit.fill,
+            ),
+          )),
         ),
+        // backgroundImage: AssetImage(
+        //   AppImage.image,
+        // ),
       ),
     );
   }

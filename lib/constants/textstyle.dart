@@ -7,9 +7,11 @@ class Apptext {
         fontSize: 17.5, fontWeight: FontWeight.w600, color: color);
   }
 
-  static TextStyle headertextstyle1() {
+  static TextStyle headertextstyle1([double? fontsize]) {
     return GoogleFonts.mukta(
-        fontSize: 40, fontWeight: FontWeight.w900, color: Colors.white);
+        fontSize: fontsize ?? 40,
+        fontWeight: FontWeight.w900,
+        color: Colors.white);
   }
 
   static TextStyle biodatas() {
