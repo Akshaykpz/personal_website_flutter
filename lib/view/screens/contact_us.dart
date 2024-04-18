@@ -73,6 +73,7 @@ class _ContactMeState extends State<ContactMe> {
   }
 
   bool isData = false;
+  bool isloading = false;
   final Color buttonColor = Colors.blue;
   @override
   Widget build(BuildContext context) {
@@ -160,6 +161,10 @@ class _ContactMeState extends State<ContactMe> {
               ),
               InkWell(
                 onTap: () async {
+                  if (isloading) return;
+                  setState(() {
+                    isloading = true;
+                  });
                   await sendemail().then((value) {
                     showSnackBar(context);
                   });
@@ -206,13 +211,17 @@ class _ContactMeState extends State<ContactMe> {
                             ],
                           )),
                   child: Center(
-                      child: Text(
-                    'Send Message',
-                    style: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.w600,
-                        color: isData ? Colors.white : Colors.white),
-                  )),
+                      child: isloading
+                          ? const CircularProgressIndicator(
+                              color: Colors.white,
+                            )
+                          : Text(
+                              'Send Message',
+                              style: TextStyle(
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w600,
+                                  color: isData ? Colors.white : Colors.white),
+                            )),
                 ),
               )
             ]),
@@ -327,16 +336,6 @@ class _ContactMeState extends State<ContactMe> {
             height: 30,
           ),
           InkWell(
-            onTap: () async {
-              await sendemail().then((value) {
-                showSnackBar(context);
-              });
-            },
-            onHover: (value) {
-              setState(() {
-                isData = value;
-              });
-            },
             child: Container(
               height: 50,
               width: 200,
@@ -374,14 +373,51 @@ class _ContactMeState extends State<ContactMe> {
                         ],
                       )),
               child: Center(
-                  child: Text(
-                'Send Message',
-                style: TextStyle(
-                    fontSize: 15,
-                    fontWeight: FontWeight.w600,
-                    color: isData ? Colors.white : Colors.white),
-              )),
+                  child: isloading
+                      ? const Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            CircularProgressIndicator(
+                              color: Colors.white,
+                            ),
+                            Text(
+                              "please wait...",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 14),
+                            )
+                          ],
+                        )
+                      : Text(
+                          'Send Message',
+                          style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.w600,
+                              color: isData ? Colors.white : Colors.white),
+                        )),
             ),
+            onTap: () async {
+              setState(() =>
+                  isloading = true); // Start showing CircularProgressIndicator
+
+              await Future.delayed(
+                const Duration(seconds: 3),
+                () async {
+                  await sendemail().then((value) {
+                    showSnackBar(context);
+                  });
+                  setState(() => isloading = false);
+                },
+              );
+
+              // After 3 seconds, stop showing CircularProgressIndicator and show "Send Message" text
+            },
+            onHover: (value) {
+              setState(() {
+                isData = value;
+              });
+            },
           )
         ]);
   }
