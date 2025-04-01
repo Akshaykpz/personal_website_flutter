@@ -1,9 +1,8 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
+import 'package:my_personal_website/constants/box.dart';
 import 'package:my_personal_website/constants/colors.dart';
 import 'package:my_personal_website/constants/text.dart';
 
@@ -94,37 +93,37 @@ class _HomepageState extends State<Homepage> {
         FadeInDown(
           child: Text(
             "AKSHAY KP",
-            style: Apptext.addstyles1(Colors.white),
+            style: Apptext.addstyles1(
+              Colors.white,
+            ),
           ),
         ),
         const SizedBox(
           height: 5,
         ),
         FadeInLeft(
-          child: Flex(
-            mainAxisAlignment: MainAxisAlignment.center,
-            direction: Axis.horizontal,
+          child: Wrap(
+            // ✅ Replaces Flex to prevent overflow
+            alignment: WrapAlignment.center, // Center the text
             children: [
               AnimatedTextKit(
                 animatedTexts: [
                   TyperAnimatedText(
                     "And I'm a ",
-                    textStyle: Apptext.headertextstyle1(12.sp),
+                    textStyle: Apptext.headertextstyle1(),
                   ),
                 ],
                 pause: const Duration(milliseconds: 2000),
                 displayFullTextOnTap: true,
                 isRepeatingAnimation: true,
                 repeatForever: true,
-                // stopPauseOnTap: true,
               ),
               GradientText(
                 text: "Flutter Developer",
                 gradient: const LinearGradient(colors: [
-                  Colors.blue,
-                  Colors.purple,
-                  Colors.blue,
-                  Colors.purple,
+                  Colors.white,
+                  Colors.white,
+                  Colors.white,
                 ]),
                 style: Apptext.headertextstyle1(),
               ),
@@ -159,37 +158,10 @@ class _HomepageState extends State<Homepage> {
             width: 200,
             decoration: isHover
                 ? BoxDecoration(
+                    border: Border.all(color: AppColors.ebony),
                     borderRadius: BorderRadius.circular(25),
-                    boxShadow: const [
-                      BoxShadow(
-                          offset: Offset(0.0, 0.0),
-                          blurRadius: 10,
-                          color: Colors.white),
-                    ],
-                    gradient: const LinearGradient(
-                      begin: Alignment.centerLeft,
-                      end: Alignment.centerRight,
-                      colors: [
-                        Colors.blue,
-                        Colors.purple,
-                      ],
-                    ))
-                : BoxDecoration(
-                    borderRadius: BorderRadius.circular(25),
-                    boxShadow: const [
-                      BoxShadow(
-                          offset: Offset(0.0, 0.0),
-                          blurRadius: 3,
-                          color: Colors.transparent),
-                    ],
-                    gradient: const LinearGradient(
-                      begin: Alignment.centerLeft,
-                      end: Alignment.centerRight,
-                      colors: [
-                        Colors.blue,
-                        Colors.purple,
-                      ],
-                    )),
+                  )
+                : Colorss.gradientDecoration(),
             child: Center(
                 child: Text(
               'Check Resume',

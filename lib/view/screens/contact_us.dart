@@ -3,6 +3,7 @@ import 'dart:math';
 
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
+import 'package:my_personal_website/constants/box.dart';
 import 'package:my_personal_website/constants/colors.dart';
 import 'package:my_personal_website/constants/textstyle.dart';
 import 'package:http/http.dart' as http;
@@ -15,6 +16,7 @@ class ContactMe extends StatefulWidget {
   State<ContactMe> createState() => _ContactMeState();
 }
 
+final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
 final TextEditingController nameController = TextEditingController();
 final TextEditingController emailController = TextEditingController();
 final TextEditingController phoneController = TextEditingController();
@@ -81,74 +83,304 @@ class _ContactMeState extends State<ContactMe> {
 
     return HelperClass(
         paddingWidth: size.width * 0.1,
-        bgColor: AppColors.bgcolors,
-        mobile: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              formtext(),
-              Material(
-                color: Colors.transparent,
-                elevation: 8,
-                borderRadius: BorderRadius.circular(12),
-                child: TextFormField(
-                  style: const TextStyle(color: Colors.white),
-                  controller: nameController,
-                  decoration: inputFiled(hinttext: 'Full Name'),
+        bgColor: Colors.transparent,
+        mobile: customMethod(
+          context,
+        ),
+        tablet: customfiled(context, _formkey),
+        desktop: customfiled(context, _formkey));
+  }
+
+  Form customMethod(
+    BuildContext context,
+  ) {
+    return Form(
+      key: _formkey,
+      child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            formtext(),
+            Material(
+              color: Colors.transparent,
+              elevation: 8,
+              borderRadius: BorderRadius.circular(12),
+              child: TextFormField(
+                validator: (value) {
+                  if (value == null || value.isEmpty)
+                    return 'please enter name';
+                },
+                style: const TextStyle(color: Colors.white),
+                controller: nameController,
+                decoration: inputFiled(hinttext: 'Full Name'),
+              ),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            Material(
+              color: Colors.transparent,
+              elevation: 8,
+              borderRadius: BorderRadius.circular(12),
+              child: TextFormField(
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter an email address';
+                  }
+                  // Email regex pattern
+                  const emailPattern =
+                      r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$';
+                  final regex = RegExp(emailPattern);
+                  if (!regex.hasMatch(value)) {
+                    return 'Please enter a valid email address';
+                  }
+                  return null;
+                },
+                style: const TextStyle(color: Colors.white),
+                controller: emailController,
+                decoration: inputFiled(hinttext: 'Email'),
+              ),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            Material(
+              color: Colors.transparent,
+              elevation: 8,
+              borderRadius: BorderRadius.circular(12),
+              child: TextFormField(
+                maxLength: 10,
+                validator: (value) {
+                  if (value == null || value.isEmpty)
+                    return 'please enter phone';
+                },
+                style: const TextStyle(color: Colors.white),
+                controller: phoneController,
+                decoration: inputFiled(hinttext: 'Phone Number'),
+              ),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            Material(
+              color: Colors.transparent,
+              elevation: 8,
+              borderRadius: BorderRadius.circular(12),
+              child: TextFormField(
+                style: const TextStyle(color: Colors.white),
+                controller: contentController,
+                decoration: inputFiled(hinttext: 'Email Content'),
+              ),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            Material(
+              color: Colors.transparent,
+              elevation: 8,
+              borderRadius: BorderRadius.circular(12),
+              child: TextFormField(
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'please enter message';
+                  }
+                  return null;
+                },
+                style: const TextStyle(color: Colors.white),
+                controller: messageController,
+                maxLines: 6,
+                decoration: inputFiled(hinttext: 'Your Message'),
+              ),
+            ),
+            const SizedBox(
+              height: 30,
+            ),
+            InkWell(
+              onTap: () async {
+                if (_formkey.currentState?.validate() != true) {
+                  return;
+                } else {
+                  if (isloading) return;
+                  setState(() {
+                    isloading = true;
+                  });
+                  await sendemail().then((value) async {
+                    isloading = false;
+                    showSnackBar(context);
+                  });
+                }
+              },
+              onHover: (value) {
+                setState(() {
+                  isData = value;
+                });
+              },
+              child: Container(
+                height: 50,
+                width: 200,
+                decoration: isData
+                    ? BoxDecoration(
+                        border: Border.all(color: AppColors.ebony),
+                        borderRadius: BorderRadius.circular(10),
+
+                        // boxShadow: const [
+                        //   BoxShadow(
+                        //       offset: Offset(0.0, 0.0),
+                        //       blurRadius: 10,
+                        //       color: Colors.white),
+                        // ],
+                        // gradient: const LinearGradient(
+                        //   begin: Alignment.centerLeft,
+                        //   end: Alignment.centerRight,
+                        //   colors: [
+                        //     Colors.blue,
+                        //     Colors.purple,
+                        //   ],
+                        // )
+                      )
+                    : Colorss.gradientDecoration(),
+                child: Center(
+                    child: isloading
+                        ? const CircularProgressIndicator(
+                            color: Colors.white,
+                          )
+                        : Text(
+                            'Send Message',
+                            style: TextStyle(
+                                fontSize: 15,
+                                fontWeight: FontWeight.w600,
+                                color: isData ? Colors.white : Colors.white),
+                          )),
+              ),
+            )
+          ]),
+    );
+  }
+
+  Form customfiled(BuildContext context, GlobalKey key) {
+    return Form(
+      key: key,
+      child: Column(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            formtext(),
+            const SizedBox(
+              height: 40,
+            ),
+            Row(
+              children: [
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: Material(
+                      color: Colors.transparent,
+                      elevation: 8,
+                      borderRadius: BorderRadius.circular(12),
+                      child: TextFormField(
+                        validator: (value) {
+                          if (value == null || value.isEmpty)
+                            return 'please fill name';
+                        },
+                        style: const TextStyle(color: Colors.white),
+                        controller: nameController,
+                        decoration: inputFiled(hinttext: 'Full Name'),
+                      ),
+                    ),
+                  ),
                 ),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              Material(
-                color: Colors.transparent,
-                elevation: 8,
-                borderRadius: BorderRadius.circular(12),
-                child: TextFormField(
-                  style: const TextStyle(color: Colors.white),
-                  controller: emailController,
-                  decoration: inputFiled(hinttext: 'Email'),
+                const SizedBox(
+                  width: 20,
                 ),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              Material(
-                color: Colors.transparent,
-                elevation: 8,
-                borderRadius: BorderRadius.circular(12),
-                child: TextFormField(
-                  style: const TextStyle(color: Colors.white),
-                  controller: phoneController,
-                  decoration: inputFiled(hinttext: 'Phone Number'),
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: Material(
+                      color: Colors.transparent,
+                      elevation: 8,
+                      borderRadius: BorderRadius.circular(12),
+                      child: TextFormField(
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter an email address';
+                          }
+                          // Email regex pattern
+                          const emailPattern =
+                              r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$';
+                          final regex = RegExp(emailPattern);
+                          if (!regex.hasMatch(value)) {
+                            return 'Please enter a valid email address';
+                          }
+                          return null;
+                        },
+                        style: const TextStyle(color: Colors.white),
+                        controller: emailController,
+                        decoration: inputFiled(hinttext: 'Email'),
+                      ),
+                    ),
+                  ),
                 ),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              Material(
-                color: Colors.transparent,
-                elevation: 8,
-                borderRadius: BorderRadius.circular(12),
-                child: TextFormField(
-                  style: const TextStyle(color: Colors.white),
-                  controller: contentController,
-                  decoration: inputFiled(hinttext: 'Email Content'),
+              ],
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            Row(
+              children: [
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: Material(
+                      color: Colors.transparent,
+                      elevation: 8,
+                      borderRadius: BorderRadius.circular(12),
+                      child: TextFormField(
+                        maxLength: 10,
+                        validator: (value) {
+                          if (value == null || value.isEmpty)
+                            return 'please enter phone number';
+                        },
+                        style: const TextStyle(color: Colors.white),
+                        controller: phoneController,
+                        decoration: inputFiled(hinttext: 'Phone Number'),
+                      ),
+                    ),
+                  ),
                 ),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              Material(
+                const SizedBox(
+                  width: 20,
+                ),
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: Material(
+                      color: Colors.transparent,
+                      elevation: 8,
+                      borderRadius: BorderRadius.circular(12),
+                      child: TextFormField(
+                        style: const TextStyle(color: Colors.white),
+                        controller: contentController,
+                        decoration: inputFiled(hinttext: 'Email Content'),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Material(
                 color: Colors.transparent,
                 elevation: 8,
                 borderRadius: BorderRadius.circular(12),
                 child: TextFormField(
                   validator: (value) {
-                    if (value!.isEmpty) {
-                      return 'please enter message';
+                    if (value!.isEmpty || value == null) {
+                      return 'please fill message';
                     }
-                    return null;
                   },
                   style: const TextStyle(color: Colors.white),
                   controller: messageController,
@@ -156,270 +388,82 @@ class _ContactMeState extends State<ContactMe> {
                   decoration: inputFiled(hinttext: 'Your Message'),
                 ),
               ),
-              const SizedBox(
-                height: 30,
+            ),
+            const SizedBox(
+              height: 30,
+            ),
+            InkWell(
+              child: Container(
+                height: 50,
+                width: 200,
+                decoration: isData
+                    ? BoxDecoration(
+                        border: Border.all(color: Colors.white),
+                        borderRadius: BorderRadius.circular(10),
+
+                        // boxShadow: const [
+                        //   BoxShadow(
+                        //       offset: Offset(0.0, 0.0),
+                        //       blurRadius: 10,
+                        //       color: Colors.white),
+                        // ],
+                        // gradient: const LinearGradient(
+                        //   begin: Alignment.centerLeft,
+                        //   end: Alignment.centerRight,
+                        //   colors: [
+                        //     Colors.blue,
+                        //     Colors.purple,
+                        //   ],
+                        // )
+                      )
+                    : Colorss.gradientDecoration(),
+                child: Center(
+                    child: isloading
+                        ? const Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              CircularProgressIndicator(
+                                color: Colors.white,
+                              ),
+                              Text(
+                                "please wait...",
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 14),
+                              )
+                            ],
+                          )
+                        : Text(
+                            'Send Message',
+                            style: TextStyle(
+                                fontSize: 15,
+                                fontWeight: FontWeight.w600,
+                                color: isData ? Colors.white : Colors.white),
+                          )),
               ),
-              InkWell(
-                onTap: () async {
+              onTap: () async {
+                if (_formkey.currentState?.validate() != true) {
+                  return;
+                } else {
                   if (isloading) return;
                   setState(() {
                     isloading = true;
                   });
-                  await sendemail().then((value) {
+                  await sendemail().then((value) async {
+                    isloading = false;
                     showSnackBar(context);
                   });
-                },
-                onHover: (value) {
-                  setState(() {
-                    isData = value;
-                  });
-                },
-                child: Container(
-                  height: 50,
-                  width: 200,
-                  decoration: isData
-                      ? BoxDecoration(
-                          borderRadius: BorderRadius.circular(25),
-                          boxShadow: const [
-                            BoxShadow(
-                                offset: Offset(0.0, 0.0),
-                                blurRadius: 10,
-                                color: Colors.white),
-                          ],
-                          gradient: const LinearGradient(
-                            begin: Alignment.centerLeft,
-                            end: Alignment.centerRight,
-                            colors: [
-                              Colors.blue,
-                              Colors.purple,
-                            ],
-                          ))
-                      : BoxDecoration(
-                          borderRadius: BorderRadius.circular(25),
-                          boxShadow: const [
-                            BoxShadow(
-                                offset: Offset(0.0, 0.0),
-                                blurRadius: 5,
-                                color: Colors.transparent),
-                          ],
-                          gradient: const LinearGradient(
-                            begin: Alignment.centerLeft,
-                            end: Alignment.centerRight,
-                            colors: [
-                              Colors.blue,
-                              Colors.purple,
-                            ],
-                          )),
-                  child: Center(
-                      child: isloading
-                          ? const CircularProgressIndicator(
-                              color: Colors.white,
-                            )
-                          : Text(
-                              'Send Message',
-                              style: TextStyle(
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.w600,
-                                  color: isData ? Colors.white : Colors.white),
-                            )),
-                ),
-              )
-            ]),
-        tablet: customfiled(context),
-        desktop: customfiled(context));
-  }
-
-  Column customfiled(BuildContext context) {
-    return Column(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          formtext(),
-          const SizedBox(
-            height: 40,
-          ),
-          Row(
-            children: [
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  child: Material(
-                    color: Colors.transparent,
-                    elevation: 8,
-                    borderRadius: BorderRadius.circular(12),
-                    child: TextFormField(
-                      style: const TextStyle(color: Colors.white),
-                      controller: nameController,
-                      decoration: inputFiled(hinttext: 'Full Name'),
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(
-                width: 20,
-              ),
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  child: Material(
-                    color: Colors.transparent,
-                    elevation: 8,
-                    borderRadius: BorderRadius.circular(12),
-                    child: TextFormField(
-                      style: const TextStyle(color: Colors.white),
-                      controller: emailController,
-                      decoration: inputFiled(hinttext: 'Email'),
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          Row(
-            children: [
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  child: Material(
-                    color: Colors.transparent,
-                    elevation: 8,
-                    borderRadius: BorderRadius.circular(12),
-                    child: TextFormField(
-                      style: const TextStyle(color: Colors.white),
-                      controller: phoneController,
-                      decoration: inputFiled(hinttext: 'Phone Number'),
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(
-                width: 20,
-              ),
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  child: Material(
-                    color: Colors.transparent,
-                    elevation: 8,
-                    borderRadius: BorderRadius.circular(12),
-                    child: TextFormField(
-                      style: const TextStyle(color: Colors.white),
-                      controller: contentController,
-                      decoration: inputFiled(hinttext: 'Email Content'),
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: Material(
-              color: Colors.transparent,
-              elevation: 8,
-              borderRadius: BorderRadius.circular(12),
-              child: TextFormField(
-                style: const TextStyle(color: Colors.white),
-                controller: messageController,
-                maxLines: 6,
-                decoration: inputFiled(hinttext: 'Your Message'),
-              ),
-            ),
-          ),
-          const SizedBox(
-            height: 30,
-          ),
-          InkWell(
-            child: Container(
-              height: 50,
-              width: 200,
-              decoration: isData
-                  ? BoxDecoration(
-                      borderRadius: BorderRadius.circular(25),
-                      boxShadow: const [
-                        BoxShadow(
-                            offset: Offset(0.0, 0.0),
-                            blurRadius: 10,
-                            color: Colors.white),
-                      ],
-                      gradient: const LinearGradient(
-                        begin: Alignment.centerLeft,
-                        end: Alignment.centerRight,
-                        colors: [
-                          Colors.blue,
-                          Colors.purple,
-                        ],
-                      ))
-                  : BoxDecoration(
-                      borderRadius: BorderRadius.circular(25),
-                      boxShadow: const [
-                        BoxShadow(
-                            offset: Offset(0.0, 0.0),
-                            blurRadius: 5,
-                            color: Colors.transparent),
-                      ],
-                      gradient: const LinearGradient(
-                        begin: Alignment.centerLeft,
-                        end: Alignment.centerRight,
-                        colors: [
-                          Colors.blue,
-                          Colors.purple,
-                        ],
-                      )),
-              child: Center(
-                  child: isloading
-                      ? const Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            CircularProgressIndicator(
-                              color: Colors.white,
-                            ),
-                            Text(
-                              "please wait...",
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 14),
-                            )
-                          ],
-                        )
-                      : Text(
-                          'Send Message',
-                          style: TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.w600,
-                              color: isData ? Colors.white : Colors.white),
-                        )),
-            ),
-            onTap: () async {
-              setState(() =>
-                  isloading = true); // Start showing CircularProgressIndicator
-
-              await Future.delayed(
-                const Duration(seconds: 3),
-                () async {
-                  await sendemail().then((value) {
-                    showSnackBar(context);
-                  });
-                  setState(() => isloading = false);
-                },
-              );
-
-              // After 3 seconds, stop showing CircularProgressIndicator and show "Send Message" text
-            },
-            onHover: (value) {
-              setState(() {
-                isData = value;
-              });
-            },
-          )
-        ]);
+                }
+              },
+              onHover: (value) {
+                setState(() {
+                  isData = value;
+                });
+              },
+            )
+          ]),
+    );
   }
 
   FadeInDown formtext() {

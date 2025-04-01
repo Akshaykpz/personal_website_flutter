@@ -14,13 +14,15 @@ class AppImage {
       'assets/images/WhatsApp Image 2024-02-26 at 12.05.34_3b0267ab.jpg';
   static String webapp = 'assets/images/website.png';
   static String apple = 'assets/images/apple-logo.png';
-  static String project1 = 'assets/images/Blank 2 Grids Collage (1).jpg';
-  static String project2 = 'assets/images/Blank 2 Grids Collage.jpg';
+  static String project1 = 'assets/images/3905883.jpg';
+  static String project2 = 'assets/images/3810160.jpg';
   static String project3 = 'assets/images/321535-P9F5S3-732.jpg';
-  static String twitter2 = 'assets/images/sl_z_072523_61700_01.jpg';
+  static String twitter2 = 'assets/images/SL-022222-48740-15.jpg';
 
   static String firebase = 'assets/images/pngwing.com.png';
   static String wheather = 'assets/images/4092.jpg';
   static String netflix = 'assets/images/wp5063339-netflix-logo-wallpapers.png';
-  static String music = 'assets/images/gfvn_t33l_220226.jpg';
+  static String music = 'assets/images/SL-022222-48740-15.jpg';
+  static String taskManger =
+      'assets/images/data-information-report-statistics-strategy-concept.jpg';
 }

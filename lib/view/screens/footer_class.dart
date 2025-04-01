@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_personal_website/constants/colors.dart';
+import 'package:my_personal_website/constants/box.dart';
 import 'package:my_personal_website/constants/image.dart';
 import 'package:my_personal_website/constants/textstyle.dart';
 import 'package:my_personal_website/view/widgets/circile_view.dart';
@@ -20,7 +20,7 @@ class _FotterClassState extends State<FotterClass> {
       child: Container(
         height: 100,
         width: MediaQuery.of(context).size.width,
-        color: AppColors.bgcolors1,
+        decoration: Colorss.gradientDecoration(),
         child: Column(
           children: [
             Row(

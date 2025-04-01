@@ -48,6 +48,8 @@ dependencies:
   flutter_animated_button: ^2.0.3
  
   flutter_screenutil: ^5.9.0
+  visibility_detector: ^0.4.0+2
+  provider: ^5.0.0
 
 dev_dependencies:
   flutter_test:
@@ -59,6 +61,7 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
+  
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -96,10 +99,7 @@ flutter:
     - assets/images/website.png
     - assets/images/apple-logo.png
     - assets/images/7131906.jpg
-    - assets/images/Blank 2 Grids Collage (1).jpg
-    - assets/images/Blank 2 Grids Collage.jpg
     - assets/images/321535-P9F5S3-732.jpg
-    - assets/images/WhatsApp Image 2024-02-29 at 11.56.24_4da76985.jpg
     - assets/images/WhatsApp Image 2024-02-29 at 18.41.19_76132ea6.jpg
     - assets/images/sl_z_072523_61700_01.jpg
     - assets/images/Animation - 1709289052606.gif
@@ -108,8 +108,12 @@ flutter:
     - assets/images/share.png
     - assets/images/4092.jpg
     - assets/images/wp5063339-netflix-logo-wallpapers.png
-    - assets/images/gfvn_t33l_220226.jpg
-  
+    - assets/images/3810160.jpg
+    - assets/images/SL-022222-48740-15.jpg
+    - assets/images/data-information-report-statistics-strategy-concept.jpg
+    - assets/images/427998075_917323277061139_5829715538073830577_n.jpg
+    - assets/images/3905883.jpg
+    
  
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg

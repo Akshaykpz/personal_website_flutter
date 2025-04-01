@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:my_personal_website/constants/colors.dart';
 import 'package:my_personal_website/constants/textstyle.dart';
 import 'package:my_personal_website/view/screens/home.dart';
@@ -51,8 +52,8 @@ class _DashBoardState extends State<DashBoard> {
     _itemScrollController
         .scrollTo(
             index: index,
-            duration: const Duration(seconds: 2),
-            curve: Curves.fastLinearToSlowEaseIn)
+            duration: const Duration(seconds: 1),
+            curve: Curves.ease)
         .whenComplete(() {
       setState(() {
         menuIndex = index;
@@ -65,12 +66,21 @@ class _DashBoardState extends State<DashBoard> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-        backgroundColor: Colors.black,
         appBar: AppBar(
           titleSpacing: 55,
           toolbarHeight: 90,
           backgroundColor: Colors.transparent,
-          elevation: 4,
+          elevation: 0.1,
+          flexibleSpace: Container(
+            decoration: BoxDecoration(
+              border: Border.all(width: 0.1, color: Colors.white),
+              gradient: const LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [AppColors.ebony, AppColors.studio],
+              ),
+            ),
+          ),
           title: LayoutBuilder(
             builder: (context, constraints) {
               if (constraints.maxWidth < 768) {
@@ -153,22 +163,31 @@ class _DashBoardState extends State<DashBoard> {
             },
           ),
         ),
-        body: Scrollbar(
-          trackVisibility: true,
-          thumbVisibility: true,
-          thickness: 8,
-          interactive: true,
-          controller: yourScrollController,
-          child: ScrollablePositionedList.builder(
-            scrollOffsetController: scrollOffsetController,
-            scrollDirection: Axis.vertical,
-            itemCount: screenlist.length,
-            itemScrollController: _itemScrollController,
-            itemPositionsListener: itemPositionsListener,
-            scrollOffsetListener: scrollOffsetListener,
-            itemBuilder: (context, index) {
-              return screenlist[index];
-            },
+        body: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              colors: [AppColors.ebony, AppColors.studio], // Your mixed colors
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+          ),
+          child: Scrollbar(
+            trackVisibility: true,
+            thumbVisibility: true,
+            thickness: 8,
+            interactive: true,
+            controller: yourScrollController,
+            child: ScrollablePositionedList.builder(
+              scrollOffsetController: scrollOffsetController,
+              scrollDirection: Axis.vertical,
+              itemCount: screenlist.length,
+              itemScrollController: _itemScrollController,
+              itemPositionsListener: itemPositionsListener,
+              scrollOffsetListener: scrollOffsetListener,
+              itemBuilder: (context, index) {
+                return screenlist[index];
+              },
+            ),
           ),
         ));
   }
@@ -181,7 +200,7 @@ class _DashBoardState extends State<DashBoard> {
       transform: hover ? onmenuHover : null,
       child: Text(menuitem[index],
           style: Apptext.headertextstyle(
-            hover ? Colors.blue : Colors.white,
+            hover ? const Color.fromARGB(255, 172, 139, 255) : Colors.white,
           )),
     );
   }

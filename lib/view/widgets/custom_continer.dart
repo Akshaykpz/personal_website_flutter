@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomContainer extends StatelessWidget {
   final String image;
@@ -13,25 +14,27 @@ class CustomContainer extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 15),
       child: AnimatedContainer(
-        height: 40,
-        width: MediaQuery.of(context).size.width * 0.1 * 1.1,
+        // height: 100,
+        // width: MediaQuery.of(context).size.width * 0.1 * 1.9,
         decoration: BoxDecoration(
-            border: Border.all(
-              color: Colors.white38,
-            ),
-            borderRadius: BorderRadius.circular(10)),
+            // border: Border.all(
+            //   color: Colors.white38,
+            // ),
+            borderRadius: BorderRadius.circular(5)),
         duration: const Duration(milliseconds: 100),
-        child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+        child:
+            Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
           Image.asset(
             image,
             fit: BoxFit.contain,
-            width: MediaQuery.of(context).size.width * 0.02,
+            width: 100,
+            height: 100,
           ),
+          10.verticalSpace,
           Text(
             text,
-            style: TextStyle(
-                fontSize: MediaQuery.of(context).size.width * 0.01,
-                color: Colors.white),
+            style: const TextStyle(
+                color: Colors.white, fontWeight: FontWeight.bold),
           ),
         ]),
       ),

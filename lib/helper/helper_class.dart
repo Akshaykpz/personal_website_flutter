@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_personal_website/constants/box.dart';
 
 class HelperClass extends StatelessWidget {
   final Widget mobile;
@@ -25,7 +26,8 @@ class HelperClass extends StatelessWidget {
             // height: size.height,
             width: size.width,
             alignment: Alignment.center,
-            color: bgColor,
+
+            decoration: Colorss.gradientDecoration(),
             padding: EdgeInsets.symmetric(
                 vertical: size.height * 0.05, horizontal: 18),
             child: mobile,
@@ -35,7 +37,7 @@ class HelperClass extends StatelessWidget {
             height: size.height,
             width: size.width,
             alignment: Alignment.center,
-            color: bgColor,
+            decoration: Colorss.gradientDecoration(),
             padding: EdgeInsets.symmetric(
                 vertical: size.height * 0.1, horizontal: paddingWidth),
             child: tablet,
@@ -44,7 +46,7 @@ class HelperClass extends StatelessWidget {
           return Container(
             width: size.width,
             alignment: Alignment.center,
-            color: bgColor,
+            decoration: Colorss.gradientDecoration(),
             padding: EdgeInsets.symmetric(
                 vertical: size.height * 0.17, horizontal: paddingWidth),
             child: desktop,

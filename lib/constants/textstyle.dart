@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Apptext {
@@ -35,7 +36,7 @@ class Apptext {
   static TextStyle addstyles1([Color? color]) {
     return GoogleFonts.rubikMoonrocks(
         letterSpacing: 2,
-        fontSize: 55,
+        fontSize: 50,
         fontWeight: FontWeight.w400,
         color: color);
   }
