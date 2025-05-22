@@ -2,6 +2,7 @@ import 'package:animate_do/animate_do.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:my_personal_website/constants/animations.dart';
 import 'package:my_personal_website/constants/box.dart';
 import 'package:my_personal_website/constants/colors.dart';
 import 'package:my_personal_website/constants/text.dart';
@@ -9,8 +10,6 @@ import 'package:my_personal_website/constants/text.dart';
 import 'package:my_personal_website/constants/textstyle.dart';
 import 'package:my_personal_website/helper/helper_class.dart';
 
-import 'package:my_personal_website/view/widgets/profile_image.dart';
-// ignore: avoid_web_libraries_in_flutter
 import 'dart:html' as html;
 
 class Homepage extends StatefulWidget {
@@ -36,12 +35,16 @@ class _HomepageState extends State<Homepage> {
       mobile: Column(
         children: [
           BuildHomemethod(size),
-          Stack(
+          const Stack(
             alignment: Alignment.center,
             children: [
-              Lottie.asset('assets/images/Animation - 1709290147936.json',
-                  height: 560),
-              const ProfileImage(),
+              SizedBox(
+                height: 30,
+              ),
+              MvNeuralWeb(),
+              // Lottie.asset('assets/images/Animation - 1709290147936.json',
+              //     height: 560),
+              // const ProfileImage(),
             ],
           ),
         ],
@@ -51,12 +54,13 @@ class _HomepageState extends State<Homepage> {
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           Expanded(flex: 1, child: BuildHomemethod(size)),
-          Stack(
+          const Stack(
             alignment: Alignment.center,
             children: [
-              Lottie.asset('assets/images/Animation - 1709290147936.json',
-                  height: 540),
-              const ProfileImage(),
+              MvNeuralWeb(),
+              // Lottie.asset('assets/images/Animation - 1709290147936.json',
+              //     height: 540),
+              // const ProfileImage(),
             ],
           ),
         ],
@@ -66,12 +70,13 @@ class _HomepageState extends State<Homepage> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Expanded(flex: 1, child: BuildHomemethod(size)),
-          Stack(
+          const Stack(
             alignment: Alignment.topCenter,
             children: [
-              Lottie.asset('assets/images/Animation - 1709290147936.json',
-                  height: 500),
-              const ProfileImage(),
+              MvNeuralWeb(),
+              // Lottie.asset('assets/images/Animation - 1709290147936.json',
+              //     height: 500),
+              // const ProfileImage(),
             ],
           ),
         ],
@@ -79,100 +84,56 @@ class _HomepageState extends State<Homepage> {
     );
   }
 
-  // ignore: non_constant_identifier_names
-  Column BuildHomemethod(Size size) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        FadeInDown(
-          child: Text(
-            "Hello It's Me",
-            style: Apptext.headertextstyle1(),
-          ),
-        ),
-        FadeInDown(
-          child: Text(
-            "AKSHAY KP",
-            style: Apptext.addstyles1(
-              Colors.white,
+  SlideInDown BuildHomemethod(Size size) {
+    return SlideInDown(
+      duration: const Duration(seconds: 1),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          FadeInDown(
+            child: Text(
+              "Hello It's Me",
+              style: Apptext.headertextstyle1(),
             ),
           ),
-        ),
-        const SizedBox(
-          height: 5,
-        ),
-        FadeInLeft(
-          child: Wrap(
-            // ✅ Replaces Flex to prevent overflow
-            alignment: WrapAlignment.center, // Center the text
-            children: [
-              AnimatedTextKit(
+          FadeInDown(
+            child: Text(
+              "AKSHAY KP",
+              style: Apptext.addstyles1(Colors.white),
+            ),
+          ),
+          const SizedBox(height: 5),
+          SizedBox(
+            height: 60,
+            child: FadeInLeft(
+              child: AnimatedTextKit(
                 animatedTexts: [
                   TyperAnimatedText(
-                    "And I'm a ",
+                    "And I'm a Flutter Developer",
                     textStyle: Apptext.headertextstyle1(),
+                    speed: const Duration(milliseconds: 80),
                   ),
                 ],
+                totalRepeatCount: 999,
                 pause: const Duration(milliseconds: 2000),
                 displayFullTextOnTap: true,
-                isRepeatingAnimation: true,
                 repeatForever: true,
               ),
-              GradientText(
-                text: "Flutter Developer",
-                gradient: const LinearGradient(colors: [
-                  Colors.white,
-                  Colors.white,
-                  Colors.white,
-                ]),
-                style: Apptext.headertextstyle1(),
-              ),
-            ],
+            ),
           ),
-        ),
-        const SizedBox(
-          height: 20,
-        ),
-        FadeInDown(
-          child: Text(
-            "Hey there! a passionate Flutter developer with a knack for turning\n"
-            "innovative ideas into seamless, visually appealing, and highly functional\n"
-            "mobile applications. With a solid background in mobile app development....",
-            style: Apptext.aboutstyles(),
+          const SizedBox(height: 20),
+          FadeInDown(
+            child: Text(
+              "Hey there! a passionate Flutter developer with a knack for turning\n"
+              "innovative ideas into seamless, visually appealing, and highly functional\n"
+              "mobile applications. With a solid background in mobile app development....",
+              style: Apptext.aboutstyles(),
+              textAlign: TextAlign.center,
+            ),
           ),
-        ),
-        const SizedBox(
-          height: 60,
-        ),
-        InkWell(
-          onTap: () {
-            downloadFile('assets/images/Akshay KP.resume.pdf');
-          },
-          onHover: (value) {
-            setState(() {
-              isHover = value;
-            });
-          },
-          child: Container(
-            height: 50,
-            width: 200,
-            decoration: isHover
-                ? BoxDecoration(
-                    border: Border.all(color: AppColors.ebony),
-                    borderRadius: BorderRadius.circular(25),
-                  )
-                : Colorss.gradientDecoration(),
-            child: Center(
-                child: Text(
-              'Check Resume',
-              style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w600,
-                  color: isHover ? Colors.white : Colors.white),
-            )),
-          ),
-        ),
-      ],
+          const SizedBox(height: 60),
+        ],
+      ),
     );
   }
 

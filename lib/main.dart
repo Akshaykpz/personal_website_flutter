@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_personal_website/helper/project_proivder.dart';
 import 'package:my_personal_website/view/screens/dash_board.dart';
+import 'package:my_personal_website/view/screens/splash_screen.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -10,7 +11,6 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  // ignore: use_key_in_widget_constructors
   const MyApp({
     Key? key,
   });
@@ -23,9 +23,7 @@ class MyApp extends StatelessWidget {
       splitScreenMode: true,
       builder: (context, child) {
         return const MaterialApp(
-          debugShowCheckedModeBanner: false,
-          home: DashBoard(),
-        );
+            debugShowCheckedModeBanner: false, home: SplashScreen());
       },
     );
   }

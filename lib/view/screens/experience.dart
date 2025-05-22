@@ -35,6 +35,7 @@ class _ExpierenceState extends State<Expierence> {
           ),
           const SizedBox(height: 60),
           InkWell(
+            mouseCursor: SystemMouseCursors.none,
             onTap: () {},
             onHover: (value) {
               setState(() {
@@ -53,6 +54,7 @@ class _ExpierenceState extends State<Expierence> {
           ),
           const SizedBox(height: 20),
           InkWell(
+            mouseCursor: SystemMouseCursors.none,
             onTap: () {},
             onHover: (value) {
               setState(() {
@@ -97,6 +99,7 @@ class _ExpierenceState extends State<Expierence> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             InkWell(
+              mouseCursor: SystemMouseCursors.none,
               onTap: () {},
               onHover: (value) {
                 setState(() {
@@ -115,6 +118,7 @@ class _ExpierenceState extends State<Expierence> {
             ),
             const SizedBox(width: 100),
             InkWell(
+              mouseCursor: SystemMouseCursors.none,
               onTap: () {},
               onHover: (value) {
                 setState(() {
@@ -127,7 +131,7 @@ class _ExpierenceState extends State<Expierence> {
                 isoffhover,
                 ' Flutter Developer',
                 'Brototype - Calcut',
-                ' April 2023 - Feb March',
+                '2023 May - 2024 March',
                 'I have a solid foundation in Flutter Development, acquired through a successful internship at Brototype. Over the subsequent eight months, I accomplished the delivery of two significant projects, in addition to several mini-projects,',
               ),
             ),

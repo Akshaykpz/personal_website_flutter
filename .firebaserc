@@ -1,5 +1,8 @@
 {
   "projects": {
-    "default": "newproject-e28a5"
-  }
+    "default": "web-application-836fc",
+    "?": "web-application-836fc"
+  },
+  "targets": {},
+  "etags": {}
 }

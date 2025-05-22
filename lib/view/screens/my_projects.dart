@@ -1,185 +1,4 @@
-// import 'package:animate_do/animate_do.dart';
-// import 'package:flutter/material.dart';
-// import 'package:flutter/widgets.dart';
-// import 'package:my_personal_website/constants/colors.dart';
-// import 'package:my_personal_website/constants/image.dart';
-// import 'package:my_personal_website/constants/text.dart';
-// import 'package:my_personal_website/constants/textstyle.dart';
-// import 'package:my_personal_website/helper/helper_class.dart';
-
-// class MyPortfolio extends StatefulWidget {
-//   const MyPortfolio({Key? key}) : super(key: key);
-
-//   @override
-//   State<MyPortfolio> createState() => _MyPortfolioState();
-// }
-
-// class _MyPortfolioState extends State<MyPortfolio> {
-//   int? hoveredIndex;
-
-//   final List<String> appset = [
-//     AppImage.project1,
-//     AppImage.project2,
-//     AppImage.wheather,
-//     AppImage.netflix,
-//     AppImage.music,
-//     AppImage.taskManger
-//   ];
-
-//   @override
-//   Widget build(BuildContext context) {
-//     final Size size = MediaQuery.of(context).size;
-//     return HelperClass(
-//       mobile: Column(
-//         mainAxisSize: MainAxisSize.min,
-//         children: [
-//           _fadeDowntext(),
-//           const SizedBox(height: 40),
-//           buildProjectGridView(crossAxisCount: 1)
-//         ],
-//       ),
-//       tablet: Column(
-//         mainAxisSize: MainAxisSize.min,
-//         children: [
-//           _fadeDowntext(),
-//           const SizedBox(height: 40),
-//           buildProjectGridView(crossAxisCount: 2)
-//         ],
-//       ),
-//       desktop: Column(
-//         mainAxisSize: MainAxisSize.min,
-//         children: [
-//           _fadeDowntext(),
-//           const SizedBox(height: 40),
-//           buildProjectGridView(crossAxisCount: 3),
-//         ],
-//       ),
-//       paddingWidth: size.width * 0.1,
-//       bgColor: AppColors.bgcolors,
-//     );
-//   }
-
-//   GridView buildProjectGridView({required int crossAxisCount}) {
-//     return GridView.builder(
-//       itemCount: appset.length,
-//       shrinkWrap: true,
-//       physics: const NeverScrollableScrollPhysics(),
-//       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-//         crossAxisCount: crossAxisCount,
-//         mainAxisExtent: 280,
-//         mainAxisSpacing: 24,
-//         crossAxisSpacing: 24,
-//       ),
-//       itemBuilder: (context, index) {
-//         var image = appset[index];
-
-//         return FadeInUpBig(
-//           duration: const Duration(milliseconds: 1600),
-//           child: InkWell(
-//             onTap: () {},
-//             onHover: (value) {
-//               setState(() {
-//                 hoveredIndex = value ? index : 0;
-//               });
-//             },
-//             child: Stack(
-//               alignment: Alignment.center,
-//               children: [
-//                 AnimatedContainer(
-//                   duration: const Duration(milliseconds: 600),
-//                   curve: Curves.easeInOut,
-//                   decoration: BoxDecoration(
-//                     borderRadius: BorderRadius.circular(20),
-//                     image: DecorationImage(
-//                       image: AssetImage(image),
-//                       fit: BoxFit.fill,
-//                       colorFilter: hoveredIndex == index
-//                           ? ColorFilter.mode(
-//                               Colors.black.withOpacity(0.4), BlendMode.darken)
-//                           : null,
-//                     ),
-//                   ),
-//                 ),
-//                 Visibility(
-//                   visible: hoveredIndex == index,
-//                   child: AnimatedContainer(
-//                     duration: const Duration(milliseconds: 600),
-//                     curve: Curves.easeInOut,
-//                     padding: const EdgeInsets.symmetric(
-//                         horizontal: 14, vertical: 16),
-//                     decoration: BoxDecoration(
-//                       borderRadius: BorderRadius.circular(20),
-//                       gradient: LinearGradient(
-//                         colors: hoveredIndex == index
-//                             ? [
-//                                 Colors.white.withOpacity(0.1),
-//                                 AppColors.studio,
-//                               ]
-//                             : [
-//                                 Colors.transparent,
-//                                 Colors.transparent,
-//                               ],
-//                         begin: Alignment.bottomCenter,
-//                         end: Alignment.topCenter,
-//                       ),
-//                     ),
-//                     child: Column(
-//                       mainAxisAlignment: MainAxisAlignment.center,
-//                       children: [
-//                         Text(
-//                           projects[index],
-//                           style: AppTextStyles.montserratStyle(
-//                               color: Colors.orange, fontSize: 20),
-//                         ),
-//                         const SizedBox(height: 15),
-//                         Text(
-//                           projectContent[index],
-//                           style: AppTextStyles.normalStyle(color: Colors.black),
-//                           textAlign: TextAlign.center,
-//                         ),
-//                         const SizedBox(height: 10),
-//                         GestureDetector(
-//                           onTap: () {},
-//                           child: CircleAvatar(
-//                             maxRadius: 25,
-//                             backgroundColor: Colors.white,
-//                             child: Image.asset(
-//                               AppImage.shere,
-//                               width: 25,
-//                               height: 25,
-//                               fit: BoxFit.fill,
-//                             ),
-//                           ),
-//                         )
-//                       ],
-//                     ),
-//                   ),
-//                 ),
-//               ],
-//             ),
-//           ),
-//         );
-//       },
-//     );
-//   }
-
-//   Widget _fadeDowntext() {
-//     return FadeInDown(
-//       child: RichText(
-//         text: TextSpan(
-//           text: 'Latest',
-//           style: Apptext.addstyles(Colors.white),
-//           children: [
-//             TextSpan(
-//               text: '  projects',
-//               style: Apptext.addstyles(Colors.white),
-//             )
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-// }
+import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:animate_do/animate_do.dart';
@@ -191,6 +10,7 @@ import 'package:my_personal_website/constants/textstyle.dart';
 import 'package:my_personal_website/helper/helper_class.dart';
 import 'package:my_personal_website/helper/project_proivder.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class MyPortfolio extends StatelessWidget {
   const MyPortfolio({Key? key}) : super(key: key);
@@ -257,6 +77,15 @@ class MyPortfolio extends StatelessWidget {
       AppImage.taskManger
     ];
 
+    final List<String> githubProject = [
+      'https://github.com/Akshaykpz/StoreX-E-commerce-application',
+      'https://github.com/Akshaykpz/AquaMed-Tracker',
+      'https://github.com/Akshaykpz/Wheather-App',
+      'https://github.com/Akshaykpz/netflix',
+      'https://github.com/Akshaykpz/music_player-',
+      'https://github.com/Akshaykpz/chatwave'
+    ];
+
     final List<String> projects = [
       'Acqa Med Tracker',
       'StoreX',
@@ -290,7 +119,10 @@ class MyPortfolio extends StatelessWidget {
         return FadeInUpBig(
           duration: const Duration(milliseconds: 1600),
           child: InkWell(
-            onTap: () {},
+            mouseCursor: SystemMouseCursors.none,
+            onTap: () {
+              log('x');
+            },
             onHover: (value) {
               hoverNotifier.setHoveredIndex(value ? index : null);
             },
@@ -351,7 +183,9 @@ class MyPortfolio extends StatelessWidget {
                         ),
                         const SizedBox(height: 10),
                         GestureDetector(
-                          onTap: () {},
+                          onTap: () {
+                            launchURL(githubProject[index]);
+                          },
                           child: CircleAvatar(
                             maxRadius: 25,
                             backgroundColor: Colors.white,
@@ -390,5 +224,14 @@ class MyPortfolio extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void launchURL(String url) async {
+    final uri = Uri.parse(url);
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri, mode: LaunchMode.externalApplication);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 }

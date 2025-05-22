@@ -28,6 +28,7 @@ class _MyServiceState extends State<MyService> {
             builddataText(),
             Constants.sizedBox(height: 60.0),
             InkWell(
+              mouseCursor: SystemMouseCursors.none,
               onTap: () {},
               onHover: (value) {
                 setState(() {
@@ -41,6 +42,7 @@ class _MyServiceState extends State<MyService> {
             ),
             Constants.sizedBox(height: 24.0),
             InkWell(
+              mouseCursor: SystemMouseCursors.none,
               onTap: () {},
               onHover: (value) {
                 setState(() {
@@ -54,6 +56,7 @@ class _MyServiceState extends State<MyService> {
             ),
             Constants.sizedBox(height: 24.0),
             InkWell(
+              mouseCursor: SystemMouseCursors.none,
               onTap: () {},
               onHover: (value) {
                 setState(() {
@@ -76,6 +79,7 @@ class _MyServiceState extends State<MyService> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 InkWell(
+                  mouseCursor: SystemMouseCursors.none,
                   onTap: () {},
                   onHover: (value) {
                     setState(() {
@@ -89,6 +93,7 @@ class _MyServiceState extends State<MyService> {
                 ),
                 Constants.sizedBox(width: 24.0),
                 InkWell(
+                  mouseCursor: SystemMouseCursors.none,
                   onTap: () {},
                   onHover: (value) {
                     setState(() {
@@ -102,6 +107,7 @@ class _MyServiceState extends State<MyService> {
                 ),
                 Constants.sizedBox(width: 24.0),
                 InkWell(
+                  mouseCursor: SystemMouseCursors.none,
                   onTap: () {},
                   onHover: (value) {
                     setState(() {
@@ -124,6 +130,7 @@ class _MyServiceState extends State<MyService> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               InkWell(
+                mouseCursor: SystemMouseCursors.none,
                 onTap: () {},
                 onHover: (value) {
                   setState(() {
@@ -137,6 +144,7 @@ class _MyServiceState extends State<MyService> {
               ),
               Constants.sizedBox(width: 24.0),
               InkWell(
+                mouseCursor: SystemMouseCursors.none,
                 onTap: () {},
                 onHover: (value) {
                   setState(() {
@@ -150,6 +158,7 @@ class _MyServiceState extends State<MyService> {
               ),
               Constants.sizedBox(width: 24.0),
               InkWell(
+                mouseCursor: SystemMouseCursors.none,
                 onTap: () {},
                 onHover: (value) {
                   setState(() {
