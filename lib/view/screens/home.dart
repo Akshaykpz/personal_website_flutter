@@ -1,11 +1,8 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
 import 'package:my_personal_website/constants/animations.dart';
-import 'package:my_personal_website/constants/box.dart';
 import 'package:my_personal_website/constants/colors.dart';
-import 'package:my_personal_website/constants/text.dart';
 
 import 'package:my_personal_website/constants/textstyle.dart';
 import 'package:my_personal_website/helper/helper_class.dart';
@@ -42,9 +39,6 @@ class _HomepageState extends State<Homepage> {
                 height: 30,
               ),
               MvNeuralWeb(),
-              // Lottie.asset('assets/images/Animation - 1709290147936.json',
-              //     height: 560),
-              // const ProfileImage(),
             ],
           ),
         ],
@@ -104,7 +98,7 @@ class _HomepageState extends State<Homepage> {
           ),
           const SizedBox(height: 5),
           SizedBox(
-            height: 60,
+            height: 110,
             child: FadeInLeft(
               child: AnimatedTextKit(
                 animatedTexts: [
