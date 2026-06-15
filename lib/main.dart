@@ -1,30 +1,41 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:my_personal_website/helper/project_proivder.dart';
-import 'package:my_personal_website/view/screens/dash_board.dart';
-import 'package:my_personal_website/view/screens/splash_screen.dart';
-import 'package:provider/provider.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:my_personal_website/app/portfolio_page.dart';
 
 void main() {
-  runApp(ChangeNotifierProvider(
-      create: (_) => HoverNotifier(), child: const MyApp()));
+  runApp(const PortfolioApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({
-    Key? key,
-  });
+class PortfolioApp extends StatelessWidget {
+  const PortfolioApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return ScreenUtilInit(
-      designSize: const Size(360, 690),
-      minTextAdapt: true,
-      splitScreenMode: true,
-      builder: (context, child) {
-        return const MaterialApp(
-            debugShowCheckedModeBanner: false, home: SplashScreen());
-      },
+    final baseTheme = ThemeData.dark();
+
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Akshay K P | Flutter Developer',
+      scrollBehavior: const MaterialScrollBehavior().copyWith(
+        dragDevices: <PointerDeviceKind>{
+          PointerDeviceKind.touch,
+          PointerDeviceKind.mouse,
+          PointerDeviceKind.stylus,
+          PointerDeviceKind.invertedStylus,
+          PointerDeviceKind.unknown,
+        },
+      ),
+      theme: baseTheme.copyWith(
+        scaffoldBackgroundColor: const Color(0xFF050816),
+        colorScheme: baseTheme.colorScheme.copyWith(
+          primary: const Color(0xFFA855F7),
+          secondary: const Color(0xFF22D3EE),
+          surface: const Color(0xFF0B1020),
+        ),
+        textTheme: GoogleFonts.spaceGroteskTextTheme(baseTheme.textTheme),
+      ),
+      home: const PortfolioPage(),
     );
   }
 }
