@@ -105,8 +105,8 @@ const List<String> heroTitles = <String>[
 ];
 
 const List<PortfolioStat> portfolioStats = <PortfolioStat>[
-  PortfolioStat(value: '1+', label: 'Years building with Flutter'),
-  PortfolioStat(value: '5', label: 'Featured projects shipped'),
+  PortfolioStat(value: '2+', label: 'Years building with Flutter'),
+  PortfolioStat(value: '8', label: 'Featured projects shipped'),
   PortfolioStat(value: '3', label: 'Platforms across mobile and web'),
 ];
 

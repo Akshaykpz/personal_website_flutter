@@ -3,6 +3,7 @@ import 'dart:async';
 import 'dart:math' as math;
 
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -133,16 +134,12 @@ class _PortfolioPageState extends State<PortfolioPage>
 
     final currentBestSection = bestSection;
 
-    if ( currentBestSection != null && bestValue > 0.02) {
-
+    if (currentBestSection != null && bestValue > 0.02) {
       final nextIndex = currentBestSection.index;
 
       if (_activeSection.value != nextIndex) {
-
         _activeSection.value = nextIndex;
-
       }
-
     }
   }
 
@@ -227,9 +224,9 @@ class _PortfolioPageState extends State<PortfolioPage>
                       sectionId: PortfolioSectionId.projects,
                       child: _SectionFrame(
                         sectionLabel: 'Projects',
-                        title: 'Selected work in a smoother horizontal showcase.',
+                        title: 'Selected work in a cleaner project gallery.',
                         description:
-                            'Swipe, drag, or use your mouse wheel to move through projects with a more portfolio-style presentation.',
+                            'Browse projects in a normal responsive layout with more space between each card and a smoother reading flow.',
                         child: _ProjectsSection(
                           onProjectTap: (String url) {
                             _openUrl(url);
@@ -252,7 +249,8 @@ class _PortfolioPageState extends State<PortfolioPage>
                       sectionId: PortfolioSectionId.contact,
                       child: _SectionFrame(
                         sectionLabel: 'Contact',
-                        title: 'Let\'s build a smoother, more memorable product.',
+                        title:
+                            'Let\'s build a smoother, more memorable product.',
                         description:
                             'Use the contact form below to send your name, email, and message directly, or connect through LinkedIn, GitHub, and my resume.',
                         child: _ContactSection(
@@ -351,7 +349,10 @@ class _AnimatedBackdropState extends State<_AnimatedBackdrop>
     _controller = AnimationController(
       vsync: this,
       duration: const Duration(seconds: 18),
-    )..repeat();
+    );
+    if (!kIsWeb) {
+      _controller.repeat();
+    }
   }
 
   @override
@@ -362,70 +363,91 @@ class _AnimatedBackdropState extends State<_AnimatedBackdrop>
 
   @override
   Widget build(BuildContext context) {
+    final useStaticBackdrop =
+        kIsWeb || MediaQuery.maybeOf(context)?.disableAnimations == true;
+    if (useStaticBackdrop) {
+      return RepaintBoundary(
+        child: _buildBackdropScene(0.0, lightweight: true),
+      );
+    }
+
     return RepaintBoundary(
       child: AnimatedBuilder(
         animation: _controller,
         builder: (BuildContext context, Widget? child) {
           final t = _controller.value * math.pi * 2;
-          return Stack(
-            children: [
-              const DecoratedBox(
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: <Color>[
-                      Color(0xFF040714),
-                      Color(0xFF070B1E),
-                      Color(0xFF04050E),
-                    ],
-                  ),
-                ),
-              ),
-              Positioned.fill(
-                child: CustomPaint(
-                  painter: _GridPainter(
-                    lineColor: Colors.white.withValues(alpha: 0.045),
-                  ),
-                ),
-              ),
-              _GlowOrb(
-                alignment: Alignment(-0.85 + math.sin(t) * 0.15,
-                    -0.8 + math.cos(t * 0.7) * 0.18),
-                color: const Color(0xFFA855F7),
-                size: 420,
-              ),
-              _GlowOrb(
-                alignment: Alignment(0.85 + math.cos(t * 0.8) * 0.12,
-                    -0.4 + math.sin(t * 0.9) * 0.18),
-                color: const Color(0xFF22D3EE),
-                size: 320,
-              ),
-              _GlowOrb(
-                alignment: Alignment(-0.15 + math.sin(t * 0.65) * 0.2,
-                    0.85 + math.cos(t * 0.75) * 0.12),
-                color: const Color(0xFF7C3AED),
-                size: 500,
-              ),
-              Positioned.fill(
-                child: DecoratedBox(
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      colors: <Color>[
-                        Colors.black.withValues(alpha: 0.18),
-                        Colors.transparent,
-                        Colors.black.withValues(alpha: 0.35),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          );
+          return _buildBackdropScene(t, lightweight: false);
         },
       ),
+    );
+  }
+
+  Widget _buildBackdropScene(double t, {required bool lightweight}) {
+    final gridAlpha = lightweight ? 0.026 : 0.045;
+    final motion = lightweight ? 0.0 : 1.0;
+
+    return Stack(
+      children: [
+        const DecoratedBox(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: <Color>[
+                Color(0xFF040714),
+                Color(0xFF070B1E),
+                Color(0xFF04050E),
+              ],
+            ),
+          ),
+        ),
+        Positioned.fill(
+          child: CustomPaint(
+            painter: _GridPainter(
+              lineColor: Colors.white.withValues(alpha: gridAlpha),
+            ),
+          ),
+        ),
+        _GlowOrb(
+          alignment: Alignment(
+            -0.85 + math.sin(t) * 0.15 * motion,
+            -0.8 + math.cos(t * 0.7) * 0.18 * motion,
+          ),
+          color: const Color(0xFFA855F7),
+          size: lightweight ? 300 : 420,
+        ),
+        _GlowOrb(
+          alignment: Alignment(
+            0.85 + math.cos(t * 0.8) * 0.12 * motion,
+            -0.4 + math.sin(t * 0.9) * 0.18 * motion,
+          ),
+          color: const Color(0xFF22D3EE),
+          size: lightweight ? 240 : 320,
+        ),
+        _GlowOrb(
+          alignment: Alignment(
+            -0.15 + math.sin(t * 0.65) * 0.2 * motion,
+            0.85 + math.cos(t * 0.75) * 0.12 * motion,
+          ),
+          color: const Color(0xFF7C3AED),
+          size: lightweight ? 360 : 500,
+        ),
+        Positioned.fill(
+          child: DecoratedBox(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: <Color>[
+                  Colors.black.withValues(alpha: lightweight ? 0.14 : 0.18),
+                  Colors.transparent,
+                  Colors.black.withValues(alpha: lightweight ? 0.28 : 0.35),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
@@ -614,9 +636,7 @@ class _PortfolioNav extends StatelessWidget {
                 child: const Icon(Icons.menu_rounded, color: Colors.white),
               ),
             )
-            
           else
-
             ValueListenableBuilder<int>(
               valueListenable: activeSection,
               builder: (BuildContext context, int current, Widget? child) {
@@ -670,7 +690,6 @@ class _NavChip extends StatelessWidget {
               ? const Color(0xFFA855F7).withValues(alpha: 0.16)
               : Colors.transparent,
           borderRadius: BorderRadius.circular(16),
-          
           border: Border.all(
             color: isActive
                 ? const Color(0xFFA855F7).withValues(alpha: 0.34)
@@ -842,7 +861,8 @@ class _PointerGlow extends StatelessWidget {
                         color: Colors.white.withValues(alpha: 0.95),
                         boxShadow: <BoxShadow>[
                           BoxShadow(
-                            color: const Color(0xFFA855F7).withValues(alpha: 0.24),
+                            color:
+                                const Color(0xFFA855F7).withValues(alpha: 0.24),
                             blurRadius: 18,
                             spreadRadius: 2,
                           ),
@@ -1238,10 +1258,12 @@ class _HeroVisualState extends State<_HeroVisual>
                           ),
                           boxShadow: <BoxShadow>[
                             BoxShadow(
+
                               color: const Color(0xFFA855F7)
                                   .withValues(alpha: 0.24),
                               blurRadius: 20,
                               offset: const Offset(0, 8),
+                              
                             ),
                           ],
                         ),
@@ -1754,106 +1776,42 @@ class _SkillGroupCard extends StatelessWidget {
   }
 }
 
-class _ProjectsSection extends StatefulWidget {
-  const _ProjectsSection({required this.onProjectTap});
+class _ProjectsSection extends StatelessWidget {
+  const _ProjectsSection({Key? key, required this.onProjectTap})
+      : super(key: key);
 
   final ValueChanged<String> onProjectTap;
-
-  @override
-  State<_ProjectsSection> createState() => _ProjectsSectionState();
-}
-
-class _ProjectsSectionState extends State<_ProjectsSection> {
-  final ScrollController _railController = ScrollController();
-
-  @override
-  void dispose() {
-    _railController.dispose();
-    super.dispose();
-  }
-
-  void _handlePointerSignal(PointerSignalEvent event) {
-    if (event is! PointerScrollEvent || !_railController.hasClients) {
-      return;
-    }
-
-    final delta = event.scrollDelta.dy == 0
-        ? event.scrollDelta.dx
-        : event.scrollDelta.dy;
-    final nextOffset = (_railController.offset + delta).clamp(
-      0.0,
-      _railController.position.maxScrollExtent,
-    );
-
-    _railController.jumpTo(nextOffset.toDouble());
-  }
 
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
-        final cardWidth = constraints.maxWidth < 720
-            ? constraints.maxWidth * 0.86
+        final cardGap = constraints.maxWidth < 720 ? 16.0 : 24.0;
+        final cardHeight = constraints.maxWidth < 720
+            ? 470.0
             : constraints.maxWidth < 1180
-                ? 360.0
-                : 390.0;
-        final railHeight = constraints.maxWidth < 720 ? 470.0 : 500.0;
+                ? 490.0
+                : 510.0;
+        final cardWidth = constraints.maxWidth < 720
+            ? constraints.maxWidth
+            : constraints.maxWidth < 1180
+                ? (constraints.maxWidth - cardGap) / 2
+                : math.min((constraints.maxWidth - (cardGap * 2)) / 3, 390.0);
 
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(999),
-                color: Colors.white.withValues(alpha: 0.04),
-                border: Border.all(color: Colors.white.withValues(alpha: 0.08)),
+        return Wrap(
+          spacing: cardGap,
+          runSpacing: cardGap,
+          children: portfolioProjects.asMap().entries.map((entry) {
+            return SizedBox(
+              width: cardWidth,
+              height: cardHeight,
+              child: _ProjectCard(
+                index: entry.key + 1,
+                project: entry.value,
+                onTap: () => onProjectTap(entry.value.projectUrl),
               ),
-              child: Text(
-                'Horizontal showcase  -  drag, swipe, or scroll',
-                style: GoogleFonts.jetBrainsMono(
-                  color: Colors.white70,
-                  fontSize: 11,
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
-            ),
-            const SizedBox(height: 18),
-            Listener(
-              onPointerSignal: _handlePointerSignal,
-              child: Scrollbar(
-                controller: _railController,
-                thumbVisibility: constraints.maxWidth >= 900,
-                trackVisibility: constraints.maxWidth >= 900,
-                child: SizedBox(
-                  height: railHeight,
-                  child: ListView.separated(
-                    controller: _railController,
-                    scrollDirection: Axis.horizontal,
-                    physics: const BouncingScrollPhysics(),
-                    padding: const EdgeInsets.only(right: 24),
-                    itemCount: portfolioProjects.length,
-                    separatorBuilder: (_, __) => const SizedBox(width: 20),
-                    itemBuilder: (BuildContext context, int index) {
-                      final project = portfolioProjects[index];
-
-                      return SizedBox(
-                        width: cardWidth,
-                        child: _RevealOnScroll(
-                          delay: Duration(milliseconds: 110 * (index + 1)),
-                          child: _ProjectCard(
-                            index: index + 1,
-                            project: project,
-                            onTap: () => widget.onProjectTap(project.projectUrl),
-                          ),
-                        ),
-                      );
-                    },
-                  ),
-                ),
-              ),
-            ),
-          ],
+            );
+          }).toList(),
         );
       },
     );
@@ -1936,7 +1894,8 @@ class _ProjectCardState extends State<_ProjectCard> {
                         Image.asset(
                           widget.project.imageAsset,
                           fit: BoxFit.cover,
-                          filterQuality: FilterQuality.medium,
+                          filterQuality:
+                              kIsWeb ? FilterQuality.low : FilterQuality.medium,
                         ),
                         DecoratedBox(
                           decoration: BoxDecoration(
@@ -2171,7 +2130,8 @@ class _ExperienceCard extends StatelessWidget {
                       ),
                       boxShadow: <BoxShadow>[
                         BoxShadow(
-                          color: const Color(0xFFA855F7).withValues(alpha: 0.22),
+                          color:
+                              const Color(0xFFA855F7).withValues(alpha: 0.22),
                           blurRadius: 18,
                           spreadRadius: 2,
                         ),
@@ -2230,9 +2190,8 @@ class _ExperienceCard extends StatelessWidget {
                                         _ExperienceInfoPill(
                                           label: entry.period,
                                           color: const Color(0xFFD8B4FE),
-                                          background:
-                                              const Color(0xFFA855F7)
-                                                  .withValues(alpha: 0.1),
+                                          background: const Color(0xFFA855F7)
+                                              .withValues(alpha: 0.1),
                                         ),
                                       ],
                                     ),
@@ -2553,7 +2512,8 @@ class _ContactSectionState extends State<_ContactSection> {
       }
 
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Unable to send right now. Please try again.')),
+        const SnackBar(
+            content: Text('Unable to send right now. Please try again.')),
       );
     } catch (_) {
       if (!mounted) {
@@ -3307,33 +3267,56 @@ class _RevealOnScroll extends StatefulWidget {
 
 class _RevealOnScrollState extends State<_RevealOnScroll> {
   bool _revealed = false;
+  bool _revealScheduled = false;
+  late final Key _visibilityKey = UniqueKey();
+  Timer? _revealTimer;
+
+  @override
+  void dispose() {
+    _revealTimer?.cancel();
+    super.dispose();
+  }
 
   void _reveal() {
-    if (_revealed) {
+    if (_revealed || _revealScheduled) {
       return;
     }
 
-    if (widget.delay == Duration.zero) {
-      setState(() {
-        _revealed = true;
-      });
-      return;
-    }
-
-    Future<void>.delayed(widget.delay, () {
+    _revealScheduled = true;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted) {
         return;
       }
-      setState(() {
-        _revealed = true;
-      });
+
+      void revealNow() {
+        if (!mounted || _revealed) {
+          return;
+        }
+
+        setState(() {
+          _revealed = true;
+        });
+      }
+
+      if (widget.delay == Duration.zero) {
+        revealNow();
+        return;
+      }
+
+      _revealTimer = Timer(widget.delay, revealNow);
     });
   }
 
   @override
   Widget build(BuildContext context) {
+    final useStaticReveal =
+        kIsWeb || MediaQuery.maybeOf(context)?.disableAnimations == true;
+    if (useStaticReveal) {
+      return widget.child;
+    }
+
     return VisibilityDetector(
-      key: Key('${widget.hashCode}-reveal'),
+      key: _visibilityKey,
       onVisibilityChanged: (VisibilityInfo info) {
         if (info.visibleFraction > 0.1) {
           _reveal();
