@@ -1,11 +1,11 @@
 {
-    "name": "my_personal_website",
-    "short_name": "my_personal_website",
+    "name": "Akshay K P Portfolio",
+    "short_name": "Akshay",
     "start_url": ".",
     "display": "standalone",
-    "background_color": "#0175C2",
-    "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "background_color": "#050814",
+    "theme_color": "#050814",
+    "description": "Akshay K P's Flutter portfolio website.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
