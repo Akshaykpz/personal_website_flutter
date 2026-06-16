@@ -93,7 +93,6 @@ const String portfolioLocation = 'Kerala, India';
 const String portfolioGithubUrl = 'https://github.com/Akshaykpz';
 const String portfolioLinkedInUrl =
     'https://www.linkedin.com/in/akshay-kp-931056219/';
-const String portfolioResumeUrl = 'assets/assets/images/Akshay%20KP.resume.pdf';
 const String emailJsServiceId = 'service_01uj5cm';
 const String emailJsUserId = '6QkiRE5XFrLpJdZXu';
 const String emailJsTemplateId = 'template_d7983hp';

@@ -22,6 +22,9 @@ class PortfolioPage extends StatefulWidget {
 
 class _PortfolioPageState extends State<PortfolioPage>
     with SingleTickerProviderStateMixin {
+  static const int _webProjectImageCacheWidth = 960;
+  static const int _webProjectImageCacheHeight = 720;
+  static const int _webLogoImageCacheSize = 136;
   final ScrollController _scrollController = ScrollController();
   final ValueNotifier<double> _scrollProgress = ValueNotifier<double>(0.0);
   final ValueNotifier<int> _activeSection = ValueNotifier<int>(0);
@@ -105,15 +108,50 @@ class _PortfolioPageState extends State<PortfolioPage>
   }
 
   Future<void> _warmUpImages() async {
-    final assets = <String>[
-      for (final project in portfolioProjects) project.imageAsset,
-      for (final item in experienceEntries)
-        if (item.logoAsset != null) item.logoAsset!,
-    ];
-
-    for (final asset in assets) {
-      await precacheImage(AssetImage(asset), context);
+    for (final project in portfolioProjects) {
+      await precacheImage(
+        _buildAssetProvider(
+          project.imageAsset,
+          cacheWidth: _webProjectImageCacheWidth,
+          cacheHeight: _webProjectImageCacheHeight,
+        ),
+        context,
+        onError: (_, __) {},
+      );
     }
+
+    for (final item in experienceEntries) {
+      if (item.logoAsset == null) {
+        continue;
+      }
+
+      await precacheImage(
+        _buildAssetProvider(
+          item.logoAsset!,
+          cacheWidth: _webLogoImageCacheSize,
+          cacheHeight: _webLogoImageCacheSize,
+        ),
+        context,
+        onError: (_, __) {},
+      );
+    }
+  }
+
+  ImageProvider<Object> _buildAssetProvider(
+    String asset, {
+    int? cacheWidth,
+    int? cacheHeight,
+  }) {
+    final provider = AssetImage(asset);
+    if (!kIsWeb || cacheWidth == null) {
+      return provider;
+    }
+
+    return ResizeImage(
+      provider,
+      width: cacheWidth,
+      height: cacheHeight,
+    );
   }
 
   void _updateSectionVisibility(
@@ -193,9 +231,6 @@ class _PortfolioPageState extends State<PortfolioPage>
                         onPrimaryTap: () {
                           _scrollToSection(PortfolioSectionId.projects);
                         },
-                        onSecondaryTap: () {
-                          _openUrl(portfolioResumeUrl);
-                        },
                       ),
                     ),
                     _trackedSection(
@@ -252,11 +287,10 @@ class _PortfolioPageState extends State<PortfolioPage>
                         title:
                             'Let\'s build a smoother, more memorable product.',
                         description:
-                            'Use the contact form below to send your name, email, and message directly, or connect through LinkedIn, GitHub, and my resume.',
+                            'Use the contact form below to send your name, email, and message directly, or connect through LinkedIn and GitHub.',
                         child: _ContactSection(
                           onGithubTap: () => _openUrl(portfolioGithubUrl),
                           onLinkedInTap: () => _openUrl(portfolioLinkedInUrl),
-                          onResumeTap: () => _openUrl(portfolioResumeUrl),
                         ),
                       ),
                     ),
@@ -282,7 +316,6 @@ class _PortfolioPageState extends State<PortfolioPage>
                   onSectionTap: (PortfolioSectionId sectionId) {
                     _scrollToSection(sectionId);
                   },
-                  onResumeTap: () => _openUrl(portfolioResumeUrl),
                 ),
               ),
             ),
@@ -553,12 +586,10 @@ class _PortfolioNav extends StatelessWidget {
   const _PortfolioNav({
     required this.activeSection,
     required this.onSectionTap,
-    required this.onResumeTap,
   });
 
   final ValueNotifier<int> activeSection;
   final ValueChanged<PortfolioSectionId> onSectionTap;
-  final VoidCallback onResumeTap;
 
   @override
   Widget build(BuildContext context) {
@@ -651,12 +682,6 @@ class _PortfolioNav extends StatelessWidget {
                           onTap: () => onSectionTap(section),
                         ),
                       ),
-                    const SizedBox(width: 8),
-                    _ActionButton(
-                      label: 'Resume',
-                      onTap: onResumeTap,
-                      filled: true,
-                    ),
                   ],
                 );
               },
@@ -897,11 +922,9 @@ class _PointerGlow extends StatelessWidget {
 class _HeroSection extends StatelessWidget {
   const _HeroSection({
     required this.onPrimaryTap,
-    required this.onSecondaryTap,
   });
 
   final VoidCallback onPrimaryTap;
-  final VoidCallback onSecondaryTap;
 
   @override
   Widget build(BuildContext context) {
@@ -928,7 +951,6 @@ class _HeroSection extends StatelessWidget {
                     _HeroCopy(
                       isCompact: true,
                       onPrimaryTap: onPrimaryTap,
-                      onSecondaryTap: onSecondaryTap,
                     ),
                     const SizedBox(height: 24),
                     const _HeroVisual(isCompact: true),
@@ -942,7 +964,6 @@ class _HeroSection extends StatelessWidget {
                       child: _HeroCopy(
                         isCompact: false,
                         onPrimaryTap: onPrimaryTap,
-                        onSecondaryTap: onSecondaryTap,
                       ),
                     ),
                     const SizedBox(width: 42),
@@ -962,12 +983,10 @@ class _HeroCopy extends StatelessWidget {
   const _HeroCopy({
     required this.isCompact,
     required this.onPrimaryTap,
-    required this.onSecondaryTap,
   });
 
   final bool isCompact;
   final VoidCallback? onPrimaryTap;
-  final VoidCallback? onSecondaryTap;
 
   @override
   Widget build(BuildContext context) {
@@ -1062,10 +1081,6 @@ class _HeroCopy extends StatelessWidget {
                 label: 'View Projects',
                 onTap: onPrimaryTap ?? () {},
                 filled: true,
-              ),
-              _ActionButton(
-                label: 'Download Resume',
-                onTap: onSecondaryTap ?? () {},
               ),
             ],
           ),
@@ -1258,12 +1273,10 @@ class _HeroVisualState extends State<_HeroVisual>
                           ),
                           boxShadow: <BoxShadow>[
                             BoxShadow(
-
                               color: const Color(0xFFA855F7)
                                   .withValues(alpha: 0.24),
                               blurRadius: 20,
                               offset: const Offset(0, 8),
-                              
                             ),
                           ],
                         ),
@@ -1302,13 +1315,21 @@ class _HeroVisualState extends State<_HeroVisual>
                       value: 'Fast, polished product UI',
                     ),
                   ),
+                  
                   Positioned(
+
                     right: widget.isCompact ? 22 : 30,
+
                     bottom: widget.isCompact ? 56 : 72,
+
                     child: const _FloatingInfoCard(
+
                       label: 'Current mode',
+
                       value: 'Responsive web portfolio',
+
                       alignEnd: true,
+
                     ),
                   ),
                 ],
@@ -1894,8 +1915,25 @@ class _ProjectCardState extends State<_ProjectCard> {
                         Image.asset(
                           widget.project.imageAsset,
                           fit: BoxFit.cover,
+                          cacheWidth: kIsWeb ? 960 : null,
+                          cacheHeight: kIsWeb ? 720 : null,
                           filterQuality:
                               kIsWeb ? FilterQuality.low : FilterQuality.medium,
+                          errorBuilder: (
+                            BuildContext context,
+                            Object error,
+                            StackTrace? stackTrace,
+                          ) {
+                            return Container(
+                              color: const Color(0xFF0B1220),
+                              alignment: Alignment.center,
+                              child: const Icon(
+                                Icons.broken_image_outlined,
+                                color: Colors.white38,
+                                size: 38,
+                              ),
+                            );
+                          },
                         ),
                         DecoratedBox(
                           decoration: BoxDecoration(
@@ -2380,6 +2418,29 @@ class _ExperienceAvatar extends StatelessWidget {
           width: 68,
           height: 68,
           fit: BoxFit.cover,
+          cacheWidth: kIsWeb ? 136 : null,
+          cacheHeight: kIsWeb ? 136 : null,
+          filterQuality: kIsWeb ? FilterQuality.low : FilterQuality.medium,
+          errorBuilder: (
+            BuildContext context,
+            Object error,
+            StackTrace? stackTrace,
+          ) {
+            return Container(
+              width: 68,
+              height: 68,
+              color: const Color(0xFF0B1220),
+              alignment: Alignment.center,
+              child: Text(
+                entry.company.substring(0, 1).toUpperCase(),
+                style: GoogleFonts.spaceGrotesk(
+                  color: Colors.white70,
+                  fontSize: 28,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+            );
+          },
         ),
       );
     }
@@ -2409,12 +2470,10 @@ class _ContactSection extends StatefulWidget {
   const _ContactSection({
     required this.onGithubTap,
     required this.onLinkedInTap,
-    required this.onResumeTap,
   });
 
   final VoidCallback onGithubTap;
   final VoidCallback onLinkedInTap;
-  final VoidCallback onResumeTap;
 
   @override
   State<_ContactSection> createState() => _ContactSectionState();
@@ -2568,7 +2627,6 @@ class _ContactSectionState extends State<_ContactSection> {
                 _ContactSummaryCard(
                   onGithubTap: widget.onGithubTap,
                   onLinkedInTap: widget.onLinkedInTap,
-                  onResumeTap: widget.onResumeTap,
                 ),
               ],
             )
@@ -2595,7 +2653,6 @@ class _ContactSectionState extends State<_ContactSection> {
                   child: _ContactSummaryCard(
                     onGithubTap: widget.onGithubTap,
                     onLinkedInTap: widget.onLinkedInTap,
-                    onResumeTap: widget.onResumeTap,
                   ),
                 ),
               ],
@@ -2829,12 +2886,10 @@ class _ContactSummaryCard extends StatelessWidget {
   const _ContactSummaryCard({
     required this.onGithubTap,
     required this.onLinkedInTap,
-    required this.onResumeTap,
   });
 
   final VoidCallback onGithubTap;
   final VoidCallback onLinkedInTap;
-  final VoidCallback onResumeTap;
 
   @override
   Widget build(BuildContext context) {
@@ -2883,10 +2938,6 @@ class _ContactSummaryCard extends StatelessWidget {
                     _ActionButton(
                       label: 'Open GitHub',
                       onTap: onGithubTap,
-                    ),
-                    _ActionButton(
-                      label: 'Resume PDF',
-                      onTap: onResumeTap,
                     ),
                   ],
                 ),
