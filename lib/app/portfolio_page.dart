@@ -2945,115 +2945,14 @@ class _ContactSummaryCard extends StatelessWidget {
             ),
           ),
         ),
-        const SizedBox(height: 18),
-        const _AvailabilityCard(),
+     
+      
       ],
     );
   }
 }
 
-class _AvailabilityCard extends StatelessWidget {
-  const _AvailabilityCard();
 
-  @override
-  Widget build(BuildContext context) {
-    return _RevealOnScroll(
-      delay: const Duration(milliseconds: 160),
-      child: Container(
-        padding: const EdgeInsets.all(24),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(28),
-          color: const Color(0xFF08101E).withValues(alpha: 0.88),
-          border: Border.all(color: Colors.white.withValues(alpha: 0.08)),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Message pipeline',
-              style: GoogleFonts.jetBrainsMono(
-                color: const Color(0xFF22D3EE),
-                fontSize: 12,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-            const SizedBox(height: 16),
-            Text(
-              'The contact area now keeps the form visible and usable instead of hiding the message flow.',
-              style: GoogleFonts.spaceGrotesk(
-                color: Colors.white,
-                fontSize: 24,
-                height: 1.15,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-            const SizedBox(height: 18),
-            const _MetricRow(
-              label: 'Form fields',
-              value: 'Name, Email, Message',
-            ),
-            const SizedBox(height: 14),
-            const _MetricRow(
-              label: 'Delivery',
-              value: 'Direct EmailJS send',
-            ),
-            const SizedBox(height: 14),
-            const _MetricRow(
-              label: 'Best for',
-              value: 'Projects and product work',
-            ),
-            const SizedBox(height: 18),
-            Text(
-              'If the direct send is blocked by browser privacy settings, LinkedIn and GitHub stay available as backup contact paths.',
-              style: GoogleFonts.manrope(
-                color: Colors.white54,
-                fontSize: 13,
-                height: 1.7,
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class _MetricRow extends StatelessWidget {
-  const _MetricRow({
-    required this.label,
-    required this.value,
-  });
-
-  final String label;
-  final String value;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Expanded(
-          child: Text(
-            label,
-            style: GoogleFonts.manrope(
-              color: Colors.white54,
-              fontSize: 14,
-              fontWeight: FontWeight.w600,
-            ),
-          ),
-        ),
-        Text(
-          value,
-          style: GoogleFonts.spaceGrotesk(
-            color: Colors.white,
-            fontSize: 15,
-            fontWeight: FontWeight.w700,
-          ),
-        ),
-      ],
-    );
-  }
-}
 
 class _FooterSection extends StatelessWidget {
   const _FooterSection();
