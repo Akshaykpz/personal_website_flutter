@@ -8,9 +8,11 @@
     "test": "test"
   },
   "scripts": {
-  "test": "echo \"Error: no test specified\" && exit 1",
-  "build": "flutter build web"
-},
+    "dev": "flutter run -d chrome",
+    "dev-server": "flutter run -d web-server --web-port 8080 --web-hostname 127.0.0.1",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "flutter build web"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Akshaykpz/personal_website_flutter.git"

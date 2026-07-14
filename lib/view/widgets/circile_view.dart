@@ -50,6 +50,8 @@ class CircileView extends StatelessWidget {
           image,
           height: 20,
           width: 20,
+          cacheWidth: 40,
+          cacheHeight: 40,
         ),
       ),
     );

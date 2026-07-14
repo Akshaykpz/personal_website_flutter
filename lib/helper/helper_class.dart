@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_personal_website/constants/box.dart';
+import 'package:my_personal_website/constants/colors.dart';
 
 class HelperClass extends StatelessWidget {
   final Widget mobile;
@@ -21,37 +21,33 @@ class HelperClass extends StatelessWidget {
     final Size size = MediaQuery.of(context).size;
     return LayoutBuilder(
       builder: (context, constraints) {
-        if (constraints.maxWidth < 768) {
-          return Container(
-            // height: size.height,
-            width: size.width,
-            alignment: Alignment.center,
+        final isMobile = constraints.maxWidth < 768;
+        final horizontalPadding = isMobile ? 18.0 : paddingWidth;
+        final verticalPadding = isMobile ? 40.0 : 64.0;
+        final content = constraints.maxWidth < 768
+            ? mobile
+            : constraints.maxWidth < 1200
+                ? tablet
+                : desktop;
 
-            decoration: Colorss.gradientDecoration(),
-            padding: EdgeInsets.symmetric(
-                vertical: size.height * 0.05, horizontal: 18),
-            child: mobile,
-          );
-        } else if (constraints.maxWidth < 1200) {
-          return Container(
-            height: size.height,
-            width: size.width,
-            alignment: Alignment.center,
-            decoration: Colorss.gradientDecoration(),
-            padding: EdgeInsets.symmetric(
-                vertical: size.height * 0.1, horizontal: paddingWidth),
-            child: tablet,
-          );
-        } else {
-          return Container(
-            width: size.width,
-            alignment: Alignment.center,
-            decoration: Colorss.gradientDecoration(),
-            padding: EdgeInsets.symmetric(
-                vertical: size.height * 0.17, horizontal: paddingWidth),
-            child: desktop,
-          );
-        }
+        return Container(
+          width: size.width,
+          alignment: Alignment.center,
+          color: bgColor == Colors.transparent
+              ? Colors.transparent
+              : AppColors.slateBlack.withOpacity(0.68),
+          padding: EdgeInsets.symmetric(
+            vertical: verticalPadding,
+            horizontal: horizontalPadding,
+          ),
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(
+              maxWidth: 1320,
+              minHeight: 0,
+            ),
+            child: content,
+          ),
+        );
       },
     );
   }

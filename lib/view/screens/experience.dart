@@ -1,237 +1,220 @@
 import 'package:flutter/material.dart';
+import 'package:animate_do/animate_do.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:my_personal_website/constants/box.dart';
 import 'package:my_personal_website/constants/colors.dart';
 import 'package:my_personal_website/constants/textstyle.dart';
-import 'package:animate_do/animate_do.dart';
 import 'package:my_personal_website/helper/helper_class.dart';
 
-class Expierence extends StatefulWidget {
+class Expierence extends StatelessWidget {
   const Expierence({Key? key}) : super(key: key);
-
-  @override
-  State<Expierence> createState() => _ExpierenceState();
-}
-
-class _ExpierenceState extends State<Expierence> {
-  bool isoffhover = false, isdata = false, isonHover = false;
-  final isHoverActive = Matrix4.identity()..translate(0, -10, 0);
-  final isHoverRemove = Matrix4.identity()..translate(0, 0, 0);
 
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
 
+    final List<Map<String, String>> experiences = [
+      {
+        'image': 'assets/images/website.png',
+        'role': 'Flutter Developer',
+        'company': 'Genova Technologies Pvt Ltd',
+        'period': 'June 2025 - Present',
+        'description': 'Software company in Kozhikode, Kerala.',
+      },
+      {
+        'image': 'assets/images/427998075_917323277061139_5829715538073830577_n.jpg',
+        'role': 'Flutter Developer',
+        'company': 'Grapes IDMR - Info Park Trissur',
+        'period': 'May 2024 - April 2025',
+        'description': '',
+      },
+      {
+        'image': 'assets/images/WhatsApp Image 2024-02-29 at 18.41.19_76132ea6.jpg',
+        'role': 'Flutter Developer',
+        'company': 'Brototype - Calicut',
+        'period': 'April 2023 - April 2024',
+        'description': '',
+      },
+    ];
+
     return HelperClass(
       paddingWidth: size.width * 0.1,
-      bgColor: AppColors.bgcolors,
+      bgColor: Colors.transparent,
       mobile: Column(
-        mainAxisSize: MainAxisSize.min,
         children: [
-          fadetext(),
-          const SizedBox(height: 20),
-          Text(
-            'Experience My work experience as a Flutter Developer and working on different companies and projects',
-            style: Apptext.aboutstyles(),
-            textAlign: TextAlign.center,
-          ),
-          const SizedBox(height: 60),
-          InkWell(
-            mouseCursor: SystemMouseCursors.none,
-            onTap: () {},
-            onHover: (value) {
-              setState(() {
-                isonHover = value;
-              });
-            },
-            child: animatedContiner(
-              context,
-              'assets/images/427998075_917323277061139_5829715538073830577_n.jpg',
-              isonHover,
-              'Flutter Developer',
-              'Grapes IDMR - Info Park Trissur',
-              ' May 2024 - April 2025',
-              '',
-            ),
-          ),
-          const SizedBox(height: 20),
-          InkWell(
-            mouseCursor: SystemMouseCursors.none,
-            onTap: () {},
-            onHover: (value) {
-              setState(() {
-                isoffhover = value;
-              });
-            },
-            child: animatedContiner(
-                context,
-                'assets/images/WhatsApp Image 2024-02-29 at 18.41.19_76132ea6.jpg',
-                isoffhover,
-                ' Flutter Developer',
-                'Brototype - Calicut Kerala',
-                'April 2024 -  March 2023',
-                ""),
+          _buildHeader(),
+          const SizedBox(height: 40),
+          Wrap(
+            spacing: 20,
+            runSpacing: 20,
+            alignment: WrapAlignment.center,
+            children: experiences.map((exp) {
+              return ExperienceCard(
+                image: exp['image']!,
+                role: exp['role']!,
+                company: exp['company']!,
+                period: exp['period']!,
+                description: exp['description']!,
+              );
+            }).toList(),
           ),
         ],
       ),
       tablet: Column(
-        children: [expierenceFilter(context)],
-      ),
-      desktop: Column(
-        children: [expierenceFilter(context)],
-      ),
-    );
-  }
-
-  expierenceFilter(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      // mainAxisAlignment: MainAxisAlignment.spaceAround,
-      children: [
-        fadetext(),
-        const SizedBox(height: 20),
-        Text(
-          'Experience My work experience as a Flutter Developer and working on different companies and projects',
-          style: Apptext.aboutstyles(),
-          textAlign: TextAlign.center,
-        ),
-        const SizedBox(height: 60),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            InkWell(
-              mouseCursor: SystemMouseCursors.none,
-              onTap: () {},
-              onHover: (value) {
-                setState(() {
-                  isonHover = value;
-                });
-              },
-              child: animatedContiner(
-                context,
-                'assets/images/427998075_917323277061139_5829715538073830577_n.jpg',
-                isonHover,
-                'Flutter Developer',
-                'Grapes IDMR - Info Park Trissur',
-                ' May 2024 - April 2025',
-                '',
-              ),
-            ),
-            const SizedBox(width: 100),
-            InkWell(
-              mouseCursor: SystemMouseCursors.none,
-              onTap: () {},
-              onHover: (value) {
-                setState(() {
-                  isoffhover = value;
-                });
-              },
-              child: animatedContiner(
-                context,
-                'assets/images/WhatsApp Image 2024-02-29 at 18.41.19_76132ea6.jpg',
-                isoffhover,
-                ' Flutter Developer',
-                'Brototype - Calicut',
-                '2024 May - 2023 March',
-                '',
-              ),
-            ),
-          ],
-        ),
-      ],
-    );
-  }
-
-  FadeInDown fadetext() {
-    return FadeInDown(
-      child: RichText(
-        text: TextSpan(
-          text: 'Experience',
-          style: Apptext.addstyles(Colors.white),
-        ),
-      ),
-    );
-  }
-
-  Widget animatedContiner(
-    BuildContext context,
-    String image,
-    bool isHover,
-    String text1,
-    String text2,
-    String text3,
-    String text4,
-  ) {
-    double containerWidth = 500;
-    double containerHeight = 530;
-    double imageSize = 70;
-    // final double fontSize = MediaQuery.of(context).size.width * 0.01;
-
-    return AnimatedContainer(
-      transform: isHover ? isHoverActive : isHoverRemove,
-      width: isHover ? containerHeight : containerWidth,
-      height: isHover ? 250 : 270,
-      duration: const Duration(milliseconds: 100),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
-        color: const Color.fromRGBO(0, 0, 0, 0.122),
-        // gradient: const LinearGradient(
-        //   colors: [Colors.blue, Colors.purple],
-        //   begin: Alignment.topLeft,
-        //   end: Alignment.bottomRight,
-        // ),
-        border: Border.all(
-          color: Colors.white,
-          style: BorderStyle.solid,
-          width: 1,
-        ),
-      ),
-      child: Column(
-        // Change from Column to Row
         children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-            child: Image.asset(
-              image,
-              fit: BoxFit.contain,
-              width: imageSize,
-            ),
-          ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Text(
-                text1,
-                style: const TextStyle(
-                    fontSize: 15,
-                    color: Colors.white70,
-                    fontWeight: FontWeight.w400),
-              ),
-              Text(
-                text2,
-                style: const TextStyle(
-                    fontSize: 15,
-                    color: Colors.white70,
-                    fontWeight: FontWeight.w400),
-              ),
-              Text(
-                text3,
-                style: const TextStyle(
-                    fontSize: 15,
-                    color: Colors.white70,
-                    fontWeight: FontWeight.w400),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Text(
-                  text4,
-                  style: const TextStyle(
-                      fontSize: 13,
-                      color: Colors.white70,
-                      fontWeight: FontWeight.w400),
-                ),
-              ),
-            ],
+          _buildHeader(),
+          const SizedBox(height: 60),
+          Wrap(
+            spacing: 24,
+            runSpacing: 24,
+            alignment: WrapAlignment.center,
+            children: experiences.map((exp) {
+              return ExperienceCard(
+                image: exp['image']!,
+                role: exp['role']!,
+                company: exp['company']!,
+                period: exp['period']!,
+                description: exp['description']!,
+              );
+            }).toList(),
           ),
         ],
+      ),
+      desktop: Column(
+        children: [
+          _buildHeader(),
+          const SizedBox(height: 60),
+          Wrap(
+            spacing: 24,
+            runSpacing: 24,
+            alignment: WrapAlignment.center,
+            children: experiences.map((exp) {
+              return ExperienceCard(
+                image: exp['image']!,
+                role: exp['role']!,
+                company: exp['company']!,
+                period: exp['period']!,
+                description: exp['description']!,
+              );
+            }).toList(),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildHeader() {
+    return FadeInDown(
+      child: Column(
+        children: [
+          Text('WORK HISTORY', style: Apptext.monoLabel()),
+          const SizedBox(height: 8),
+          Text(
+            'EXPERIENCE',
+            style: Apptext.addstyles(AppColors.slateWhite),
+            textAlign: TextAlign.center,
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class ExperienceCard extends StatefulWidget {
+  final String image;
+  final String role;
+  final String company;
+  final String period;
+  final String description;
+
+  const ExperienceCard({
+    Key? key,
+    required this.image,
+    required this.role,
+    required this.company,
+    required this.period,
+    this.description = '',
+  }) : super(key: key);
+
+  @override
+  State<ExperienceCard> createState() => _ExperienceCardState();
+}
+
+class _ExperienceCardState extends State<ExperienceCard> {
+  bool isHover = false;
+  final isHoverActive = Matrix4.identity()..translate(0, -8, 0);
+  final isHoverRemove = Matrix4.identity()..translate(0, 0, 0);
+
+  @override
+  Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
+    final containerWidth = width < 768
+        ? width - 36
+        : width < 1200
+            ? 300.0
+            : 360.0;
+    const imageSize = 56.0;
+
+    return InkWell(
+      mouseCursor: SystemMouseCursors.click,
+      onTap: () {},
+      onHover: (value) => setState(() => isHover = value),
+      child: AnimatedContainer(
+        transform: isHover ? isHoverActive : isHoverRemove,
+        width: containerWidth,
+        constraints: const BoxConstraints(minHeight: 230),
+        duration: const Duration(milliseconds: 260),
+        curve: Curves.easeOutCubic,
+        decoration: Colorss.surfaceDecoration(isHover: isHover),
+        padding: const EdgeInsets.all(24),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(8),
+                  child: Image.asset(
+                    widget.image,
+                    fit: BoxFit.cover,
+                    width: imageSize,
+                    height: imageSize,
+                    cacheWidth: 112,
+                    cacheHeight: 112,
+                  ),
+                ),
+                const SizedBox(width: 16),
+                Expanded(
+                  child: Text(
+                    widget.role,
+                    style: Apptext.aboutstyles1(17).copyWith(
+                      fontWeight: FontWeight.bold,
+                      color: isHover ? AppColors.turquoise300 : AppColors.slateWhite,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 20),
+            Text(widget.company, style: Apptext.aboutstyles()),
+            const SizedBox(height: 8),
+            Text(
+              widget.period,
+              style: GoogleFonts.ibmPlexMono(
+                fontSize: 12,
+                fontWeight: FontWeight.w500,
+                color: AppColors.turquoise300,
+              ),
+            ),
+            if (widget.description.isNotEmpty) ...[
+              const SizedBox(height: 12),
+              Text(
+                widget.description,
+                style: Apptext.aboutstyles2(),
+              ),
+            ],
+          ],
+        ),
       ),
     );
   }

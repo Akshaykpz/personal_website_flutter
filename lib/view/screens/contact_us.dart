@@ -3,6 +3,7 @@ import 'dart:math';
 
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:my_personal_website/constants/box.dart';
 import 'package:my_personal_website/constants/colors.dart';
 import 'package:my_personal_website/constants/textstyle.dart';
@@ -215,30 +216,26 @@ class _ContactMeState extends State<ContactMe> {
                   isData = value;
                 });
               },
-              child: Container(
+              child: AnimatedContainer(
+                duration: const Duration(milliseconds: 200),
                 height: 50,
                 width: 200,
-                decoration: isData
-                    ? BoxDecoration(
-                        border: Border.all(color: AppColors.ebony),
-                        borderRadius: BorderRadius.circular(10),
-
-                        // boxShadow: const [
-                        //   BoxShadow(
-                        //       offset: Offset(0.0, 0.0),
-                        //       blurRadius: 10,
-                        //       color: Colors.white),
-                        // ],
-                        // gradient: const LinearGradient(
-                        //   begin: Alignment.centerLeft,
-                        //   end: Alignment.centerRight,
-                        //   colors: [
-                        //     Colors.blue,
-                        //     Colors.purple,
-                        //   ],
-                        // )
-                      )
-                    : Colorss.gradientDecoration(),
+                decoration: BoxDecoration(
+                  color: isData ? AppColors.turquoise300 : Colors.transparent,
+                  borderRadius: BorderRadius.circular(8),
+                  border: Border.all(
+                    color: AppColors.turquoise300,
+                    width: 1,
+                  ),
+                  boxShadow: [
+                    if (isData)
+                      BoxShadow(
+                        color: AppColors.turquoise300.withOpacity(0.2),
+                        blurRadius: 15,
+                        spreadRadius: -2,
+                      ),
+                  ],
+                ),
                 child: Center(
                     child: isloading
                         ? const CircularProgressIndicator(
@@ -246,10 +243,10 @@ class _ContactMeState extends State<ContactMe> {
                           )
                         : Text(
                             'Send Message',
-                            style: TextStyle(
-                                fontSize: 15,
-                                fontWeight: FontWeight.w600,
-                                color: isData ? Colors.white : Colors.white),
+                            style: GoogleFonts.bebasNeue(
+                                fontSize: 16,
+                                letterSpacing: 1,
+                                color: Colors.white),
                           )),
               ),
             )
@@ -393,30 +390,26 @@ class _ContactMeState extends State<ContactMe> {
               height: 30,
             ),
             InkWell(
-              child: Container(
+              child: AnimatedContainer(
+                duration: const Duration(milliseconds: 200),
                 height: 50,
                 width: 200,
-                decoration: isData
-                    ? BoxDecoration(
-                        border: Border.all(color: Colors.white),
-                        borderRadius: BorderRadius.circular(10),
-
-                        // boxShadow: const [
-                        //   BoxShadow(
-                        //       offset: Offset(0.0, 0.0),
-                        //       blurRadius: 10,
-                        //       color: Colors.white),
-                        // ],
-                        // gradient: const LinearGradient(
-                        //   begin: Alignment.centerLeft,
-                        //   end: Alignment.centerRight,
-                        //   colors: [
-                        //     Colors.blue,
-                        //     Colors.purple,
-                        //   ],
-                        // )
-                      )
-                    : Colorss.gradientDecoration(),
+                decoration: BoxDecoration(
+                  color: isData ? AppColors.turquoise300 : Colors.transparent,
+                  borderRadius: BorderRadius.circular(8),
+                  border: Border.all(
+                    color: AppColors.turquoise300,
+                    width: 1,
+                  ),
+                  boxShadow: [
+                    if (isData)
+                      BoxShadow(
+                        color: AppColors.turquoise300.withOpacity(0.2),
+                        blurRadius: 15,
+                        spreadRadius: -2,
+                      ),
+                  ],
+                ),
                 child: Center(
                     child: isloading
                         ? const Row(
@@ -436,10 +429,10 @@ class _ContactMeState extends State<ContactMe> {
                           )
                         : Text(
                             'Send Message',
-                            style: TextStyle(
-                                fontSize: 15,
-                                fontWeight: FontWeight.w600,
-                                color: isData ? Colors.white : Colors.white),
+                            style: GoogleFonts.bebasNeue(
+                                fontSize: 16,
+                                letterSpacing: 1,
+                                color: Colors.white),
                           )),
               ),
               onTap: () async {
@@ -468,34 +461,50 @@ class _ContactMeState extends State<ContactMe> {
 
   FadeInDown formtext() {
     return FadeInDown(
-        child: RichText(
-            text: TextSpan(
-                text: 'Contact',
-                style: Apptext.addstyles(Colors.white),
-                children: [
-          TextSpan(
-            text: '  Me',
-            style: Apptext.addstyles(Colors.white),
-          )
-        ])));
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'GET IN TOUCH',
+            style: GoogleFonts.bebasNeue(
+              fontSize: 14,
+              letterSpacing: 1.5,
+              color: AppColors.turquoise300,
+            ),
+          ),
+          const SizedBox(height: 4),
+          Text(
+            'CONTACT ME',
+            style: GoogleFonts.bebasNeue(
+              fontSize: 36,
+              color: AppColors.slateWhite,
+              letterSpacing: 1,
+            ),
+          ),
+        ],
+      ),
+    );
   }
 
   InputDecoration inputFiled({required String hinttext}) {
     return InputDecoration(
       hintText: hinttext,
-      fillColor: Colors.transparent,
-      hintStyle: const TextStyle(color: Colors.white70),
+      fillColor: AppColors.slate950.withOpacity(0.4),
+      hintStyle: GoogleFonts.inter(
+        fontSize: 14,
+        fontWeight: FontWeight.w400,
+        color: AppColors.slate500,
+      ),
       enabledBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(10),
-
-        borderSide: const BorderSide(color: Colors.white70), // Change here
+        borderRadius: BorderRadius.circular(8),
+        borderSide: BorderSide(color: AppColors.slate900, width: 1),
       ),
       focusedBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(18),
+        borderRadius: BorderRadius.circular(8),
+        borderSide: BorderSide(color: AppColors.turquoise300, width: 1.2),
       ),
-      contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+      contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
       filled: true,
-      focusColor: Colors.blueGrey,
     );
   }
 }

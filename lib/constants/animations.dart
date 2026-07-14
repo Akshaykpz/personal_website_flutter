@@ -1,5 +1,6 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:my_personal_website/constants/colors.dart';
 
 class MvNeuralWeb extends StatefulWidget {
   final int pointCount;
@@ -12,13 +13,13 @@ class MvNeuralWeb extends StatefulWidget {
 
   const MvNeuralWeb({
     Key? key,
-    this.pointCount = 25,
-    this.maxDistance = 200,
-    this.canvasSize = 400,
-    this.lineThickness = 2.0,
-    this.speed = 1.5,
-    this.dotColor = Colors.cyanAccent,
-    this.lineColor = Colors.cyanAccent,
+    this.pointCount = 32,
+    this.maxDistance = 180,
+    this.canvasSize = 420,
+    this.lineThickness = 1.0,
+    this.speed = 1.1,
+    this.dotColor = AppColors.turquoise300,
+    this.lineColor = AppColors.turquoise300,
   }) : super(key: key);
 
   @override
@@ -123,12 +124,17 @@ class _MVNeuralWebPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final paintDot = Paint()
-      ..color = dotColor
+      ..color = dotColor.withOpacity(0.86)
       ..style = PaintingStyle.fill;
 
     final paintLine = Paint()..strokeWidth = lineThickness;
 
+    final glowPaint = Paint()
+      ..color = lineColor.withOpacity(0.08)
+      ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 18);
+
     for (var point in points) {
+      canvas.drawCircle(point, 8, glowPaint);
       canvas.drawCircle(point, 3, paintDot);
     }
 
@@ -152,4 +158,107 @@ class _MVNeuralWebPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(covariant CustomPainter oldDelegate) => true;
+}
+
+class AnimatedTechBackground extends StatefulWidget {
+  const AnimatedTechBackground({Key? key}) : super(key: key);
+
+  @override
+  State<AnimatedTechBackground> createState() => _AnimatedTechBackgroundState();
+}
+
+class _AnimatedTechBackgroundState extends State<AnimatedTechBackground>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 16),
+    )..repeat();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return IgnorePointer(
+      child: AnimatedBuilder(
+        animation: _controller,
+        builder: (context, child) {
+          return CustomPaint(
+            painter: _TechBackgroundPainter(progress: _controller.value),
+            size: Size.infinite,
+          );
+        },
+      ),
+    );
+  }
+}
+
+class _TechBackgroundPainter extends CustomPainter {
+  final double progress;
+
+  _TechBackgroundPainter({required this.progress});
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final rect = Offset.zero & size;
+    final basePaint = Paint()
+      ..shader = const LinearGradient(
+        begin: Alignment.topLeft,
+        end: Alignment.bottomRight,
+        colors: [
+          AppColors.slateBlack,
+          AppColors.slate950,
+          AppColors.slateBlack,
+        ],
+      ).createShader(rect);
+    canvas.drawRect(rect, basePaint);
+
+    final accentPaint = Paint()
+      ..shader = RadialGradient(
+        center: const Alignment(0.58, -0.72),
+        radius: 1.05,
+        colors: [
+          AppColors.violet900.withOpacity(0.42),
+          AppColors.slateBlack.withOpacity(0),
+        ],
+      ).createShader(rect);
+    canvas.drawRect(rect, accentPaint);
+
+    final gridPaint = Paint()
+      ..color = AppColors.slate900.withOpacity(0.24)
+      ..strokeWidth = 1;
+    const grid = 72.0;
+
+    for (double x = 0; x < size.width; x += grid) {
+      canvas.drawLine(Offset(x, 0), Offset(x, size.height), gridPaint);
+    }
+    for (double y = 0; y < size.height; y += grid) {
+      canvas.drawLine(Offset(0, y), Offset(size.width, y), gridPaint);
+    }
+
+    final scanPaint = Paint()
+      ..color = AppColors.turquoise300.withOpacity(0.08)
+      ..strokeWidth = 1.0
+      ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 4);
+    final scanY = size.height * ((progress * 1.1) % 1);
+    canvas.drawLine(
+      Offset(0, scanY),
+      Offset(size.width, scanY - size.width * 0.12),
+      scanPaint,
+    );
+  }
+
+  @override
+  bool shouldRepaint(covariant _TechBackgroundPainter oldDelegate) {
+    return oldDelegate.progress != progress;
+  }
 }
