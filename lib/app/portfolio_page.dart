@@ -218,7 +218,9 @@ class _PortfolioPageState extends State<PortfolioPage>
       child: Scaffold(
         body: Stack(
           children: [
-            const Positioned.fill(child: _AnimatedBackdrop()),
+            const Positioned.fill(
+              child: _AnimatedBackdrop(),
+            ),
             Positioned.fill(
               child: SingleChildScrollView(
                 controller: _scrollController,
@@ -237,10 +239,8 @@ class _PortfolioPageState extends State<PortfolioPage>
                       sectionId: PortfolioSectionId.about,
                       child: _SectionFrame(
                         sectionLabel: 'About',
-                        title:
-                            'Building Flutter experiences with motion, clarity, and speed.',
-                        description:
-                            'I am a Flutter developer who enjoys turning ideas into interfaces that feel modern, responsive, and memorable. My focus is not just making screens work, but making them feel smooth and intentional across mobile and web.',
+                        title: '',
+                        description: '',
                         child: _AboutSection(),
                       ),
                     ),
@@ -248,10 +248,8 @@ class _PortfolioPageState extends State<PortfolioPage>
                       sectionId: PortfolioSectionId.skills,
                       child: _SectionFrame(
                         sectionLabel: 'Skills',
-                        title:
-                            'A practical stack for shipping polished digital products.',
-                        description:
-                            'I work across app development, responsive web layouts, API integration, and interface refinement with an eye on performance.',
+                        title: '',
+                        description: '',
                         child: _SkillsSection(),
                       ),
                     ),
@@ -259,9 +257,8 @@ class _PortfolioPageState extends State<PortfolioPage>
                       sectionId: PortfolioSectionId.projects,
                       child: _SectionFrame(
                         sectionLabel: 'Projects',
-                        title: 'Selected work in a cleaner project gallery.',
-                        description:
-                            'Browse projects in a normal responsive layout with more space between each card and a smoother reading flow.',
+                        title: '',
+                        description: '',
                         child: _ProjectsSection(
                           onProjectTap: (String url) {
                             _openUrl(url);
@@ -273,10 +270,8 @@ class _PortfolioPageState extends State<PortfolioPage>
                       sectionId: PortfolioSectionId.experience,
                       child: _SectionFrame(
                         sectionLabel: 'Experience',
-                        title:
-                            'A cleaner timeline of the places where I sharpened product thinking and delivery.',
-                        description:
-                            'My experience is now shown in a more structured model with a modern timeline feel inspired by the reference portfolio.',
+                        title: '',
+                        description: '',
                         child: _ExperienceSection(),
                       ),
                     ),
@@ -284,10 +279,8 @@ class _PortfolioPageState extends State<PortfolioPage>
                       sectionId: PortfolioSectionId.contact,
                       child: _SectionFrame(
                         sectionLabel: 'Contact',
-                        title:
-                            'Let\'s build a smoother, more memorable product.',
-                        description:
-                            'Use the contact form below to send your name, email, and message directly, or connect through LinkedIn and GitHub.',
+                        title: '',
+                        description: '',
                         child: _ContactSection(
                           onGithubTap: () => _openUrl(portfolioGithubUrl),
                           onLinkedInTap: () => _openUrl(portfolioLinkedInUrl),
@@ -930,6 +923,11 @@ class _HeroSection extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final isCompact = size.width < 980;
+    final double topPadding = isCompact
+        ? (size.width < 720 ? 110.0 : 122.0)
+        : (size.height < 780 ? 94.0 : 122.0);
+    final double bottomPadding = isCompact ? 24.0 : (size.height < 780 ? 16.0 : 24.0);
+
     final heroMinHeight = isCompact
         ? math.max(620.0, size.height * 0.72)
         : math.max(680.0, size.height * 0.78);
@@ -938,38 +936,56 @@ class _HeroSection extends StatelessWidget {
       constraints: BoxConstraints(minHeight: heroMinHeight),
       padding: EdgeInsets.fromLTRB(
         24,
-        size.width < 720 ? 110 : 122,
+        topPadding,
         24,
-        24,
+        bottomPadding,
       ),
       child: Center(
         child: ConstrainedBox(
           constraints: const BoxConstraints(maxWidth: 1220),
           child: isCompact
-              ? Column(
-                  children: [
-                    _HeroCopy(
-                      isCompact: true,
-                      onPrimaryTap: onPrimaryTap,
+              ? ScrollConfiguration(
+                  behavior: ScrollConfiguration.of(context).copyWith(scrollbars: false),
+                  child: SingleChildScrollView(
+                    physics: const BouncingScrollPhysics(),
+                    child: Column(
+                      children: [
+                        _HeroCopy(
+                          isCompact: true,
+                          onPrimaryTap: onPrimaryTap,
+                        ),
+                        const SizedBox(height: 24),
+                        const _HeroVisual(isCompact: true),
+                      ],
                     ),
-                    const SizedBox(height: 24),
-                    const _HeroVisual(isCompact: true),
-                  ],
+                  ),
                 )
               : Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Expanded(
                       flex: 12,
-                      child: _HeroCopy(
-                        isCompact: false,
-                        onPrimaryTap: onPrimaryTap,
+                      child: ScrollConfiguration(
+                        behavior: ScrollConfiguration.of(context).copyWith(scrollbars: false),
+                        child: SingleChildScrollView(
+                          physics: const BouncingScrollPhysics(),
+                          child: _HeroCopy(
+                            isCompact: false,
+                            onPrimaryTap: onPrimaryTap,
+                          ),
+                        ),
                       ),
                     ),
                     const SizedBox(width: 42),
-                    const Expanded(
+                    Expanded(
                       flex: 10,
-                      child: _HeroVisual(isCompact: false),
+                      child: ScrollConfiguration(
+                        behavior: ScrollConfiguration.of(context).copyWith(scrollbars: false),
+                        child: SingleChildScrollView(
+                          physics: const BouncingScrollPhysics(),
+                          child: _HeroVisual(isCompact: false),
+                        ),
+                      ),
                     ),
                   ],
                 ),
@@ -998,7 +1014,7 @@ class _HeroCopy extends StatelessWidget {
           delay: Duration(milliseconds: 100),
           child: _HeroTagLine(),
         ),
-        const SizedBox(height: 22),
+        SizedBox(height: isCompact ? 16 : 14),
         _RevealOnScroll(
           delay: const Duration(milliseconds: 220),
           child: Text(
@@ -1007,20 +1023,20 @@ class _HeroCopy extends StatelessWidget {
             style: GoogleFonts.spaceGrotesk(
               color: Colors.white,
               height: 0.92,
-              letterSpacing: -3.2,
-              fontSize: isCompact ? 56 : 92,
+              letterSpacing: -2.4,
+              fontSize: isCompact ? 56 : 78,
               fontWeight: FontWeight.w800,
             ),
           ),
         ),
-        const SizedBox(height: 18),
+        SizedBox(height: isCompact ? 12 : 10),
         _RevealOnScroll(
           delay: const Duration(milliseconds: 340),
           child: SizedBox(
-            height: isCompact ? 58 : 72,
+            height: isCompact ? 58 : 62,
             child: DefaultTextStyle(
               style: GoogleFonts.spaceGrotesk(
-                fontSize: isCompact ? 28 : 42,
+                fontSize: isCompact ? 28 : 36,
                 fontWeight: FontWeight.w700,
                 color: const Color(0xFFB8C1FF),
               ),
@@ -1033,7 +1049,7 @@ class _HeroCopy extends StatelessWidget {
                         title,
                         duration: const Duration(milliseconds: 1800),
                         textStyle: GoogleFonts.spaceGrotesk(
-                          fontSize: isCompact ? 28 : 42,
+                          fontSize: isCompact ? 28 : 36,
                           fontWeight: FontWeight.w700,
                           foreground: Paint()
                             ..shader = const LinearGradient(
@@ -1052,24 +1068,24 @@ class _HeroCopy extends StatelessWidget {
             ),
           ),
         ),
-        const SizedBox(height: 22),
+        SizedBox(height: isCompact ? 16 : 14),
         _RevealOnScroll(
           delay: const Duration(milliseconds: 470),
           child: ConstrainedBox(
             constraints: const BoxConstraints(maxWidth: 640),
             child: Text(
-              'I design and build Flutter products that look sharper, move smoother, and feel faster. This redesign pushes your portfolio toward that same direction: cinematic, animated, and easier to explore.',
+              'I design and build stylish, user-focused web and mobile experiences. Passionate about clean design, smooth animations, and product details that make a difference.',
               textAlign: isCompact ? TextAlign.center : TextAlign.left,
               style: GoogleFonts.manrope(
                 color: Colors.white70,
                 height: 1.7,
-                fontSize: isCompact ? 16 : 18,
+                fontSize: isCompact ? 16 : 17,
                 fontWeight: FontWeight.w500,
               ),
             ),
           ),
         ),
-        const SizedBox(height: 28),
+        SizedBox(height: isCompact ? 22 : 18),
         _RevealOnScroll(
           delay: const Duration(milliseconds: 620),
           child: Wrap(
@@ -1489,7 +1505,11 @@ class _SectionFrame extends StatelessWidget {
     final sectionVerticalPadding = width < 720 ? 28.0 : 34.0;
     final headerToTitleGap = width < 720 ? 12.0 : 14.0;
     final titleToDescriptionGap = width < 720 ? 14.0 : 16.0;
-    final descriptionToContentGap = width < 720 ? 24.0 : 28.0;
+    
+    // Dynamic gap spacing: use wider breathing room when title & description are empty
+    final contentGap = (title.isEmpty && description.isEmpty)
+        ? (width < 720 ? 32.0 : 42.0)
+        : (width < 720 ? 24.0 : 28.0);
 
     return Padding(
       padding: EdgeInsets.symmetric(
@@ -1513,41 +1533,45 @@ class _SectionFrame extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(height: headerToTitleGap),
-              _RevealOnScroll(
-                delay: const Duration(milliseconds: 100),
-                child: ConstrainedBox(
-                  constraints: const BoxConstraints(maxWidth: 760),
-                  child: Text(
-                    title,
-                    style: GoogleFonts.spaceGrotesk(
-                      color: Colors.white,
-                      fontSize:
-                          MediaQuery.of(context).size.width < 720 ? 34 : 52,
-                      fontWeight: FontWeight.w800,
-                      height: 1.02,
-                      letterSpacing: -1.8,
+              if (title.isNotEmpty) ...[
+                SizedBox(height: headerToTitleGap),
+                _RevealOnScroll(
+                  delay: const Duration(milliseconds: 100),
+                  child: ConstrainedBox(
+                    constraints: const BoxConstraints(maxWidth: 760),
+                    child: Text(
+                      title,
+                      style: GoogleFonts.spaceGrotesk(
+                        color: Colors.white,
+                        fontSize:
+                            MediaQuery.of(context).size.width < 720 ? 34 : 52,
+                        fontWeight: FontWeight.w800,
+                        height: 1.02,
+                        letterSpacing: -1.8,
+                      ),
                     ),
                   ),
                 ),
-              ),
-              SizedBox(height: titleToDescriptionGap),
-              _RevealOnScroll(
-                delay: const Duration(milliseconds: 180),
-                child: ConstrainedBox(
-                  constraints: const BoxConstraints(maxWidth: 760),
-                  child: Text(
-                    description,
-                    style: GoogleFonts.manrope(
-                      color: Colors.white70,
-                      fontSize: 16,
-                      height: 1.8,
-                      fontWeight: FontWeight.w500,
+              ],
+              if (description.isNotEmpty) ...[
+                SizedBox(height: titleToDescriptionGap),
+                _RevealOnScroll(
+                  delay: const Duration(milliseconds: 180),
+                  child: ConstrainedBox(
+                    constraints: const BoxConstraints(maxWidth: 760),
+                    child: Text(
+                      description,
+                      style: GoogleFonts.manrope(
+                        color: Colors.white70,
+                        fontSize: 16,
+                        height: 1.8,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
                   ),
                 ),
-              ),
-              SizedBox(height: descriptionToContentGap),
+              ],
+              SizedBox(height: contentGap),
               child,
             ],
           ),
@@ -1558,62 +1582,11 @@ class _SectionFrame extends StatelessWidget {
 }
 
 class _AboutSection extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    final isCompact = MediaQuery.of(context).size.width < 720;
-
-    return Column(
-      children: [
-        _AboutCopy(isCompact: isCompact),
-        const SizedBox(height: 18),
-        const _AboutCapabilities(),
-      ],
-    );
-  }
-}
-
-class _AboutCopy extends StatelessWidget {
-  const _AboutCopy({required this.isCompact});
-
-  final bool isCompact;
+  const _AboutSection();
 
   @override
   Widget build(BuildContext context) {
-    return _RevealOnScroll(
-      delay: const Duration(milliseconds: 100),
-      child: Container(
-        padding: EdgeInsets.all(isCompact ? 22 : 28),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(28),
-          border: Border.all(color: Colors.white.withValues(alpha: 0.08)),
-          color: Colors.white.withValues(alpha: 0.03),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'The goal for this redesign is not only a better look. It is also a better feel. That means stronger hierarchy, lighter interactions, smoother scrolling, and a layout that presents your work more confidently.',
-              style: GoogleFonts.manrope(
-                color: Colors.white,
-                fontSize: 18,
-                height: 1.8,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-            const SizedBox(height: 20),
-            Text(
-              'I have kept your identity, your projects, and your experience, but moved the app toward a more cinematic portfolio direction inspired by the reference: loader overlay, fixed ambient background, anchored navigation, section rail, and project cards that feel more premium.',
-              style: GoogleFonts.manrope(
-                color: Colors.white70,
-                fontSize: 16,
-                height: 1.8,
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
+    return const _AboutCapabilities();
   }
 }
 
