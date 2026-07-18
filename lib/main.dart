@@ -35,7 +35,9 @@ class PortfolioApp extends StatelessWidget {
         ),
         textTheme: GoogleFonts.spaceGroteskTextTheme(baseTheme.textTheme),
       ),
-      home: const PortfolioPage(),
+      home: const PortfolioPage(
+        
+      ),
     );
   }
 }

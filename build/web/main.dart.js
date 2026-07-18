@@ -80624,7 +80624,7 @@ return A.R(A.asx(A.fC(a,0,null),"_blank"),$async$oz)
 case 2:return A.M(null,r)}})
 return A.N($async$oz,r)},
 K(a){var s=this,r=null,q=t.p,p=s.f
-q=A.c([B.Mn,A.tl(0,A.M4(A.ch(A.c([s.oN(new A.Q1(new A.ak9(s),r),B.hs),s.oN(new A.no("About","","",new A.Nv(r),r),B.ko),s.oN(new A.no("Skills","A robust stack for modern product delivery.","I use a focused set of tools and best practices to build, test, and ship clean interfaces on mobile and web platforms.",new A.TE(r),r),B.kp),s.oN(new A.no("Projects","Featured Works & Creations","A collection of responsive applications, UI clones, and developer tools built using Flutter, Firebase, and REST APIs.",new A.S3(new A.aka(s),r),r),B.ht),s.oN(new A.no("Experience","Professional Work History","My career path and timeline as a Flutter Developer, shipping features and polishing digital products.",new A.PA(r),r),B.kq),s.oN(new A.no("Contact","Let's build something great together.","Feel free to reach out using the form below or connect through my social channels. I am always open to discussing new projects, design ideas, or opportunities.",new A.C8(new A.akb(s),new A.akc(s),r),r),B.kr),B.Wj],q),B.Z,B.t,B.z),s.d,r,B.C0)),A.iw(r,new A.Up(s.e,r),r,r,0,0,0,r),A.iw(r,A.aa7(!0,new A.RZ(p,new A.akd(s),r),B.nd,!0),r,r,0,0,18,r),A.iw(0,A.aa7(!0,new A.Tc(p,new A.ake(s),r),B.bf,!0),r,r,r,18,0,r),A.tl(0,new A.RC(s.x,s.y,r))],q)
+q=A.c([B.Mn,A.tl(0,A.M4(A.ch(A.c([s.oN(new A.Q1(new A.ak9(s),r),B.hs),s.oN(new A.no("About","","",new A.Nv(r),r),B.ko),s.oN(new A.no("Skills","","",new A.TE(r),r),B.kp),s.oN(new A.no("Projects","","",new A.S3(new A.aka(s),r),r),B.ht),s.oN(new A.no("Experience","","",new A.PA(r),r),B.kq),s.oN(new A.no("Contact","","",new A.C8(new A.akb(s),new A.akc(s),r),r),B.kr),B.Wj],q),B.Z,B.t,B.z),s.d,r,B.C0)),A.iw(r,new A.Up(s.e,r),r,r,0,0,0,r),A.iw(r,A.aa7(!0,new A.RZ(p,new A.akd(s),r),B.nd,!0),r,r,0,0,18,r),A.iw(0,A.aa7(!0,new A.Tc(p,new A.ake(s),r),B.bf,!0),r,r,r,18,0,r),A.tl(0,new A.RC(s.x,s.y,r))],q)
 if(!s.Q){p=s.z
 p===$&&A.a()
 q.push(A.tl(0,new A.QD(p,r)))}return A.jr(new A.zY(A.hN(B.bl,q,B.Y,B.bw),r),B.bn,r,new A.akf(s),new A.akg(s),new A.akh(s))},
@@ -80888,16 +80888,17 @@ A.qo.prototype={
 K(a){var s=null,r=A.bR(22),q=A.eq(B.h.aF(0.08)),p=B.h.aF(0.035),o=this.c
 return A.c1(s,A.ch(A.c([A.b2(o.a,s,s,s,A.da().$4$color$fontSize$fontWeight$letterSpacing(B.h,28,B.bq,-1),s,s),B.P5,A.b2(o.b,s,s,s,A.hl().$4$color$fontSize$fontWeight$height(B.mJ,13,B.aw,1.5),s,s)],t.p),B.T,B.t,B.z),B.q,s,B.At,new A.bg(p,s,q,r,s,s,B.N),s,s,s,B.ne,s,s,s)}}
 A.no.prototype={
-K(a){var s,r,q,p=this,o=null,n=t.w,m=A.br(a,o,n).w.a.a<720,l=m?28:34,k=m?12:14,j=m?14:16,i=m?24:28
-m=t.p
-s=A.c([new A.e9(A.b2(p.c.toUpperCase(),o,o,o,A.fP().$4$color$fontSize$fontWeight$letterSpacing(B.Cy,12,B.W,2.8),o,o),B.A,o)],m)
-r=p.d
-if(r.length!==0){q=A.cM(o,k,o)
-B.b.P(s,A.c([q,new A.e9(new A.dU(B.lT,A.b2(r,o,o,o,A.da().$5$color$fontSize$fontWeight$height$letterSpacing(B.h,A.br(a,o,n).w.a.a<720?34:52,B.bq,1.02,-1.8),o,o),o),B.b0,o)],m))}n=p.e
-if(n.length!==0)B.b.P(s,A.c([A.cM(o,j,o),new A.e9(new A.dU(B.lT,A.b2(n,o,o,o,A.hl().$4$color$fontSize$fontWeight$height(B.y,16,B.G,1.8),o,o),o),B.n5,o)],m))
-s.push(A.cM(o,i,o))
-s.push(p.f)
-return new A.cn(new A.as(24,l,24,l),A.kf(new A.dU(B.iz,A.ch(s,B.T,B.t,B.z),o),o,o),o)}}
+K(a){var s,r,q=this,p=null,o=t.w,n=A.br(a,p,o).w.a.a<720,m=n?28:34,l=n?12:14,k=n?14:16,j=q.d,i=j.length===0
+if(i&&q.e.length===0)s=n?32:42
+else s=n?24:28
+n=t.p
+r=A.c([new A.e9(A.b2(q.c.toUpperCase(),p,p,p,A.fP().$4$color$fontSize$fontWeight$letterSpacing(B.Cy,12,B.W,2.8),p,p),B.A,p)],n)
+if(!i){i=A.cM(p,l,p)
+B.b.P(r,A.c([i,new A.e9(new A.dU(B.lT,A.b2(j,p,p,p,A.da().$5$color$fontSize$fontWeight$height$letterSpacing(B.h,A.br(a,p,o).w.a.a<720?34:52,B.bq,1.02,-1.8),p,p),p),B.b0,p)],n))}o=q.e
+if(o.length!==0)B.b.P(r,A.c([A.cM(p,k,p),new A.e9(new A.dU(B.lT,A.b2(o,p,p,p,A.hl().$4$color$fontSize$fontWeight$height(B.y,16,B.G,1.8),p,p),p),B.n5,p)],n))
+r.push(A.cM(p,s,p))
+r.push(q.f)
+return new A.cn(new A.as(24,m,24,m),A.kf(new A.dU(B.iz,A.ch(r,B.T,B.t,B.z),p),p,p),p)}}
 A.Nv.prototype={
 K(a){return B.VX}}
 A.Nu.prototype={
