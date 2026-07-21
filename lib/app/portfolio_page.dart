@@ -31,7 +31,6 @@ class _PortfolioPageState extends State<PortfolioPage>
   final Map<PortfolioSectionId, GlobalKey> _sectionKeys =
       <PortfolioSectionId, GlobalKey>{
     PortfolioSectionId.home: GlobalKey(),
-    PortfolioSectionId.about: GlobalKey(),
     PortfolioSectionId.skills: GlobalKey(),
     PortfolioSectionId.projects: GlobalKey(),
     PortfolioSectionId.experience: GlobalKey(),
@@ -236,15 +235,6 @@ class _PortfolioPageState extends State<PortfolioPage>
                       ),
                     ),
                     _trackedSection(
-                      sectionId: PortfolioSectionId.about,
-                      child: _SectionFrame(
-                        sectionLabel: 'About',
-                        title: '',
-                        description: '',
-                        child: _AboutSection(),
-                      ),
-                    ),
-                    _trackedSection(
                       sectionId: PortfolioSectionId.skills,
                       child: _SectionFrame(
                         sectionLabel: 'Skills',
@@ -287,7 +277,6 @@ class _PortfolioPageState extends State<PortfolioPage>
                         ),
                       ),
                     ),
-                    const _FooterSection(),
                   ],
                 ),
               ),
@@ -926,7 +915,8 @@ class _HeroSection extends StatelessWidget {
     final double topPadding = isCompact
         ? (size.width < 720 ? 110.0 : 122.0)
         : (size.height < 780 ? 94.0 : 122.0);
-    final double bottomPadding = isCompact ? 24.0 : (size.height < 780 ? 16.0 : 24.0);
+    final double bottomPadding =
+        isCompact ? 24.0 : (size.height < 780 ? 16.0 : 24.0);
 
     final heroMinHeight = isCompact
         ? math.max(620.0, size.height * 0.72)
@@ -935,9 +925,9 @@ class _HeroSection extends StatelessWidget {
     return Container(
       constraints: BoxConstraints(minHeight: heroMinHeight),
       padding: EdgeInsets.fromLTRB(
-        24,
+        16,
         topPadding,
-        24,
+        16,
         bottomPadding,
       ),
       child: Center(
@@ -945,7 +935,8 @@ class _HeroSection extends StatelessWidget {
           constraints: const BoxConstraints(maxWidth: 1220),
           child: isCompact
               ? ScrollConfiguration(
-                  behavior: ScrollConfiguration.of(context).copyWith(scrollbars: false),
+                  behavior: ScrollConfiguration.of(context)
+                      .copyWith(scrollbars: false),
                   child: SingleChildScrollView(
                     physics: const BouncingScrollPhysics(),
                     child: Column(
@@ -966,7 +957,8 @@ class _HeroSection extends StatelessWidget {
                     Expanded(
                       flex: 12,
                       child: ScrollConfiguration(
-                        behavior: ScrollConfiguration.of(context).copyWith(scrollbars: false),
+                        behavior: ScrollConfiguration.of(context)
+                            .copyWith(scrollbars: false),
                         child: SingleChildScrollView(
                           physics: const BouncingScrollPhysics(),
                           child: _HeroCopy(
@@ -980,7 +972,8 @@ class _HeroSection extends StatelessWidget {
                     Expanded(
                       flex: 10,
                       child: ScrollConfiguration(
-                        behavior: ScrollConfiguration.of(context).copyWith(scrollbars: false),
+                        behavior: ScrollConfiguration.of(context)
+                            .copyWith(scrollbars: false),
                         child: SingleChildScrollView(
                           physics: const BouncingScrollPhysics(),
                           child: _HeroVisual(isCompact: false),
@@ -1085,34 +1078,41 @@ class _HeroCopy extends StatelessWidget {
             ),
           ),
         ),
-        SizedBox(height: isCompact ? 22 : 18),
+        SizedBox(height: isCompact ? 28 : 34),
         _RevealOnScroll(
-          delay: const Duration(milliseconds: 620),
-          child: Wrap(
-            spacing: 14,
-            runSpacing: 14,
-            alignment: isCompact ? WrapAlignment.center : WrapAlignment.start,
-            children: [
-              _ActionButton(
-                label: 'View Projects',
-                onTap: onPrimaryTap ?? () {},
-                filled: true,
-              ),
-            ],
-          ),
-        ),
-        const SizedBox(height: 36),
-        _RevealOnScroll(
-          delay: const Duration(milliseconds: 740),
-          child: Wrap(
-            spacing: 16,
-            runSpacing: 16,
-            alignment: isCompact ? WrapAlignment.center : WrapAlignment.start,
-            children: portfolioStats
-                .map(
-                  (PortfolioStat stat) => _StatPill(stat: stat),
-                )
-                .toList(),
+          delay: const Duration(milliseconds: 400),
+          child: LayoutBuilder(
+            builder: (BuildContext context, BoxConstraints constraints) {
+              final useVertical = constraints.maxWidth < 480;
+              if (useVertical) {
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    _StatPill(stat: portfolioStats[0]),
+                    const SizedBox(height: 12),
+                    _StatPill(stat: portfolioStats[1]),
+                    const SizedBox(height: 12),
+                    _StatPill(stat: portfolioStats[2]),
+                  ],
+                );
+              }
+
+              return IntrinsicHeight(
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Expanded(
+                        flex: 3, child: _StatPill(stat: portfolioStats[0])),
+                    const SizedBox(width: 16),
+                    Expanded(
+                        flex: 3, child: _StatPill(stat: portfolioStats[1])),
+                    const SizedBox(width: 16),
+                    Expanded(
+                        flex: 4, child: _StatPill(stat: portfolioStats[2])),
+                  ],
+                ),
+              );
+            },
           ),
         ),
       ],
@@ -1323,31 +1323,6 @@ class _HeroVisualState extends State<_HeroVisual>
                       ),
                     ],
                   ),
-                  Positioned(
-                    left: widget.isCompact ? 18 : 24,
-                    top: widget.isCompact ? 62 : 70,
-                    child: const _FloatingInfoCard(
-                      label: 'Focus',
-                      value: 'Fast, polished product UI',
-                    ),
-                  ),
-                  
-                  Positioned(
-
-                    right: widget.isCompact ? 22 : 30,
-
-                    bottom: widget.isCompact ? 56 : 72,
-
-                    child: const _FloatingInfoCard(
-
-                      label: 'Current mode',
-
-                      value: 'Responsive web portfolio',
-
-                      alignEnd: true,
-
-                    ),
-                  ),
                 ],
               );
             },
@@ -1450,9 +1425,13 @@ class _StatPill extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final isMobile = screenWidth < 600;
     return Container(
-      constraints: const BoxConstraints(minWidth: 184),
-      padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 16),
+      padding: EdgeInsets.symmetric(
+        horizontal: isMobile ? 12 : 18,
+        vertical: isMobile ? 12 : 16,
+      ),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(22),
         border: Border.all(color: Colors.white.withValues(alpha: 0.08)),
@@ -1465,7 +1444,7 @@ class _StatPill extends StatelessWidget {
             stat.value,
             style: GoogleFonts.spaceGrotesk(
               color: Colors.white,
-              fontSize: 28,
+              fontSize: isMobile ? 24 : 28,
               fontWeight: FontWeight.w800,
               letterSpacing: -1,
             ),
@@ -1475,7 +1454,7 @@ class _StatPill extends StatelessWidget {
             stat.label,
             style: GoogleFonts.manrope(
               color: Colors.white60,
-              fontSize: 13,
+              fontSize: isMobile ? 11 : 13,
               height: 1.5,
               fontWeight: FontWeight.w600,
             ),
@@ -1505,7 +1484,7 @@ class _SectionFrame extends StatelessWidget {
     final sectionVerticalPadding = width < 720 ? 28.0 : 34.0;
     final headerToTitleGap = width < 720 ? 12.0 : 14.0;
     final titleToDescriptionGap = width < 720 ? 14.0 : 16.0;
-    
+
     // Dynamic gap spacing: use wider breathing room when title & description are empty
     final contentGap = (title.isEmpty && description.isEmpty)
         ? (width < 720 ? 32.0 : 42.0)
@@ -1513,7 +1492,7 @@ class _SectionFrame extends StatelessWidget {
 
     return Padding(
       padding: EdgeInsets.symmetric(
-        horizontal: 24,
+        horizontal: 16,
         vertical: sectionVerticalPadding,
       ),
       child: Center(
@@ -1576,100 +1555,6 @@ class _SectionFrame extends StatelessWidget {
             ],
           ),
         ),
-      ),
-    );
-  }
-}
-
-class _AboutSection extends StatelessWidget {
-  const _AboutSection();
-
-  @override
-  Widget build(BuildContext context) {
-    return const _AboutCapabilities();
-  }
-}
-
-class _AboutCapabilities extends StatelessWidget {
-  const _AboutCapabilities();
-
-  @override
-  Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (BuildContext context, BoxConstraints constraints) {
-        final width = constraints.maxWidth < 720
-            ? constraints.maxWidth
-            : (constraints.maxWidth - 16) / 2;
-
-        return Wrap(
-          spacing: 16,
-          runSpacing: 16,
-          children: capabilityItems.asMap().entries.map((entry) {
-            return SizedBox(
-              width: width,
-              child: _RevealOnScroll(
-                delay: Duration(milliseconds: 130 * (entry.key + 1)),
-                child: _CapabilityCard(item: entry.value),
-              ),
-            );
-          }).toList(),
-        );
-      },
-    );
-  }
-}
-
-class _CapabilityCard extends StatelessWidget {
-  const _CapabilityCard({required this.item});
-
-  final CapabilityItem item;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(18),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(24),
-        border: Border.all(color: Colors.white.withValues(alpha: 0.08)),
-        color: const Color(0xFF0A1121).withValues(alpha: 0.8),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            width: 48,
-            height: 48,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(16),
-              gradient: const LinearGradient(
-                colors: <Color>[
-                  Color(0xFFA855F7),
-                  Color(0xFF22D3EE),
-                ],
-              ),
-            ),
-            child: Icon(item.icon, color: Colors.white),
-          ),
-          const SizedBox(height: 14),
-          Text(
-            item.title,
-            style: GoogleFonts.spaceGrotesk(
-              color: Colors.white,
-              fontSize: 20,
-              fontWeight: FontWeight.w700,
-            ),
-          ),
-          const SizedBox(height: 8),
-          Text(
-            item.description,
-            style: GoogleFonts.manrope(
-              color: Colors.white70,
-              fontSize: 14,
-              height: 1.6,
-              fontWeight: FontWeight.w500,
-            ),
-          ),
-        ],
       ),
     );
   }
@@ -2669,7 +2554,7 @@ class _ContactFormCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Let\'s connect with a proper message flow.',
+                'Let\'s connect',
                 style: GoogleFonts.spaceGrotesk(
                   color: Colors.white,
                   fontSize: 30,
@@ -2679,15 +2564,6 @@ class _ContactFormCard extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 18),
-              Text(
-                'Share your name, email, and message below. The form stays visible, responsive, and sends directly from the portfolio.',
-                style: GoogleFonts.manrope(
-                  color: Colors.white70,
-                  fontSize: 16,
-                  height: 1.8,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
               const SizedBox(height: 24),
               Form(
                 key: formKey,
@@ -2744,14 +2620,6 @@ class _ContactFormCard extends StatelessWidget {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
-                            'Powered by a direct portfolio contact flow.',
-                            style: GoogleFonts.jetBrainsMono(
-                              color: Colors.white38,
-                              fontSize: 11,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
                           const SizedBox(height: 14),
                           _ActionButton(
                             label: isSending ? 'Sending...' : 'Send Message',
@@ -2764,16 +2632,6 @@ class _ContactFormCard extends StatelessWidget {
                     else
                       Row(
                         children: [
-                          Expanded(
-                            child: Text(
-                              'Powered by a direct portfolio contact flow.',
-                              style: GoogleFonts.jetBrainsMono(
-                                color: Colors.white38,
-                                fontSize: 11,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                          ),
                           const SizedBox(width: 14),
                           _ActionButton(
                             label: isSending ? 'Sending...' : 'Send Message',
@@ -2889,15 +2747,6 @@ class _ContactSummaryCard extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 16),
-                Text(
-                  'Use the form or jump to the platforms where I respond fastest.',
-                  style: GoogleFonts.spaceGrotesk(
-                    color: Colors.white,
-                    fontSize: 24,
-                    height: 1.15,
-                    fontWeight: FontWeight.w700,
-                  ),
-                ),
                 const SizedBox(height: 18),
                 Wrap(
                   spacing: 12,
@@ -2918,75 +2767,7 @@ class _ContactSummaryCard extends StatelessWidget {
             ),
           ),
         ),
-     
-      
       ],
-    );
-  }
-}
-
-
-
-class _FooterSection extends StatelessWidget {
-  const _FooterSection();
-
-  @override
-  Widget build(BuildContext context) {
-    final isCompact = MediaQuery.of(context).size.width < 860;
-
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(24, 24, 24, 34),
-      child: Center(
-        child: ConstrainedBox(
-          constraints: const BoxConstraints(maxWidth: 1220),
-          child: isCompact
-              ? Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      '(c) 2026 $portfolioName. Built with Flutter for a smoother portfolio experience.',
-                      style: GoogleFonts.manrope(
-                        color: Colors.white54,
-                        fontSize: 14,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                    const SizedBox(height: 10),
-                    Text(
-                      'Design direction inspired by the shared reference site',
-                      style: GoogleFonts.jetBrainsMono(
-                        color: Colors.white38,
-                        fontSize: 11,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ],
-                )
-              : Row(
-                  children: [
-                    Expanded(
-                      child: Text(
-                        '(c) 2026 $portfolioName. Built with Flutter for a smoother portfolio experience.',
-                        style: GoogleFonts.manrope(
-                          color: Colors.white54,
-                          fontSize: 14,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    ),
-                    Text(
-                      'Design direction inspired by the shared reference site',
-                      textAlign: TextAlign.right,
-                      style: GoogleFonts.jetBrainsMono(
-                        color: Colors.white38,
-                        fontSize: 11,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ],
-                ),
-        ),
-      ),
     );
   }
 }

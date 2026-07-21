@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 
-enum PortfolioSectionId { home, about, skills, projects, experience, contact }
+enum PortfolioSectionId { home, skills, projects, experience, contact }
 
 extension PortfolioSectionMeta on PortfolioSectionId {
   String get label {
     switch (this) {
       case PortfolioSectionId.home:
         return 'Home';
-      case PortfolioSectionId.about:
-        return 'About';
       case PortfolioSectionId.skills:
         return 'Skills';
       case PortfolioSectionId.projects:
@@ -31,17 +29,6 @@ class PortfolioStat {
   final String label;
 }
 
-class CapabilityItem {
-  const CapabilityItem({
-    required this.icon,
-    required this.title,
-    required this.description,
-  });
-
-  final IconData icon;
-  final String title;
-  final String description;
-}
 
 class SkillGroup {
   const SkillGroup({
@@ -109,32 +96,6 @@ const List<PortfolioStat> portfolioStats = <PortfolioStat>[
   PortfolioStat(value: '3', label: 'Platforms across mobile and web'),
 ];
 
-const List<CapabilityItem> capabilityItems = <CapabilityItem>[
-  CapabilityItem(
-    icon: Icons.flutter_dash_rounded,
-    title: 'UI That Feels Premium',
-    description:
-        'I focus on polished motion, clean spacing, and responsive layouts that feel intentional instead of generic.',
-  ),
-  CapabilityItem(
-    icon: Icons.rocket_launch_rounded,
-    title: 'Performance First',
-    description:
-        'I simplify scroll-heavy layouts, reduce unnecessary rebuilds, and keep interfaces smooth on web and mobile.',
-  ),
-  CapabilityItem(
-    icon: Icons.layers_outlined,
-    title: 'Scalable Architecture',
-    description:
-        'I like building features with clear structure so future updates do not turn into fragile UI patches.',
-  ),
-  CapabilityItem(
-    icon: Icons.auto_awesome_rounded,
-    title: 'Product Mindset',
-    description:
-        'Beyond code, I care about how the final experience looks, feels, and communicates value to real users.',
-  ),
-];
 
 const List<SkillGroup> skillGroups = <SkillGroup>[
   SkillGroup(
@@ -220,11 +181,13 @@ const List<PortfolioProject> portfolioProjects = <PortfolioProject>[
 
 const List<ExperienceEntry> experienceEntries = <ExperienceEntry>[
   ExperienceEntry(
-    role: 'Flutter Developer',
-    company: 'Genova Technologies',
-    period: 'June 2025 - Present',
+    role: 'Flutter Developer Trainee',
+    company: 'Brototype, Calicut',
+    period: '2023 - 2024',
     description:
-        'Currently building Flutter applications with a focus on responsive layouts, polished user experience, and smooth product delivery across app and web.',
+        'Built hands-on Flutter projects, strengthened core engineering habits, and sharpened practical app development skills.',
+    logoAsset:
+        'assets/images/WhatsApp Image 2024-02-29 at 18.41.19_76132ea6.jpg',
   ),
   ExperienceEntry(
     role: 'Flutter Developer',
@@ -236,12 +199,10 @@ const List<ExperienceEntry> experienceEntries = <ExperienceEntry>[
         'assets/images/427998075_917323277061139_5829715538073830577_n.jpg',
   ),
   ExperienceEntry(
-    role: 'Flutter Developer Trainee',
-    company: 'Brototype, Calicut',
-    period: '2023 - 2024',
+    role: 'Flutter Developer',
+    company: 'Genova Technologies',
+    period: 'June 2025 - Present',
     description:
-        'Built hands-on Flutter projects, strengthened core engineering habits, and sharpened practical app development skills.',
-    logoAsset:
-        'assets/images/WhatsApp Image 2024-02-29 at 18.41.19_76132ea6.jpg',
+        'Currently building Flutter applications with a focus on responsive layouts, polished user experience, and smooth product delivery across app and web.',
   ),
 ];
