@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 enum PortfolioSectionId { home, skills, projects, experience, contact }
 
 extension PortfolioSectionMeta on PortfolioSectionId {
@@ -92,58 +90,91 @@ const List<String> heroTitles = <String>[
 
 const List<PortfolioStat> portfolioStats = <PortfolioStat>[
   PortfolioStat(value: '2+', label: 'Years building with Flutter'),
-  PortfolioStat(value: '8', label: 'Featured projects shipped'),
+  PortfolioStat(value: '6+', label: 'Featured projects shipped'),
   PortfolioStat(value: '3', label: 'Platforms across mobile and web'),
 ];
 
 
 const List<SkillGroup> skillGroups = <SkillGroup>[
   SkillGroup(
-    title: 'Core Stack',
-    caption: 'The tools I use most often for product delivery.',
+    title: 'Languages & Frameworks',
+    caption: 'Core programming language and UI framework for app development.',
     skills: <String>[
-      'Flutter',
       'Dart',
-      'REST APIs',
-      'Responsive Web',
-      'Firebase',
+      'Flutter',
+    ],
+  ),
+  SkillGroup(
+    title: 'State Management',
+    caption: 'Reactive state management and architectural solutions.',
+    skills: <String>[
+      'Riverpod',
+      'Bloc',
       'Provider',
+      'GetX',
     ],
   ),
   SkillGroup(
-    title: 'UI Craft',
-    caption: 'Where I spend extra time to make the product feel better.',
+    title: 'Architecture',
+    caption: 'Clean code practices and scalable software architecture.',
     skills: <String>[
-      'Micro-interactions',
-      'Scroll animation',
-      'Figma handoff',
-      'Layout systems',
-      'Design polish',
-      'Dark UI styling',
+      'MVVM',
+      'MVC',
+      'Clean Architecture',
     ],
   ),
   SkillGroup(
-    title: 'Workflow',
-    caption: 'The supporting tools that keep shipping fast and stable.',
+    title: 'Backend & Databases',
+    caption: 'Cloud services, backend APIs, and local storage solutions.',
     skills: <String>[
+      'Firebase',
+      'REST APIs',
+      'JWT Authentication',
+      'SQLite',
+      'Hive',
+      'Firebase Firestore',
+    ],
+  ),
+  SkillGroup(
+    title: 'Networking & Tools',
+    caption: 'API clients, version control, and development tools.',
+    skills: <String>[
+      'Dio',
+      'Retrofit',
+      'JSON Parsing',
+      'Git',
       'GitHub',
-      'Debugging',
-      'Asset optimization',
-      'API integration',
-      'Release prep',
-      'Team collaboration',
+      'Postman',
+      'Swagger',
+      'Codemagic',
+    ],
+  ),
+  SkillGroup(
+    title: 'Services & Features',
+    caption: 'Location services and native app capabilities.',
+    skills: <String>[
+      'Google Maps',
+      'Push Notifications',
     ],
   ),
 ];
 
 const List<PortfolioProject> portfolioProjects = <PortfolioProject>[
   PortfolioProject(
+    title: 'AI Trip Planner',
+    description:
+        'An AI-powered Flutter application that generates personalized day-by-day travel itineraries based on user budget and travel dates. Features Google Gemini/OpenAI recommendations for hotels, attractions, and Google Maps API route optimization.',
+    imageAsset: 'assets/images/ai_trip_planner.jpg',
+    projectUrl: 'https://github.com/Akshaykpz',
+    tags: <String>['Flutter', 'Gemini AI', 'Google Maps', 'OpenAI', 'REST API'],
+  ),
+  PortfolioProject(
     title: 'StoreX',
     description:
-        'An e-commerce Flutter app with catalog browsing, purchase flows, and a modern shopping experience.',
-    imageAsset: 'assets/images/3810160.jpg',
+        'A user-friendly e-commerce mobile app for buying smartphones. Built with Firebase Authentication, Cloud Firestore, Riverpod state management, and Razorpay payment gateway.',
+    imageAsset: 'assets/images/storex.jpg',
     projectUrl: 'https://github.com/Akshaykpz/StoreX-E-commerce-application',
-    tags: <String>['Flutter', 'Firebase', 'Commerce'],
+    tags: <String>['Flutter', 'Firebase', 'Razorpay', 'Riverpod'],
   ),
   PortfolioProject(
     title: 'Aqua Med Tracker',
